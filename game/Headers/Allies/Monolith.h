@@ -1,7 +1,7 @@
 #pragma once
 #include "../Ally.h"
 
-class Monolith
+class Monolith : Ally
 {
 
 public:
