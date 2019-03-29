@@ -1,9 +1,10 @@
 *.*
+*.suo
 !*.c
 !*.cpp
-!*.sln
 !*.h
 !*.hpp
+!*.sln
 !*.vcxproj
 !*.filters
 !*.png

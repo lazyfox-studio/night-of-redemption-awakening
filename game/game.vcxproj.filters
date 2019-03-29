@@ -55,7 +55,7 @@
     <ClCompile Include="Classes\Allies\Monolith.cpp">
       <Filter>Classes\Allies</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Alliy.cpp">
+    <ClCompile Include="Classes\Ally.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="Utilities\List.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="definitions.h">
+      <Filter>Main Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

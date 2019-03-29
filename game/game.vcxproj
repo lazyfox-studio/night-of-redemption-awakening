@@ -135,7 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\Alliy.cpp" />
+    <ClCompile Include="Classes\Ally.cpp" />
     <ClCompile Include="Classes\Allies\Monolith.cpp" />
     <ClCompile Include="Classes\Allies\Person.cpp" />
     <ClCompile Include="Classes\Enemies\Enemy1.cpp" />
@@ -145,6 +145,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="definitions.h" />
     <ClInclude Include="Headers\Ally.h" />
     <ClInclude Include="Headers\Allies\Monolith.h" />
     <ClInclude Include="Headers\Allies\Person.h" />
