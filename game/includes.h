@@ -13,6 +13,3 @@
 // Allies
 #include"Headers\Allies\Person.h"
 #include"Headers\Allies\Monolith.h"
-
-// Utilities
-#include "List/List.h"
