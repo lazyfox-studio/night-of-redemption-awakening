@@ -1,22 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
+    <Filter Include="Main Source">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{a5186a3c-fecf-4bc6-9e38-9bd4afb8a754}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{a2cce214-cc9b-48aa-ab77-d9b9adaa00b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Enemies">
+      <UniqueIdentifier>{98fbddb8-4285-413e-83d7-35c33f90ad28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Enemies">
+      <UniqueIdentifier>{9cba608a-04bd-4b79-9e76-c4f4922c07d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Items">
+      <UniqueIdentifier>{372f1005-a132-456a-913d-7fbb1869ff86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Items">
+      <UniqueIdentifier>{cd29e383-8c57-42fb-bf0e-1e303a808aa1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Main Source</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Enemy.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Item.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Person.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Enemies\Enemy1.cpp">
+      <Filter>Classes\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Items\Item1.cpp">
+      <Filter>Classes\Items</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\Enemy.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Item.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Person.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Enemies\Enemy1.h">
+      <Filter>Headers\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Items\Item1.h">
+      <Filter>Headers\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Main Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
