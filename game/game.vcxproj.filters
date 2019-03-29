@@ -23,6 +23,12 @@
     <Filter Include="Headers\Items">
       <UniqueIdentifier>{cd29e383-8c57-42fb-bf0e-1e303a808aa1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Allies">
+      <UniqueIdentifier>{fb157b4d-d242-4f7f-ac31-e7b10a827830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Allies">
+      <UniqueIdentifier>{631a3ddb-a0f4-4236-99db-7cc53823941b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,14 +40,20 @@
     <ClCompile Include="Classes\Item.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Person.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Enemies\Enemy1.cpp">
       <Filter>Classes\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Items\Item1.cpp">
       <Filter>Classes\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Allies\Person.cpp">
+      <Filter>Classes\Allies</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Allies\Monolith.cpp">
+      <Filter>Classes\Allies</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Alliy.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,9 +61,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Item.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Person.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Enemies\Enemy1.h">
@@ -62,6 +71,15 @@
     </ClInclude>
     <ClInclude Include="includes.h">
       <Filter>Main Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Allies\Person.h">
+      <Filter>Headers\Allies</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Allies\Monolith.h">
+      <Filter>Headers\Allies</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Ally.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

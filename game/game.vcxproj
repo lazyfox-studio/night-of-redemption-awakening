@@ -135,20 +135,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes\Alliy.cpp" />
+    <ClCompile Include="Classes\Allies\Monolith.cpp" />
+    <ClCompile Include="Classes\Allies\Person.cpp" />
     <ClCompile Include="Classes\Enemies\Enemy1.cpp" />
     <ClCompile Include="Classes\Enemy.cpp" />
     <ClCompile Include="Classes\Item.cpp" />
     <ClCompile Include="Classes\Items\Item1.cpp" />
-    <ClCompile Include="Classes\Person.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Ally.h" />
+    <ClInclude Include="Headers\Allies\Monolith.h" />
+    <ClInclude Include="Headers\Allies\Person.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="Headers\Enemies\Enemy1.h" />
     <ClInclude Include="Headers\Enemy.h" />
     <ClInclude Include="Headers\Item.h" />
     <ClInclude Include="Headers\Items\Item1.h" />
-    <ClInclude Include="Headers\Person.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
