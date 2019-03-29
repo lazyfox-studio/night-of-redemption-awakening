@@ -1,10 +1,14 @@
-﻿#include <SFML/Graphics.hpp>
-#include "definitions.h"
+﻿#include "definitions.h"
 #include "includes.h"
 
 
 int main()
 {
+	view.reset(sf::FloatRect(0.f, 0.f, 2560.f, 1440.f));
+	sf::RectangleShape background(sf::Vector2f(2560.f, 1440.f));
+	sf::Texture bgtexture;
+	bgtexture.loadFromFile("Textures/map.png");
+	//background.setT;
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
