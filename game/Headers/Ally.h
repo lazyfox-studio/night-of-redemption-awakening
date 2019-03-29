@@ -2,6 +2,7 @@
  
 class Ally
 {
+protected:
     float x;
     float y;
     int health;

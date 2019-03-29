@@ -16,7 +16,8 @@ public:
 
     }
 
-    void move(float x, float y);
+    //Движение персонажа, для первых двух значений передавать -1 0 1, для shift 0 1
+    void move(int dx, int dy, int shift);
     void shoot();
     void draw();
 };
