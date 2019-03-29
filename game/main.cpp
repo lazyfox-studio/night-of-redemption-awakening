@@ -1,17 +1,24 @@
 ﻿#include "definitions.h"
 #include "includes.h"
+#include <iostream>
 
 
 int main()
 {
 	view.reset(sf::FloatRect(0.f, 0.f, 2560.f, 1440.f));
-	sf::RectangleShape background(sf::Vector2f(2560.f, 1440.f));
+	sf::Sprite background;
 	sf::Texture bgtexture;
-	bgtexture.loadFromFile("Textures/map.png");
-	//background.setT;
+	if (!bgtexture.loadFromFile("Textures/map.png"))
+	{
+		std::cout << "Cant open" << std::flush;
+	};
+	background.setTexture(bgtexture);
+	background.setPosition(sf::Vector2f(0, 0));
+
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
+	window.setView(view);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -22,7 +29,10 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+
+		window.draw(background);
+		//window.draw(shape);
+
 		window.display();
 	}
 
