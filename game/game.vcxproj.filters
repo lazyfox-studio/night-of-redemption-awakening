@@ -29,6 +29,9 @@
     <Filter Include="Headers\Allies">
       <UniqueIdentifier>{631a3ddb-a0f4-4236-99db-7cc53823941b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{6dce3c1a-7ce7-4eca-b701-4cea9dc4ace1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="Headers\Ally.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\List.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
