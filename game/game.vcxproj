@@ -153,6 +153,7 @@
     <ClInclude Include="Headers\Enemy.h" />
     <ClInclude Include="Headers\Item.h" />
     <ClInclude Include="Headers\Items\Item1.h" />
+    <ClInclude Include="List\List.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
