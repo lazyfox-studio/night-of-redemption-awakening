@@ -20,7 +20,7 @@ public:
 
     }
 
-    virtual void move(float x, float y) = 0;
+    void move();
     virtual void attack() = 0;
     virtual void draw() = 0;
     virtual void focus_change() = 0;

@@ -2,6 +2,7 @@
  
 class Ally
 {
+    friend class Enemy;
 protected:
     float x;
     float y;
