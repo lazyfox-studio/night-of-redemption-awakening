@@ -23,7 +23,7 @@ void Enemy::attack() {
         return;
     }
 
-    if (r < 1)
+    if (r <= 1)
     {
         //Стоило бы добавить проигрывание анимации
         focus->health -= damage;
