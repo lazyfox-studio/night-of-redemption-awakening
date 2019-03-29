@@ -9,7 +9,11 @@ class Person : Ally
 public:
     Person()
     {
-
+        x = 100;
+        y = 100;
+        health = 200;
+        speed = 5;
+        pov = 0;
     }
     ~Person()
     {
