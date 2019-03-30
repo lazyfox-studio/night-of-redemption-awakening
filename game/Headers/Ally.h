@@ -1,23 +1,18 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "Unit.h"
 
-extern sf::RenderWindow window;
-extern sf::View view;
-
-class Ally
+class Ally : public Unit
 {
     friend class Enemy;
 protected:
-    float x;
-    float y;
-    int health;
+
 
 public:
     Ally()
     {
 
     }
-	Ally(float _x, float _y, int _health) : x(_x), y(_y), health(_health)
+	Ally(float _x, float _y, int _health) : Unit(_x, _y, _health)
 	{
 
 	}

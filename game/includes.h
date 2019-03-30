@@ -1,9 +1,14 @@
 ﻿#pragma once
 
+// 3rd Party Libs
+#include <iostream>
+#include <SFML/Graphics.hpp>
+
 // Main Classes
 #include "Headers/Enemy.h"
 #include "Headers/Ally.h"
 #include "Headers/Item.h"
+#include "Headers/Unit.h"
 
 // Enemies
 #include "Headers/Enemies/Enemy1.h"

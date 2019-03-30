@@ -29,6 +29,7 @@ public:
     void shoot();
     void draw();
 	void rotate(float);
+	void rotate_to(float);
 	void move(float, float, bool = false);
 
 	bool is_out_of_terrain(float, float);

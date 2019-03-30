@@ -1,6 +1,5 @@
 ﻿#include "definitions.h"
 #include "includes.h"
-#include <iostream>
 
 
 int main()
@@ -14,15 +13,15 @@ int main()
 	};
 	background.setTexture(bgtexture);
 	background.setPosition(sf::Vector2f(0, 0));
-	float vc_x = 1280.f / 2.f, vc_y = 720.f / 2.f;
+	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
 
 	view.setCenter(vc_x, vc_y);
 	view.zoom(0.5f);
 
 	Person* player = new Person;
 
-	Ally* allies[1];
-	allies[0] = player;
+	Unit* units[1];
+	units[0] = player;
 
 	window.setView(view);
 	while (window.isOpen())
@@ -72,7 +71,7 @@ int main()
 
 		window.draw(background);
 
-		player->draw();
+		draw_all(units, 1);
 
 		window.display();
 	}

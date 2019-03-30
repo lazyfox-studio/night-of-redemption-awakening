@@ -1,17 +1,9 @@
 ﻿#pragma once
 #include "Ally.h"
-#include <SFML/Graphics.hpp>
 
-extern sf::RenderWindow window;
-extern sf::View view;
-
-
-class Enemy
+class Enemy : public Unit
 {
-    float x;
-    float y;
     float r; //Расстояние до цели
-    int health;
     float speed;
     int damage;
     int damage_cooldown; //Ограничение на скорость атак

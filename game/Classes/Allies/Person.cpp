@@ -53,6 +53,12 @@ void Person::rotate(float deg)
 	pov += deg;
 }
 
+void Person::rotate_to(float deg)
+{
+	sprite.setRotation(deg);
+	pov = deg;
+}
+
 void Person::move(float dbx, float dby, bool is_shift)
 {
 	float shift = is_shift ? 1.f : 0.f;
