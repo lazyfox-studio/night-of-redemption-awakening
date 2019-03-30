@@ -12,7 +12,7 @@ public:
         x = 100;
         y = 100;
         health = 200;
-        speed = 3;
+        speed = 10;
         pov = 0;
     }
     ~Person()
@@ -21,7 +21,7 @@ public:
     }
 
     //Движение персонажа, для первых двух значений передавать -1 0 1, для shift 0 1
-    void move(int dx, int dy, int shift);
+    void move();
     void shoot();
     void draw();
 };

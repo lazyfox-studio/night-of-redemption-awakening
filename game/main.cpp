@@ -27,27 +27,11 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::KeyPressed)
-			{
-				switch (event.key.code)
-				{
-                case sf::Keyboard::Key::D:
-                    player.move(1, 0, 0);
-					break;
-				case sf::Keyboard::Key::A:
-                    player.move(-1, 0, 0);
-					break;
-				case sf::Keyboard::Key::W:
-                    player.move(0, -1, 0);
-					break;
-				case sf::Keyboard::Key::S:
-                    player.move(0, 1, 0);
-					break;
-				}
-			}
             if (event.type == sf::Event::Closed)
                 window.close();
 		}
+
+        player.move();
 
 		window.clear();
 
