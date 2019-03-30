@@ -44,7 +44,7 @@ void Person::shoot() {
 }
 
 void Person::draw() {
-
+	window.draw(sprite);
 }
 
 void Person::move_(float dbx, float dby, bool is_shift)
@@ -64,4 +64,5 @@ void Person::move_(float dbx, float dby, bool is_shift)
 	x = x + dx;
 	y = y + dy;
 	view.move(dx, dy);
+	sprite.move(dx, dy);
 }

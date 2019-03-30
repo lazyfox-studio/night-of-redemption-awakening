@@ -93,5 +93,8 @@
     <ClInclude Include="Utilities\Controls.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\Screen.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

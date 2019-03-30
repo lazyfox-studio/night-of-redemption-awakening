@@ -1,6 +1,5 @@
 ﻿#include "definitions.h"
 #include "includes.h"
-#include "Utilities/Controls.h"
 #include <iostream>
 
 
@@ -20,10 +19,10 @@ int main()
 	view.setCenter(vc_x, vc_y);
 	view.zoom(0.5f);
 
-    //Person player;
+	Person* player = new Person;
 
 	Ally* allies[1];
-	allies[0] = new Person;
+	allies[0] = player;
 
 	window.setView(view);
 	while (window.isOpen())
@@ -63,6 +62,8 @@ int main()
         window.setView(view);
 
 		window.draw(background);
+
+		player->draw();
 
 		window.display();
 	}
