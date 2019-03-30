@@ -11,11 +11,11 @@ class Person : public Ally
 	sf::Sprite sprite;
 
 public:
-    Person() : Ally(100, 100, 200), speed(10), pov(0)
+    Person() : Ally(100, 100, 200), speed(3), pov(0)
     {
 		texture.loadFromFile("Textures/player.png");
 		sprite.setTexture(texture);
-		sprite.setPosition(screen.w / 2, screen.h / 2);
+		sprite.setPosition((float)screen.w / 2, (float)screen.h / 2);
     }
     ~Person()
     {
@@ -28,4 +28,6 @@ public:
     void draw();
 
 	void move_(float, float, bool = false);
+
+	bool is_out_of_terrain(float, float);
 };

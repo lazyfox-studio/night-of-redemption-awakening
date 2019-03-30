@@ -55,7 +55,7 @@ int main()
 		}
 
         //player.move();
-		move_all(allies, 1);
+		move_all(player);
 
 		window.clear();
 

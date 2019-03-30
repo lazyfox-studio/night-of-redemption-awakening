@@ -17,26 +17,22 @@ struct CameraOffset
 	float y;
 };
 
-inline void move_all(Ally** allies, int allies_n)
+inline void move_all(Person* player)
 {
 	if (Kb.W)
 	{
-		for (int i = 0; i < allies_n; i++)
-			allies[i]->move_(0.f, -1.0f, Kb.LShift);
+		player->move_(0.f, -1.0f, Kb.LShift);
 	}
 	if (Kb.A)
 	{
-		for (int i = 0; i < allies_n; i++)
-			allies[i]->move_(-1.f, 0.f, Kb.LShift);
+		player->move_(-1.f, 0.f, Kb.LShift);
 	}
 	if (Kb.S)
 	{
-		for (int i = 0; i < allies_n; i++)
-			allies[i]->move_(0.f, 1.0f, Kb.LShift);
+		player->move_(0.f, 1.0f, Kb.LShift);
 	}
 	if (Kb.D)
 	{
-		for (int i = 0; i < allies_n; i++)
-			allies[i]->move_(1.0f, 0.0f, Kb.LShift);
+		player->move_(1.0f, 0.0f, Kb.LShift);
 	}
 }

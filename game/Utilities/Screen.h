@@ -2,8 +2,8 @@
 
 struct ScreenResolution
 {
-	float w = 1280.f;
-	float h = 720.f;
+	int w = 1280;
+	int h = 720;
 };
 
 const ScreenResolution screen;

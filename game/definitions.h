@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Utilities/Screen.h"
 
-sf::RenderWindow window(sf::VideoMode(1280, 720), "Evil Redemption");
+sf::RenderWindow window(sf::VideoMode(screen.w, screen.h), "Evil Redemption");
 sf::View view;

@@ -54,15 +54,25 @@ void Person::move_(float dbx, float dby, bool is_shift)
 	{
 		float dx = dbx * (speed + (speed * shift)) * 0.707f;
 		float dy = dby * (speed + (speed * shift)) * 0.707f;
+		if (is_out_of_terrain(dx, dy))
+			return;
 		x = x + dx;
 		y = y + dy;
 		view.move(dx, dy);
+		sprite.move(dx, dy);
 		return;
 	}
 	float dx = dbx * (speed + (speed * shift));
 	float dy = dby * (speed + (speed * shift));
+	if (is_out_of_terrain(dx, dy))
+		return;
 	x = x + dx;
 	y = y + dy;
 	view.move(dx, dy);
 	sprite.move(dx, dy);
+}
+
+bool Person::is_out_of_terrain(float dx, float dy)
+{
+	return (x + dx <= 0) || (x + dx >= screen.w) || (y + dy <= 0) || (y + dy >= screen.h);
 }
