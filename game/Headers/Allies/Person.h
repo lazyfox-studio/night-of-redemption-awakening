@@ -1,19 +1,14 @@
 ﻿#pragma once
 #include "../Ally.h"
 
-class Person : Ally
+class Person : public Ally
 {
     float speed;
     float pov; //Направление взгляда
 
 public:
-    Person()
+    Person() : Ally(100, 100, 200), speed(10), pov(0)
     {
-        x = 100;
-        y = 100;
-        health = 200;
-        speed = 10;
-        pov = 0;
     }
     ~Person()
     {
@@ -24,4 +19,6 @@ public:
     void move();
     void shoot();
     void draw();
+
+	void move_(float, float, bool = false);
 };

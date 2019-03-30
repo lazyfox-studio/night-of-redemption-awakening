@@ -17,10 +17,15 @@ public:
     {
 
     }
+	Ally(float _x, float _y, int _health) : x(_x), y(_y), health(_health)
+	{
+
+	}
     ~Ally()
     {
 
     }
 
     virtual void draw() = 0;
+	virtual void move_(float, float, bool = false) = 0;
 };

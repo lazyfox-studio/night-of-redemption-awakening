@@ -1,5 +1,6 @@
 ﻿#include "definitions.h"
 #include "includes.h"
+#include "Utilities/Controls.h"
 #include <iostream>
 
 
@@ -19,7 +20,10 @@ int main()
 	view.setCenter(vc_x, vc_y);
 	view.zoom(0.5f);
 
-    Person player;
+    //Person player;
+
+	Ally* allies[1];
+	allies[0] = new Person;
 
 	window.setView(view);
 	while (window.isOpen())
@@ -29,9 +33,30 @@ int main()
 		{
             if (event.type == sf::Event::Closed)
                 window.close();
+			if ((event.type == sf::Event::KeyPressed)||(event.type == sf::Event::KeyReleased))
+			{
+				bool flag = (event.type == sf::Event::KeyPressed);
+				switch (event.key.code)
+				{
+				case sf::Keyboard::Key::W:
+					Kb.W = flag;
+					break;
+				case sf::Keyboard::Key::A:
+					Kb.A = flag;
+					break;
+				case sf::Keyboard::Key::S:
+					Kb.S = flag;
+					break;
+				case sf::Keyboard::Key::D:
+					Kb.D = flag;
+					break;
+				}
+				//window.setView(view);
+			}
 		}
 
-        player.move();
+        //player.move();
+		move_all(allies, 1);
 
 		window.clear();
 

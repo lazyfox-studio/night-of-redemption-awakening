@@ -25,8 +25,8 @@ void Person::move() {
 
     if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
     {
-        float dx = dbx * (speed + (speed * shift)) * 0.707;
-        float dy = dby * (speed + (speed * shift)) * 0.707;
+        float dx = dbx * (speed + (speed * shift)) * 0.707f;
+        float dy = dby * (speed + (speed * shift)) * 0.707f;
         x = x + dx;
         y = y + dy;
         view.move(dx, dy);
@@ -45,4 +45,23 @@ void Person::shoot() {
 
 void Person::draw() {
 
+}
+
+void Person::move_(float dbx, float dby, bool is_shift)
+{
+	float shift = is_shift ? 1.f : 0.f;
+	if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
+	{
+		float dx = dbx * (speed + (speed * shift)) * 0.707f;
+		float dy = dby * (speed + (speed * shift)) * 0.707f;
+		x = x + dx;
+		y = y + dy;
+		view.move(dx, dy);
+		return;
+	}
+	float dx = dbx * (speed + (speed * shift));
+	float dy = dby * (speed + (speed * shift));
+	x = x + dx;
+	y = y + dy;
+	view.move(dx, dy);
 }

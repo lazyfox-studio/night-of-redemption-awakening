@@ -90,5 +90,8 @@
     <ClInclude Include="definitions.h">
       <Filter>Main Source</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\Controls.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
