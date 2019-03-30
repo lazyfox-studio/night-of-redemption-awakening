@@ -19,8 +19,8 @@ int main()
 	view.setCenter(vc_x, vc_y);
 	view.zoom(0.5f);
 
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+    Person player;
+
 	window.setView(view);
 	while (window.isOpen())
 	{
@@ -29,35 +29,32 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+
 			if (event.type == sf::Event::KeyPressed)
 			{
 				switch (event.key.code)
 				{
 				case sf::Keyboard::Key::Right:
-					if(view.getCenter().x < 1280)
-						view.move(10, 0);
+                    player.move(1, 0, 0);
 					break;
 				case sf::Keyboard::Key::Left:
-					if (view.getCenter().x > 640)
-						view.move(-10, 0);
+                    player.move(-1, 0, 0);
 					break;
 				case sf::Keyboard::Key::Up:
-					if (view.getCenter().y > 360)
-						view.move(0, -10);
+                    player.move(0, -1, 0);
 					break;
 				case sf::Keyboard::Key::Down:
-					if (view.getCenter().y < 720)
-						view.move(0, 10);
+                    player.move(0, 1, 0);
 					break;
 				}
-				window.setView(view);
 			}
 		}
 
 		window.clear();
 
+        window.setView(view);
+
 		window.draw(background);
-		//window.draw(shape);
 
 		window.display();
 	}

@@ -1,14 +1,20 @@
 ﻿#include "../../Headers/Allies/Person.h"
 
-void Person::move(int dx, int dy, int shift) {
-    if ((dx != 0) && (dy != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
+void Person::move(int dbx, int dby, int shift) {
+    if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
     {
-        x += dx * (speed + (speed * shift)) * 0,707;
-        y += dy * (speed + (speed * shift)) * 0,707;
+        float dx = dbx * (speed + (speed * shift)) * 0.707;
+        float dy = dby * (speed + (speed * shift)) * 0.707;
+        x = x + dx;
+        y = y + dy;
+        view.move(dx, dy);
         return;
     }
-    x += dx * (speed + (speed * shift));
-    y += dy * (speed + (speed * shift));
+    float dx = dbx * (speed + (speed * shift));
+    float dy = dby * (speed + (speed * shift));
+    x = x + dx;
+    y = y + dy;
+    view.move(dx, dy);
 }
 
 void Person::shoot() {
