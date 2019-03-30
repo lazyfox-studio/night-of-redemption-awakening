@@ -12,7 +12,7 @@ public:
         x = 100;
         y = 100;
         health = 200;
-        speed = 5;
+        speed = 3;
         pov = 0;
     }
     ~Person()
