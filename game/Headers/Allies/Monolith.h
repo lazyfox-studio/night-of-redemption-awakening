@@ -15,5 +15,5 @@ public:
     }
 
     void draw();
-	void move_(float, float, bool = false);
+	void move(float, float, bool = false);
 };

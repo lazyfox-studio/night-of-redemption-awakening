@@ -1,6 +1,6 @@
 ﻿#include "../../Headers/Allies/Person.h"
 
-void Person::move() {
+void Person::move_d() {
     int dbx = 0, dby = 0, shift = 0;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
@@ -47,7 +47,13 @@ void Person::draw() {
 	window.draw(sprite);
 }
 
-void Person::move_(float dbx, float dby, bool is_shift)
+void Person::rotate(float deg)
+{
+	sprite.rotate(deg);
+	pov += deg;
+}
+
+void Person::move(float dbx, float dby, bool is_shift)
 {
 	float shift = is_shift ? 1.f : 0.f;
 	if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой

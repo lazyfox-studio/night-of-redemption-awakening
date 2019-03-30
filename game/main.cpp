@@ -49,6 +49,15 @@ int main()
 				case sf::Keyboard::Key::D:
 					Kb.D = flag;
 					break;
+				case sf::Keyboard::Key::Q:
+					Kb.Q = flag;
+					break;
+				case sf::Keyboard::Key::E:
+					Kb.E = flag;
+					break;
+				case sf::Keyboard::Key::LShift:
+					Kb.LShift = flag;
+					break;
 				}
 				//window.setView(view);
 			}

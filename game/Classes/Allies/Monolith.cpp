@@ -5,6 +5,6 @@ void Monolith::draw()
 
 }
 
-void Monolith::move_(float, float, bool)
+void Monolith::move(float, float, bool)
 {
 }

@@ -7,6 +7,8 @@ struct KeyboardControl
 	bool A = false;
 	bool S = false;
 	bool D = false;
+	bool Q = false;
+	bool E = false;
 	bool LShift = false;
 };
 KeyboardControl Kb;
@@ -21,18 +23,26 @@ inline void move_all(Person* player)
 {
 	if (Kb.W)
 	{
-		player->move_(0.f, -1.0f, Kb.LShift);
+		player->move(0.f, -1.0f, Kb.LShift);
 	}
 	if (Kb.A)
 	{
-		player->move_(-1.f, 0.f, Kb.LShift);
+		player->move(-1.f, 0.f, Kb.LShift);
 	}
 	if (Kb.S)
 	{
-		player->move_(0.f, 1.0f, Kb.LShift);
+		player->move(0.f, 1.0f, Kb.LShift);
 	}
 	if (Kb.D)
 	{
-		player->move_(1.0f, 0.0f, Kb.LShift);
+		player->move(1.0f, 0.0f, Kb.LShift);
+	}
+	if (Kb.Q)
+	{
+		player->rotate(-1.0f);
+	}
+	if (Kb.E)
+	{
+		player->rotate(1.0f);
 	}
 }
