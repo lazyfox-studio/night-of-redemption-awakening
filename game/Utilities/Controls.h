@@ -37,9 +37,10 @@ inline void move_all(Person* player)
 		bitmask |= 2;
 		player->move(0.f, 1.0f, Kb.LShift);
 	}
-	if (Kb.E)
+	if (Kb.D)
 	{
-		player->rotate(45.0f);
+		bitmask |= 8;
+		player->move(1.0f, 0.0f, Kb.LShift);
 	}
 	if (!bitmask)
 		return;
