@@ -24,6 +24,5 @@ void Unit::rotate_to(float deg)
 
 bool Unit::is_out_of_terrain(float dx, float dy)
 {
-	std::cout << x << ' ' << y << ' - ';
-	return (x + dx <= 0) || (x + dx >= screen.w * 1.5) || (y + dy <= 0) || (y + dy >= screen.h * 1.5);
+	return (x + dx < screen.w / 2) || (x + dx > screen.w * 1.5) || (y + dy < screen.h / 2) || (y + dy > screen.h * 1.5);
 }
