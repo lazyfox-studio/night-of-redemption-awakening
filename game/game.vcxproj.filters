@@ -102,5 +102,8 @@
     <ClInclude Include="Headers\Unit.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\UnitList.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,9 +1,11 @@
 ﻿#include "definitions.h"
 #include "includes.h"
 
-
 int main()
 {
+	// служебные
+	calculate_coefficients(c_coefficients, screen);
+
 	view.reset(sf::FloatRect(0.f, 0.f, 2560.f, 1440.f));
 	sf::Sprite background;
 	sf::Texture bgtexture;
@@ -23,6 +25,9 @@ int main()
 	Unit* units[1];
 	units[0] = player;
 
+	List<Unit> Lunits;
+	Lunits.add(player);
+
 	window.setView(view);
 	while (window.isOpen())
 	{
@@ -31,7 +36,7 @@ int main()
 		{
             if (event.type == sf::Event::Closed)
                 window.close();
-			if ((event.type == sf::Event::KeyPressed)||(event.type == sf::Event::KeyReleased))
+			if ((event.type == sf::Event::KeyPressed) || (event.type == sf::Event::KeyReleased))
 			{
 				bool flag = (event.type == sf::Event::KeyPressed);
 				switch (event.key.code)
@@ -62,17 +67,11 @@ int main()
 			}
 		}
 
-        //player.move();
 		move_all(player);
-
 		window.clear();
-
         window.setView(view);
-
 		window.draw(background);
-
 		draw_all(units, 1);
-
 		window.display();
 	}
 
