@@ -29,6 +29,9 @@ public:
 	{
 	}
 
+	float getX();
+	float getY(); 
+
 	virtual void draw() = 0;
 	void rotate(float);
 	void rotate_to(float);
