@@ -34,7 +34,7 @@ public:
 	float getX();
 	float getY(); 
 
-	virtual void draw() = 0;
+	void draw();
 	void rotate(float);
 	void rotate_to(float);
 	bool is_out_of_terrain(float, float);

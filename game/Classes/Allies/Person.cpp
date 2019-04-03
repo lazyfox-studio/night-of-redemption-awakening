@@ -4,10 +4,6 @@ void Person::shoot() {
 
 }
 
-void Person::draw() {
-	window.draw(sprite);
-}
-
 void Person::move(float dbx, float dby, bool is_shift)
 {
 	float shift = is_shift ? 1.f : 0.f;

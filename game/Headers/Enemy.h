@@ -18,8 +18,7 @@ public:
 
     void range();
     void move();
-    virtual void attack();
-    virtual void draw() = 0;
-    virtual void focus_change() = 0;
-    virtual void death() = 0;
+    void attack();
+    void focus_change();
+    void death();
 };

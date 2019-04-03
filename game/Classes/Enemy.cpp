@@ -30,3 +30,13 @@ void Enemy::attack() {
         damage_cooldown = 5; //Подобрать значение!!!
     }
 }
+
+void focus_change()
+{
+
+}
+
+void death()
+{
+
+}

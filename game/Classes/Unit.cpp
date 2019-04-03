@@ -10,6 +10,11 @@ float Unit::getY()
 	return y;
 }
 
+void Unit::draw()
+{
+    window.draw(sprite);
+}
+
 void Unit::rotate(float deg)
 {
 	sprite.rotate(deg);

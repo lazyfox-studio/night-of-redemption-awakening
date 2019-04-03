@@ -19,7 +19,5 @@ public:
     {
 
     }
-
-    virtual void draw() = 0;
 	virtual void move(float, float, bool = false) = 0;
 };
