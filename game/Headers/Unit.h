@@ -2,6 +2,8 @@
 #include "../Utilities/Screen.h"
 #include <SFML/Graphics.hpp>
 
+#define SPRITE_SIZE 64
+
 extern sf::RenderWindow window;
 extern sf::View view;
 
