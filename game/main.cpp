@@ -1,6 +1,8 @@
 ﻿#include "definitions.h"
 #include "includes.h"
 
+extern Monolith monolith;
+
 int main()
 {
 	// служебные
@@ -25,6 +27,7 @@ int main()
 
 	Person* player = new Person;
 	units.add(player);
+    units.add(&monolith);
 
 	EnemyType* enemy1 = new EnemyType(100, 5, 5);
 	enemy1->assign_texture("Textures/enemy1.png");

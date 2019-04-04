@@ -10,9 +10,6 @@
 #include "Headers/Item.h"
 #include "Headers/Unit.h"
 
-// Enemies
-#include "Headers/Enemies/Enemy1.h"
-
 // Allies
 #include"Headers/Allies/Person.h"
 #include"Headers/Allies/Monolith.h"
