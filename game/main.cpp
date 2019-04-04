@@ -20,13 +20,20 @@ int main()
 	view.setCenter(vc_x, vc_y);
 	view.zoom(0.5f);
 
+	List<Unit> units;
+	List<Enemy> enemies;
+
 	Person* player = new Person;
+	units.add(player);
 
-	Unit* units[1];
-	units[0] = player;
+	EnemyType* enemy1 = new EnemyType(100, 5, 5);
+	enemy1->assign_texture("Textures/enemy1.png");
 
-	List<Unit> Lunits;
-	Lunits.add(player);
+	Enemy* en = new Enemy(enemy1);
+	units.add(en);
+	enemies.add(en);
+
+	en->move_to(200, 200);
 
 	window.setView(view);
 	while (window.isOpen())
@@ -71,7 +78,7 @@ int main()
 		window.clear();
         window.setView(view);
 		window.draw(background);
-		draw_all(units, 1);
+		draw_all(units);
 		window.display();
 	}
 

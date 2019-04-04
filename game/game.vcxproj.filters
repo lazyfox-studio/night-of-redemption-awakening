@@ -11,12 +11,6 @@
     <Filter Include="Classes">
       <UniqueIdentifier>{a2cce214-cc9b-48aa-ab77-d9b9adaa00b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\Enemies">
-      <UniqueIdentifier>{98fbddb8-4285-413e-83d7-35c33f90ad28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Enemies">
-      <UniqueIdentifier>{9cba608a-04bd-4b79-9e76-c4f4922c07d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Items">
       <UniqueIdentifier>{372f1005-a132-456a-913d-7fbb1869ff86}</UniqueIdentifier>
     </Filter>
@@ -43,9 +37,6 @@
     <ClCompile Include="Classes\Item.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Enemies\Enemy1.cpp">
-      <Filter>Classes\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Items\Item1.cpp">
       <Filter>Classes\Items</Filter>
     </ClCompile>
@@ -68,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="Headers\Item.h">
       <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Enemies\Enemy1.h">
-      <Filter>Headers\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Items\Item1.h">
       <Filter>Headers\Items</Filter>

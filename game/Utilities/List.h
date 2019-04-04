@@ -6,8 +6,9 @@ class ListItem
 public:
 	T* value;
 	ListItem<T>* next;
-	ListItem<T>();
-	ListItem<T>(T*);
+
+	ListItem();
+	ListItem(T*);
 };
 
 template <class T>
@@ -15,10 +16,10 @@ class List
 {
 	ListItem<T>* head;
 public:
-	List<T>();
-	List<T>(List<T>&);
-	//List<T>(T*, T);
-	~List<T>();
+	List();
+	List(List<T>&);
+	//List(T*, T);
+	~List();
 
 	void add(T*);                    // place value-pointer in item and join to end (not copy)
 	void add(List<T>&);              // join list to end
@@ -28,6 +29,8 @@ public:
 	void remove(ListItem<T>*);       // find item by item-pointer and delete it
 	int len() const;
 	List<T>& operator=(List<T>&);
+
+	void foreach(void(T::*)());
 };
 
 template <class T>
@@ -119,7 +122,7 @@ void List<T>::delete_all()
 	while (i)
 	{
 		i = i->next;
-		delete del->value;
+		//delete del->value;
 		delete del;
 		del = i;
 	}
@@ -223,4 +226,13 @@ List<T>& List<T>::operator=(List<T>& l)
 	delete_all();
 	add(l);
 	return *this;
+}
+
+template<class T>
+void List<T>::foreach(void (T::*func)())
+{
+	if (!head)
+		return;
+	for (ListItem<T>* i = head; i; i = i->next)
+		(i->value->*func)();
 }

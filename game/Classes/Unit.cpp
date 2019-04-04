@@ -1,5 +1,25 @@
 #include "../Headers/Unit.h"
 #include <iostream>
+
+Unit::Unit() : x(0), y(0), health(0), speed(0), pov(0), texture(new sf::Texture) 
+{
+	setX(x);
+	setY(y);
+}
+
+Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0), texture(new sf::Texture)
+{
+	setX(x);
+	setY(y);
+}
+
+Unit::Unit(float _x, float _y, int _health, float _speed, float _pov) :
+	x(_x), y(_y), health(_health), speed(_speed), pov(_pov), texture(new sf::Texture)
+{
+	setX(x);
+	setY(y);
+}
+
 float Unit::getX()
 {
 	return x;
@@ -8,6 +28,18 @@ float Unit::getX()
 float Unit::getY()
 {
 	return y;
+}
+
+void Unit::setX(float _x)
+{
+	sprite.setPosition(_x, y);
+	x = _x;
+}
+
+void Unit::setY(float _y)
+{
+	sprite.setPosition(x, _y);
+	y = _y;
 }
 
 void Unit::draw()

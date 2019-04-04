@@ -1,6 +1,13 @@
 ﻿#include "../Headers/Enemy.h"
 #include <math.h>
 
+Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage)
+{
+	texture = p->texture;
+	texture->setSmooth(true);
+	sprite.setTexture(*texture);
+}
+
 void Enemy::range() {
     r = sqrt((focus->x - x) * (focus->x - x) + (focus->y - y) * (focus->y - y));
 }
@@ -14,6 +21,12 @@ void Enemy::move()
         y += (focus->y - y) * c;
     }
 
+}
+
+void Enemy::move_to(float _x, float _y)
+{
+	setX(_x);
+	setY(_y);
 }
 
 void Enemy::attack() {

@@ -1,6 +1,7 @@
 #pragma once
 #include "../Headers/Unit.h"
 #include "Screen.h"
+#include "List.h"
 
 struct KeyboardControl
 {
@@ -107,4 +108,11 @@ inline void draw_all(Unit* units[], int count)
 {
 	for (int i = 0; i < count; i++)
 		units[i]->draw();
+}
+
+/*Unit* unit_sample;
+void (*unit_func)() = &(Unit::draw);*/
+inline void draw_all(List<Unit>& units)
+{
+	units.foreach(&(Unit::draw));
 }
