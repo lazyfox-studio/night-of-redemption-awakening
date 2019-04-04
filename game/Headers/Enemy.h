@@ -26,10 +26,9 @@ class Enemy : public Unit
 	EnemyType* prototype;
 
 public:
-	Enemy() : Unit() {}
-	Enemy(float _x, float _y) : Unit(_x, _y) {};
-	Enemy(float _x, float _y, int _health, float _speed, float _pov) :
-		Unit(_x, _y, _health, _speed, _pov) {};
+	Enemy();
+	Enemy(float, float);
+	Enemy(float, float, int, float, float);
 	Enemy(EnemyType*);
     ~Enemy() {}
 
@@ -37,6 +36,6 @@ public:
     void move();
 	void move_to(float, float);
     void attack();
-    void focus_change(List<Ally>& allies);
+    void focus_change(List<Ally>&);
     void death();
 };

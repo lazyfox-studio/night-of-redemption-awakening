@@ -32,7 +32,7 @@ int main()
     allies.add(player);
     allies.add(&monolith);
 
-	EnemyType* enemy1 = new EnemyType(100, 5, 5);
+	EnemyType* enemy1 = new EnemyType(100, 0.3f, 5);
 	enemy1->assign_texture("Textures/enemy1.png");
 
 	Enemy* en = new Enemy(enemy1);

@@ -30,7 +30,8 @@ public:
 	int len() const;
 	List<T>& operator=(List<T>&);
 
-	void foreach(void(T::*)());
+	void foreach(void(T::*func)());
+	//void foreach(void(T::*func)(List& list));
 };
 
 template <class T>

@@ -1,5 +1,19 @@
 ﻿#include "../../Headers/Allies/Person.h"
 
+Person::Person() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0.0f)
+{
+	texture->loadFromFile("Textures/player.png");
+	texture->setSmooth(true);
+	sprite.setTexture(*texture);
+	sprite.setTextureRect(sf::IntRect(0, 0, SPRITE_SIZE, SPRITE_SIZE));
+	sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
+	sprite.setPosition(x, y);
+}
+
+Person::~Person()
+{
+}
+
 void Person::shoot() {
 
 }
@@ -21,6 +35,8 @@ void Person::move(float dbx, float dby, bool is_shift)
 	}
 	float dx = dbx * (speed + (speed * shift));
 	float dy = dby * (speed + (speed * shift));
+	//bool out_of_terrain = is_out_of_terrain(dx, dy);
+	//bool on_edge = is_edge_of_terrain(dx, dy);
 	if (is_out_of_terrain(dx, dy))
 		return;
 	x = x + dx;

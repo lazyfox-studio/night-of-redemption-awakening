@@ -20,6 +20,10 @@ Unit::Unit(float _x, float _y, int _health, float _speed, float _pov) :
 	setY(y);
 }
 
+Unit::~Unit()
+{
+}
+
 float Unit::getX()
 {
 	return x;
@@ -62,4 +66,10 @@ void Unit::rotate_to(float deg)
 bool Unit::is_out_of_terrain(float dx, float dy)
 {
 	return (x + dx < screen.w / 2) || (x + dx > screen.w * 1.5) || (y + dy < screen.h / 2) || (y + dy > screen.h * 1.5);
+}
+
+bool Unit::is_edge_of_terrain(float dx, float dy)
+{
+	const float edge = 50.f;
+	return (x + dx < edge) || (x + dx > screen.w - edge) || (y + dy < edge) || (y + dy > screen.h - edge);
 }

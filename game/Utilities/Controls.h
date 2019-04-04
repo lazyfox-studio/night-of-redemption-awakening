@@ -110,8 +110,6 @@ inline void draw_all(Unit* units[], int count)
 		units[i]->draw();
 }
 
-/*Unit* unit_sample;
-void (*unit_func)() = &(Unit::draw);*/
 inline void draw_all(List<Unit>& units)
 {
 	units.foreach(&(Unit::draw));

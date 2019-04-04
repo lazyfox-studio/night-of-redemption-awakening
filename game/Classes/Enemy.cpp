@@ -4,6 +4,22 @@
 
 extern Monolith monolith;
 
+Enemy::Enemy() : Unit() 
+{
+
+}
+
+Enemy::Enemy(float _x, float _y) : Unit(_x, _y) 
+{
+
+}
+
+Enemy::Enemy(float _x, float _y, int _health, float _speed, float _pov) :
+	Unit(_x, _y, _health, _speed, _pov) 
+{
+
+}
+
 Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage)
 {
 	texture = p->texture;
@@ -54,7 +70,8 @@ void Enemy::focus_change(List<Ally>& allies)
 {
     for (ListItem<Ally>* i = allies.head; i; i = i->next)
     {
-        if (r > sqrt((i->value->x - x) * (i->value->x - x) + (i->value->x - y) * (i->value->x - y)))
+		float _x = i->value->x, _y = i->value->y;
+        if (r > sqrt((_x - x) * (_x - x) + (_y - y) * (_y - y)))
         {
             focus = i->value;
         }

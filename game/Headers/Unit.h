@@ -9,10 +9,9 @@ extern sf::View view;
 
 class Unit
 {
-public:
+protected:
 	float x;
 	float y;
-protected:
 	int health;
 	float speed;
 	float pov;
@@ -22,12 +21,9 @@ protected:
 
 public:
 	Unit();
-	Unit(float _x, float _y);
-	Unit(float _x, float _y, int _health, float _speed, float _pov);
-
-	~Unit()
-	{
-	}
+	Unit(float, float);
+	Unit(float, float, int, float, float);
+	~Unit();
 
 	float getX();
 	float getY(); 
@@ -39,4 +35,5 @@ public:
 	void rotate(float);
 	void rotate_to(float);
 	bool is_out_of_terrain(float, float);
+	bool is_edge_of_terrain(float, float);
 };
