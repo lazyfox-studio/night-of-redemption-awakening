@@ -76,7 +76,8 @@ int main()
 				//window.setView(view);
 			}
 		}
-
+        range_check_enemies(enemies);
+        move_enemies(enemies);
 		move_all(player);
 		window.clear();
         window.setView(view);

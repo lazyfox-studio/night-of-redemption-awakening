@@ -116,3 +116,13 @@ inline void draw_all(List<Unit>& units)
 {
 	units.foreach(&(Unit::draw));
 }
+
+void range_check_enemies(List<Enemy>& enemies)
+{
+    enemies.foreach(&(Enemy::range));
+}
+
+void move_enemies(List<Enemy>& enemies)
+{
+    enemies.foreach(&(Enemy::move));
+}

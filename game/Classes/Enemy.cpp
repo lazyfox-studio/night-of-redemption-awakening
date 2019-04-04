@@ -1,11 +1,15 @@
 ﻿#include "../Headers/Enemy.h"
 #include <math.h>
+#include "../Headers/Allies/Monolith.h"
+
+extern Monolith monolith;
 
 Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage)
 {
 	texture = p->texture;
 	texture->setSmooth(true);
 	sprite.setTexture(*texture);
+    focus = &monolith;
 }
 
 void Enemy::range() {
@@ -19,6 +23,7 @@ void Enemy::move()
         float c = speed / r; //Коэфицент подобия
         x += (focus->x - x) * c;
         y += (focus->y - y) * c;
+        sprite.setPosition(x, y);
     }
 
 }
@@ -27,6 +32,7 @@ void Enemy::move_to(float _x, float _y)
 {
 	setX(_x);
 	setY(_y);
+    sprite.setPosition(_x, _y);
 }
 
 void Enemy::attack() {
