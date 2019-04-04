@@ -50,9 +50,15 @@ void Enemy::attack() {
     }
 }
 
-void focus_change()
+void Enemy::focus_change(List<Ally>& allies)
 {
-
+    for (ListItem<Ally>* i = allies.head; i; i = i->next)
+    {
+        if (r > sqrt((i->value->x - x) * (i->value->x - x) + (i->value->x - y) * (i->value->x - y)))
+        {
+            focus = i->value;
+        }
+    }
 }
 
 void death()

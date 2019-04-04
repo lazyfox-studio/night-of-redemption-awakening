@@ -9,9 +9,10 @@ extern sf::View view;
 
 class Unit
 {
-protected:
+public:
 	float x;
 	float y;
+protected:
 	int health;
 	float speed;
 	float pov;

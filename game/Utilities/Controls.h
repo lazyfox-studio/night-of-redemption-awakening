@@ -117,6 +117,12 @@ inline void draw_all(List<Unit>& units)
 	units.foreach(&(Unit::draw));
 }
 
+void check_foucus_enemies(List<Enemy>& enemies, List<Ally>& allies)
+{
+    for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
+        i->value->focus_change(allies);
+}
+
 void range_check_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::range));

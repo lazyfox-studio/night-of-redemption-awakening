@@ -24,10 +24,13 @@ int main()
 
 	List<Unit> units;
 	List<Enemy> enemies;
+    List<Ally> allies;
 
 	Person* player = new Person;
 	units.add(player);
     units.add(&monolith);
+    allies.add(player);
+    allies.add(&monolith);
 
 	EnemyType* enemy1 = new EnemyType(100, 5, 5);
 	enemy1->assign_texture("Textures/enemy1.png");
@@ -77,6 +80,7 @@ int main()
 			}
 		}
         range_check_enemies(enemies);
+        check_foucus_enemies(enemies, allies);
         move_enemies(enemies);
 		move_all(player);
 		window.clear();

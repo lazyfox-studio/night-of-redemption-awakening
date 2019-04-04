@@ -37,6 +37,6 @@ public:
     void move();
 	void move_to(float, float);
     void attack();
-    void focus_change();
+    void focus_change(List<Ally>& allies);
     void death();
 };

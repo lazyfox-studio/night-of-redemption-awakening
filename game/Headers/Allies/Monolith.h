@@ -5,7 +5,7 @@ class Monolith : public Ally
 {
 
 public:
-    Monolith() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 0.0f, 0.0f)
+    Monolith() : Ally((float)screen.w / 2.0f + 400, (float)screen.h / 2.0f + 400, 200, 0.0f, 0.0f)
     {
         texture->loadFromFile("Textures/monolith.png");
         texture->setSmooth(true);

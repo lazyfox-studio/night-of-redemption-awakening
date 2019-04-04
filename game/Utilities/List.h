@@ -14,8 +14,8 @@ public:
 template <class T>
 class List
 {
-	ListItem<T>* head;
 public:
+	ListItem<T>* head;
 	List();
 	List(List<T>&);
 	//List(T*, T);
