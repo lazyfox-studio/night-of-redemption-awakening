@@ -34,6 +34,11 @@ float Unit::getY()
 	return y;
 }
 
+int Unit::getHealth()
+{
+    return health;
+}
+
 void Unit::setX(float _x)
 {
 	sprite.setPosition(_x, y);

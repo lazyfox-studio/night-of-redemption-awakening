@@ -32,7 +32,7 @@ int main()
     allies.add(player);
     allies.add(&monolith);
 
-	EnemyType* enemy1 = new EnemyType(100, 0.3f, 5);
+	EnemyType* enemy1 = new EnemyType(100, 0.5f, 5);
 	enemy1->assign_texture("Textures/enemy1.png");
 
 	Enemy* en = new Enemy(enemy1);
@@ -82,7 +82,8 @@ int main()
         range_check_enemies(enemies);
         check_foucus_enemies(enemies, allies);
         move_enemies(enemies);
-		move_all(player);
+		move_person(player, enemies);
+        //kill_enemies(enemies);
 		window.clear();
         window.setView(view);
 		window.draw(background);

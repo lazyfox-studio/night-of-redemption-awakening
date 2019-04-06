@@ -14,7 +14,7 @@ protected:
 	float y;
 	int health;
 	float speed;
-	float pov;
+	int pov;
 
 	sf::Texture *texture;
 	sf::Sprite sprite;
@@ -26,7 +26,8 @@ public:
 	~Unit();
 
 	float getX();
-	float getY(); 
+	float getY();
+    int getHealth();
 
 	void setX(float);
 	void setY(float);

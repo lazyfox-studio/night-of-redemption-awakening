@@ -57,7 +57,7 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 	c_coefficients.c8 = (float)screen.w * c_coefficients.c4; // 3840
 }
 
-inline void move_all(Person* player)
+inline void move_person(Person* player, List<Enemy>& enemies)
 {
 	if (Kb.W)
 	{
@@ -77,6 +77,10 @@ inline void move_all(Person* player)
 	}
 
     sf::Vector2i mouse = sf::Mouse::getPosition(window);
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        player->shoot(enemies);
+    }
     int deg = 0;
     if ((c_coefficients.c4 * mouse.x + c_coefficients.c1 * mouse.y - c_coefficients.c5) < 0)
         if ((-(c_coefficients.c2) * mouse.x + c_coefficients.c3 * mouse.y + c_coefficients.c6) < 0)
@@ -130,3 +134,14 @@ void move_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::move));
 }
+
+/*void kill_enemies(List<Enemy>& enemies)
+{
+    for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
+    {
+        if (i->value->getHealth() < 0)
+        {
+            enemies.remove(i->value);
+        }
+    }
+}*/

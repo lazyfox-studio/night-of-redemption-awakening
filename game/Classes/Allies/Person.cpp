@@ -14,8 +14,101 @@ Person::~Person()
 {
 }
 
-void Person::shoot() {
-
+void Person::shoot(List<Enemy>& enemies) {
+    ListItem<Enemy>* target = nullptr;
+    float range = INT_MAX;
+    float _x, _y;
+    for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
+    {
+        _x = i->value->x;
+        _y = i->value->y;
+        switch (pov)
+        {
+        case 0:
+            if ((_x - SPRITE_SIZE / 2 < x) && (_x + SPRITE_SIZE / 2 > x) && (_y > y))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        case 180:
+            if ((_x - SPRITE_SIZE / 2 < x) && (_x + SPRITE_SIZE / 2 > x) && (_y < y))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        case 90:
+            if ((_y - SPRITE_SIZE / 2 < y) && (_y + SPRITE_SIZE / 2 > y) && (_x < x))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        case -90:
+            if ((_y - SPRITE_SIZE / 2 < y) && (_y + SPRITE_SIZE / 2 > y) && (_x < x))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        case -45:
+            if ((_y - SPRITE_SIZE / 2 < (y - _x + x)) && (_y + SPRITE_SIZE / 2 > (y - _x + x)) && (_x > x))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        case 45:
+            if ((_y - SPRITE_SIZE / 2 < (y + _x - x)) && (_y + SPRITE_SIZE / 2 > (y + _x - x)) && (_x < x))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        case 135:
+            if ((_y - SPRITE_SIZE / 2 < (y - _x + x)) && (_y + SPRITE_SIZE / 2 > (y - _x + x)) && (_x < x))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+        case -135:
+            if ((_y - SPRITE_SIZE / 2 < (y + _x - x)) && (_y + SPRITE_SIZE / 2 > (y + _x - x)) && (_x > x))
+            {
+                if (i->value->r < range)
+                {
+                    target = i;
+                    range = target->value->r;
+                }
+            }
+            break;
+        }
+    }
+    if (range != INT_MAX)
+    {
+        target->value->health -= 5; //ALARM ПОМЕНЯТЬ НА ЗНАЧЕНИЕ УРОНА!!!!!!!!!!!!!!!!!
+    }
 }
 
 void Person::move(float dbx, float dby, bool is_shift)

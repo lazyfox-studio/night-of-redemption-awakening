@@ -24,6 +24,7 @@ class Enemy : public Unit
     int damage_cooldown; //Ограничение на скорость атак
     Ally* focus; //Указатель на объект за которым следует противник
 	EnemyType* prototype;
+    friend class Person;
 
 public:
 	Enemy();

@@ -78,7 +78,8 @@ void Enemy::focus_change(List<Ally>& allies)
     }
 }
 
-void death()
+void Enemy::death()
 {
+    
 
 }
