@@ -22,7 +22,7 @@ protected:
 public:
 	Unit();
 	Unit(float, float);
-	Unit(float, float, int, float, float);
+	Unit(float, float, int, float, int);
 	~Unit();
 
 	float getX();
@@ -33,8 +33,8 @@ public:
 	void setY(float);
 
 	void draw();
-	void rotate(float);
-	void rotate_to(float);
+	void rotate(int);
+	void rotate_to(int);
 	bool is_out_of_terrain(float, float);
 	bool is_edge_of_terrain(float, float);
 };

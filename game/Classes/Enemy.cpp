@@ -14,7 +14,7 @@ Enemy::Enemy(float _x, float _y) : Unit(_x, _y)
 
 }
 
-Enemy::Enemy(float _x, float _y, int _health, float _speed, float _pov) :
+Enemy::Enemy(float _x, float _y, int _health, float _speed, int _pov) :
 	Unit(_x, _y, _health, _speed, _pov) 
 {
 

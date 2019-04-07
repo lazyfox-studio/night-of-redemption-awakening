@@ -4,7 +4,7 @@ Ally::Ally()
 {
 }
 
-Ally::Ally(float _x, float _y, int _health, float _speed, float _pov) :
+Ally::Ally(float _x, float _y, int _health, float _speed, int _pov) :
 	Unit(_x, _y, _health, _speed, _pov) 
 {
 

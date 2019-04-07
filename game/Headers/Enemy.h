@@ -29,7 +29,7 @@ class Enemy : public Unit
 public:
 	Enemy();
 	Enemy(float, float);
-	Enemy(float, float, int, float, float);
+	Enemy(float, float, int, float, int);
 	Enemy(EnemyType*);
     ~Enemy() {}
 

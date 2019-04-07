@@ -7,7 +7,7 @@ class Ally : public Unit
     friend class Enemy;
 public:
 	Ally();
-	Ally(float, float, int, float, float);
+	Ally(float, float, int, float, int);
 	~Ally();
 
 	virtual void move(float, float, bool = false) = 0;

@@ -1,6 +1,6 @@
 #include "../../Headers/Allies/Monolith.h"
 
-Monolith::Monolith() : Ally((float)screen.w / 2.0f + 400, (float)screen.h / 2.0f + 400, 200, 0.0f, 0.0f)
+Monolith::Monolith() : Ally((float)screen.w / 2.0f + 400, (float)screen.h / 2.0f + 400, 200, 0.0f, 0)
 {
 	texture->loadFromFile("Textures/monolith.png");
 	texture->setSmooth(true);

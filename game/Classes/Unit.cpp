@@ -13,7 +13,7 @@ Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0), text
 	setY(y);
 }
 
-Unit::Unit(float _x, float _y, int _health, float _speed, float _pov) :
+Unit::Unit(float _x, float _y, int _health, float _speed, int _pov) :
 	x(_x), y(_y), health(_health), speed(_speed), pov(_pov), texture(new sf::Texture)
 {
 	setX(x);
@@ -56,15 +56,15 @@ void Unit::draw()
     window.draw(sprite);
 }
 
-void Unit::rotate(float deg)
+void Unit::rotate(int deg)
 {
-	sprite.rotate(deg);
+	sprite.rotate(float(deg));
 	pov += deg;
 }
 
-void Unit::rotate_to(float deg)
+void Unit::rotate_to(int deg)
 {
-	sprite.setRotation(deg);
+	sprite.setRotation(float(deg));
 	pov = deg;
 }
 
@@ -76,5 +76,5 @@ bool Unit::is_out_of_terrain(float dx, float dy)
 bool Unit::is_edge_of_terrain(float dx, float dy)
 {
 	const float edge = 50.f;
-	return (x + dx < edge) || (x + dx > screen.w - edge) || (y + dy < edge) || (y + dy > screen.h - edge);
+	return (x + dx < edge) || (x + dx > 2 * screen.w - edge) || (y + dy < edge) || (y + dy > 2 * screen.h - edge);
 }

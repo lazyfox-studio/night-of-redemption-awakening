@@ -59,23 +59,16 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 
 inline void move_person(Person* player, List<Enemy>& enemies)
 {
+	float dx = 0.0f, dy = 0.0f;
 	if (Kb.W)
-	{
-		player->move(0.f, -1.0f, Kb.LShift);
-	}
+		dy -= 1.0f;
 	if (Kb.A)
-	{
-		player->move(-1.f, 0.f, Kb.LShift);
-	}
+		dx -= 1.0f;
 	if (Kb.S)
-	{
-		player->move(0.f, 1.0f, Kb.LShift);
-	}
+		dy += 1.0f;
 	if (Kb.D)
-	{
-		player->move(1.0f, 0.0f, Kb.LShift);
-	}
-
+		dx += 1.0f;
+	player->move(dx, dy, Kb.LShift);
     sf::Vector2i mouse = sf::Mouse::getPosition(window);
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
@@ -105,7 +98,7 @@ inline void move_person(Person* player, List<Enemy>& enemies)
             else
                 deg = 180;
 
-	player->rotate_to((float)deg);
+	player->rotate_to(deg);
 }
 
 inline void draw_all(Unit* units[], int count)

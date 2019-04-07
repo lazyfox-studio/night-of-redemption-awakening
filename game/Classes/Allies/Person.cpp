@@ -1,6 +1,6 @@
 ﻿#include "../../Headers/Allies/Person.h"
 
-Person::Person() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0.0f)
+Person::Person() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0)
 {
 	texture->loadFromFile("Textures/player.png");
 	texture->setSmooth(true);
@@ -16,7 +16,7 @@ Person::~Person()
 
 void Person::shoot(List<Enemy>& enemies) {
     ListItem<Enemy>* target = nullptr;
-    float range = INT_MAX;
+    float range = float(INT_MAX);
     float _x, _y;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
@@ -118,7 +118,7 @@ void Person::move(float dbx, float dby, bool is_shift)
 	{
 		float dx = dbx * (speed + (speed * shift)) * 0.707f;
 		float dy = dby * (speed + (speed * shift)) * 0.707f;
-		if (is_out_of_terrain(dx, dy))
+		if (is_edge_of_terrain(dx, dy))
 			return;
 		x = x + dx;
 		y = y + dy;
@@ -130,7 +130,7 @@ void Person::move(float dbx, float dby, bool is_shift)
 	float dy = dby * (speed + (speed * shift));
 	//bool out_of_terrain = is_out_of_terrain(dx, dy);
 	//bool on_edge = is_edge_of_terrain(dx, dy);
-	if (is_out_of_terrain(dx, dy))
+	if (is_edge_of_terrain(dx, dy))
 		return;
 	x = x + dx;
 	y = y + dy;
