@@ -1,6 +1,6 @@
-﻿#include "../../Headers/Allies/Person.h"
+﻿#include "../../Headers/Allies/Player.h"
 
-Person::Person() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0)
+Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0)
 {
 	texture->loadFromFile("Textures/player.png");
 	texture->setSmooth(true);
@@ -10,12 +10,12 @@ Person::Person() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0
 	sprite.setPosition(x, y);
 }
 
-Person::~Person()
+Player::~Player()
 {
 }
 
-void Person::shoot(List<Enemy>& enemies) {
-    ListItem<Enemy>* target = nullptr;
+void Player::shoot(List<Enemy>& enemies) {
+    Enemy* target = nullptr;
     float range = float(INT_MAX);
     float _x, _y;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
@@ -29,8 +29,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -39,8 +39,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -49,8 +49,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -59,8 +59,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -69,8 +69,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -79,8 +79,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -89,8 +89,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
         case -135:
@@ -98,8 +98,8 @@ void Person::shoot(List<Enemy>& enemies) {
             {
                 if (i->value->r < range)
                 {
-                    target = i;
-                    range = target->value->r;
+                    target = i->value;
+                    range = target->r;
                 }
             }
             break;
@@ -107,29 +107,24 @@ void Person::shoot(List<Enemy>& enemies) {
     }
     if (range != INT_MAX)
     {
-        target->value->health -= 5; //ALARM ПОМЕНЯТЬ НА ЗНАЧЕНИЕ УРОНА!!!!!!!!!!!!!!!!!
+        target->health -= 5; //ALARM ПОМЕНЯТЬ НА ЗНАЧЕНИЕ УРОНА!!!!!!!!!!!!!!!!!
     }
 }
 
-void Person::move(float dbx, float dby, bool is_shift)
+void Player::move(float dbx, float dby, bool is_shift)
 {
 	float shift = is_shift ? 1.f : 0.f;
+	float dx = 0.0f, dy = 0.0f;
 	if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
 	{
-		float dx = dbx * (speed + (speed * shift)) * 0.707f;
-		float dy = dby * (speed + (speed * shift)) * 0.707f;
-		if (is_edge_of_terrain(dx, dy))
-			return;
-		x = x + dx;
-		y = y + dy;
-		view.move(dx, dy);
-		sprite.move(dx, dy);
-		return;
+		dx = dbx * (speed + (speed * shift)) * 0.707f;
+		dy = dby * (speed + (speed * shift)) * 0.707f;
 	}
-	float dx = dbx * (speed + (speed * shift));
-	float dy = dby * (speed + (speed * shift));
-	//bool out_of_terrain = is_out_of_terrain(dx, dy);
-	//bool on_edge = is_edge_of_terrain(dx, dy);
+	else
+	{
+		dx = dbx * (speed + (speed * shift));
+		dy = dby * (speed + (speed * shift));
+	}
 	if (is_edge_of_terrain(dx, dy))
 		return;
 	x = x + dx;

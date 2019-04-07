@@ -137,7 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Classes\Ally.cpp" />
     <ClCompile Include="Classes\Allies\Monolith.cpp" />
-    <ClCompile Include="Classes\Allies\Person.cpp" />
+    <ClCompile Include="Classes\Allies\Player.cpp" />
     <ClCompile Include="Classes\Enemy.cpp" />
     <ClCompile Include="Classes\Item.cpp" />
     <ClCompile Include="Classes\Items\Item1.cpp" />
@@ -148,7 +148,7 @@
     <ClInclude Include="definitions.h" />
     <ClInclude Include="Headers\Ally.h" />
     <ClInclude Include="Headers\Allies\Monolith.h" />
-    <ClInclude Include="Headers\Allies\Person.h" />
+    <ClInclude Include="Headers\Allies\Player.h" />
     <ClInclude Include="Headers\Unit.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="Headers\Enemy.h" />

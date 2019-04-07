@@ -15,6 +15,14 @@ struct KeyboardControl
 };
 KeyboardControl Kb;
 
+struct MouseControl
+{
+	bool Left   = false;
+	bool Right  = false;
+	bool Middle = false;
+};
+MouseControl Mouse;
+
 struct CameraOffset
 {
 	float x;
@@ -57,7 +65,7 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 	c_coefficients.c8 = (float)screen.w * c_coefficients.c4; // 3840
 }
 
-inline void move_person(Person* player, List<Enemy>& enemies)
+inline void move_player(Player* player, List<Enemy>& enemies)
 {
 	float dx = 0.0f, dy = 0.0f;
 	if (Kb.W)
@@ -112,7 +120,7 @@ inline void draw_all(List<Unit>& units)
 	units.foreach(&(Unit::draw));
 }
 
-void check_foucus_enemies(List<Enemy>& enemies, List<Ally>& allies)
+void check_focus_enemies(List<Enemy>& enemies, List<Ally>& allies)
 {
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
         i->value->focus_change(allies);
@@ -128,13 +136,13 @@ void move_enemies(List<Enemy>& enemies)
     enemies.foreach(&(Enemy::move));
 }
 
-/*void kill_enemies(List<Enemy>& enemies)
+void kill_enemies(List<Enemy>& enemies)
 {
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
         if (i->value->getHealth() < 0)
         {
-            enemies.remove(i->value);
+            enemies.remove(i);
         }
     }
-}*/
+}

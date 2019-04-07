@@ -26,7 +26,7 @@ int main()
 	List<Enemy> enemies;
     List<Ally> allies;
 
-	Person* player = new Person;
+	Player* player = new Player;
 	units.add(player);
     units.add(&monolith);
     allies.add(player);
@@ -38,8 +38,12 @@ int main()
 	Enemy* en = new Enemy(enemy1);
 	units.add(en);
 	enemies.add(en);
-
 	en->move_to(200, 200);
+
+	Enemy* en2 = new Enemy(enemy1);
+	units.add(en2);
+	enemies.add(en2);
+	en->move_to(200, 900);
 
 	window.setView(view);
 	while (window.isOpen())
@@ -76,14 +80,31 @@ int main()
 					Kb.LShift = flag;
 					break;
 				}
-				//window.setView(view);
+			}
+			if ((event.type == sf::Event::MouseButtonPressed) || (event.type == sf::Event::MouseButtonReleased))
+			{
+				bool flag = (event.type == sf::Event::MouseButtonPressed);
+				switch (event.key.code)
+				{
+				case sf::Mouse::Button::Left:
+					Mouse.Left = flag;
+					break;
+				case sf::Mouse::Button::Right:
+					Mouse.Right = flag;
+					break;
+				case sf::Mouse::Button::Middle:
+					Mouse.Middle = flag;
+					break;
+				}
 			}
 		}
+
         range_check_enemies(enemies);
-        check_foucus_enemies(enemies, allies);
+        check_focus_enemies(enemies, allies);
         move_enemies(enemies);
-		move_person(player, enemies);
-        //kill_enemies(enemies);
+		move_player(player, enemies);
+        kill_enemies(enemies);
+
 		window.clear();
         window.setView(view);
 		window.draw(background);

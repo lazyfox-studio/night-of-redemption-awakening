@@ -40,9 +40,6 @@
     <ClCompile Include="Classes\Items\Item1.cpp">
       <Filter>Classes\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Allies\Person.cpp">
-      <Filter>Classes\Allies</Filter>
-    </ClCompile>
     <ClCompile Include="Classes\Allies\Monolith.cpp">
       <Filter>Classes\Allies</Filter>
     </ClCompile>
@@ -51,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="Classes\Unit.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Allies\Player.cpp">
+      <Filter>Classes\Allies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +65,6 @@
     </ClInclude>
     <ClInclude Include="includes.h">
       <Filter>Main Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Allies\Person.h">
-      <Filter>Headers\Allies</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Allies\Monolith.h">
       <Filter>Headers\Allies</Filter>
@@ -92,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="Utilities\UnitList.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Allies\Player.h">
+      <Filter>Headers\Allies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

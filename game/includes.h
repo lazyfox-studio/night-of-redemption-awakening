@@ -11,7 +11,7 @@
 #include "Headers/Unit.h"
 
 // Allies
-#include"Headers/Allies/Person.h"
+#include"Headers/Allies/Player.h"
 #include"Headers/Allies/Monolith.h"
 
 // Items

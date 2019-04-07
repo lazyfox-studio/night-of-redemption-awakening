@@ -13,6 +13,7 @@ struct EnemyType
 
 	void assign_texture(const char* t)
 	{
+		delete texture;
 		texture->loadFromFile(t);
 	}
 };
@@ -24,7 +25,7 @@ class Enemy : public Unit
     int damage_cooldown; //Ограничение на скорость атак
     Ally* focus; //Указатель на объект за которым следует противник
 	EnemyType* prototype;
-    friend class Person;
+    friend class Player;
 
 public:
 	Enemy();

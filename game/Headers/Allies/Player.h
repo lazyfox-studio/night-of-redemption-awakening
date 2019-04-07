@@ -3,12 +3,12 @@
 #include "../Ally.h"
 #include "../Enemy.h"
 
-class Person : public Ally
+class Player : public Ally
 {
 
 public:
-	Person();
-	~Person();
+	Player();
+	~Player();
 
     void shoot(List<Enemy>& enemies);
 	void move(float, float, bool = false);
