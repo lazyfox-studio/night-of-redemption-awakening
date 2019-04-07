@@ -9,7 +9,7 @@ int main()
 	// служебные
 	calculate_coefficients(c_coefficients, screen);
 
-	view.reset(sf::FloatRect(0.f, 0.f, 2560.f, 1440.f));
+	view.reset(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
 	sf::Sprite background;
 	sf::Texture bgtexture;
 	if (!bgtexture.loadFromFile("Textures/map.png"))
@@ -21,7 +21,7 @@ int main()
 	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
 
 	view.setCenter(vc_x, vc_y);
-	view.zoom(0.5f);
+	view.zoom(0.75f);
 
 	List<Unit> units;
 	List<Enemy> enemies;
