@@ -20,6 +20,9 @@ struct MouseControl
 	bool Left   = false;
 	bool Right  = false;
 	bool Middle = false;
+
+	float x;
+	float y;
 };
 MouseControl Mouse;
 
@@ -65,8 +68,9 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 	c_coefficients.c8 = (float)screen.w * c_coefficients.c4; // 3840
 }
 
-inline void move_player(Player* player, List<Enemy>& enemies)
+inline void control_player(Player* player, List<Enemy>& enemies)
 {
+	// Moving
 	float dx = 0.0f, dy = 0.0f;
 	if (Kb.W)
 		dy -= 1.0f;
@@ -77,42 +81,38 @@ inline void move_player(Player* player, List<Enemy>& enemies)
 	if (Kb.D)
 		dx += 1.0f;
 	player->move(dx, dy, Kb.LShift);
-    sf::Vector2i mouse = sf::Mouse::getPosition(window);
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+
+	// Shooting
+    if (Mouse.Left)
     {
         player->shoot(enemies);
     }
+
+	// Rotating
     int deg = 0;
-    if ((c_coefficients.c4 * mouse.x + c_coefficients.c1 * mouse.y - c_coefficients.c5) < 0)
-        if ((-(c_coefficients.c2) * mouse.x + c_coefficients.c3 * mouse.y + c_coefficients.c6) < 0)
-            if ((c_coefficients.c2 * mouse.x + c_coefficients.c3 * mouse.y - c_coefficients.c7) < 0)
+    if ((c_coefficients.c4 * Mouse.x + c_coefficients.c1 * Mouse.y - c_coefficients.c5) < 0)
+        if ((-(c_coefficients.c2) * Mouse.x + c_coefficients.c3 * Mouse.y + c_coefficients.c6) < 0)
+            if ((c_coefficients.c2 * Mouse.x + c_coefficients.c3 * Mouse.y - c_coefficients.c7) < 0)
                 deg = 0;
             else
                 deg = 45;
         else
-            if ((-(c_coefficients.c4) * mouse.x + c_coefficients.c1 * mouse.y - c_coefficients.c8) < 0)
+            if ((-(c_coefficients.c4) * Mouse.x + c_coefficients.c1 * Mouse.y - c_coefficients.c8) < 0)
                 deg = -45;
             else
                 deg = -90;
     else
-        if ((-(c_coefficients.c2) * mouse.x + c_coefficients.c3 * mouse.y + c_coefficients.c6) < 0)
-            if ((-(c_coefficients.c4) * mouse.x + c_coefficients.c1 * mouse.y - c_coefficients.c8) < 0)
+        if ((-(c_coefficients.c2) * Mouse.x + c_coefficients.c3 * Mouse.y + c_coefficients.c6) < 0)
+            if ((-(c_coefficients.c4) * Mouse.x + c_coefficients.c1 * Mouse.y - c_coefficients.c8) < 0)
                 deg = 90;
             else
                 deg = 135;
         else
-            if ((c_coefficients.c2 * mouse.x + c_coefficients.c3 * mouse.y - c_coefficients.c7) < 0)
+            if ((c_coefficients.c2 * Mouse.x + c_coefficients.c3 * Mouse.y - c_coefficients.c7) < 0)
                 deg = -135;
             else
                 deg = 180;
-
 	player->rotate_to(deg);
-}
-
-inline void draw_all(Unit* units[], int count)
-{
-	for (int i = 0; i < count; i++)
-		units[i]->draw();
 }
 
 inline void draw_all(List<Unit>& units)

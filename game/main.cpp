@@ -43,7 +43,7 @@ int main()
 	Enemy* en2 = new Enemy(enemy1);
 	units.add(en2);
 	enemies.add(en2);
-	en->move_to(200, 900);
+	en2->move_to(200, 900);
 
 	window.setView(view);
 	while (window.isOpen())
@@ -99,10 +99,13 @@ int main()
 			}
 		}
 
+		Mouse.x = (float)(sf::Mouse::getPosition(window).x);
+		Mouse.y = (float)(sf::Mouse::getPosition(window).y);
+
         range_check_enemies(enemies);
         check_focus_enemies(enemies, allies);
         move_enemies(enemies);
-		move_player(player, enemies);
+		control_player(player, enemies);
         kill_enemies(enemies);
 
 		window.clear();
