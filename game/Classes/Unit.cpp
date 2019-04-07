@@ -3,12 +3,14 @@
 
 Unit::Unit() : x(0), y(0), health(0), speed(0), pov(0), texture(new sf::Texture) 
 {
+	sprite.setOrigin(sf::Vector2f(0.5f, 0.5f));
 	setX(x);
 	setY(y);
 }
 
 Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0), texture(new sf::Texture)
 {
+	sprite.setOrigin(sf::Vector2f(0.5f, 0.5f));
 	setX(x);
 	setY(y);
 }
@@ -16,6 +18,7 @@ Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0), text
 Unit::Unit(float _x, float _y, int _health, float _speed, int _pov) :
 	x(_x), y(_y), health(_health), speed(_speed), pov(_pov), texture(new sf::Texture)
 {
+	sprite.setOrigin(sf::Vector2f(0.5f, 0.5f));
 	setX(x);
 	setY(y);
 }

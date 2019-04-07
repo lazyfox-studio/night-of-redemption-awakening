@@ -27,6 +27,7 @@ class Enemy : public Unit
 	EnemyType* prototype;
     friend class Player;
 
+	sf::RectangleShape health_bar;
 public:
 	Enemy();
 	Enemy(float, float);
@@ -40,4 +41,6 @@ public:
     void attack();
     void focus_change(List<Ally>&);
     void death();
+
+	void draw();
 };

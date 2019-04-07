@@ -1,7 +1,7 @@
 ﻿#include "../../Headers/Allies/Player.h"
 #include <iostream>
 
-Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0)
+Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0), damage(5)
 {
 	texture->loadFromFile("Textures/player.png");
 	texture->setSmooth(true);
@@ -109,7 +109,7 @@ void Player::shoot(List<Enemy>& enemies) {
     if (target != nullptr)
     {
 		//std::cout << " target found";
-        target->health -= 5; //ALARM ПОМЕНЯТЬ НА ЗНАЧЕНИЕ УРОНА!!!!!!!!!!!!!!!!!
+		target->health -= damage;
 		if (target->health <= 0)
 		{
 			target->death();
@@ -138,4 +138,14 @@ void Player::move(float dbx, float dby, bool is_shift)
 	y = y + dy;
 	view.move(dx, dy);
 	sprite.move(dx, dy);
+}
+
+void Player::test_ani()
+{
+	std::cout << " thr";
+	for (;;)
+	{
+		sprite.rotate(15.f);
+		Sleep(400);
+	}
 }

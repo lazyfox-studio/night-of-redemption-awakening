@@ -157,6 +157,7 @@
     <ClInclude Include="Utilities\Controls.h" />
     <ClInclude Include="Utilities\List.h" />
     <ClInclude Include="Utilities\Screen.h" />
+    <ClInclude Include="Utilities\Stringify.h" />
     <ClInclude Include="Utilities\UnitList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

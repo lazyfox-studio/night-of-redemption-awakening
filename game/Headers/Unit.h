@@ -32,7 +32,7 @@ public:
 	void setX(float);
 	void setY(float);
 
-	void draw();
+	virtual void draw();
 	void rotate(int);
 	void rotate_to(int);
 	bool is_out_of_terrain(float, float);

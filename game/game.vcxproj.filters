@@ -93,5 +93,8 @@
     <ClInclude Include="Headers\Allies\Player.h">
       <Filter>Headers\Allies</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\Stringify.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

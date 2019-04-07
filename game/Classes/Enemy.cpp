@@ -26,6 +26,9 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
 	texture->setSmooth(true);
 	sprite.setTexture(*texture);
     focus = &monolith;
+	
+	health_bar.setSize(sf::Vector2f(SPRITE_SIZE, 5.0f));
+	health_bar.setFillColor(sf::Color::Blue);
 }
 
 void Enemy::range() {
@@ -40,6 +43,9 @@ void Enemy::move()
         x += (focus->x - x) * c;
         y += (focus->y - y) * c;
         sprite.setPosition(x, y);
+
+		health_bar.setScale(health / 100.f, 1);
+		health_bar.setPosition(x, y - 10);
     }
 
 }
@@ -81,4 +87,10 @@ void Enemy::focus_change(List<Ally>& allies)
 void Enemy::death()
 {
     
+}
+
+void Enemy::draw()
+{
+	window.draw(sprite);
+	window.draw(health_bar);
 }

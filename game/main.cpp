@@ -1,5 +1,6 @@
 ﻿#include "definitions.h"
 #include "includes.h"
+#include <thread>
 
 extern Monolith monolith;
 
@@ -44,6 +45,9 @@ int main()
 	units.add(en2);
 	enemies.add(en2);
 	en2->move_to(200, 900);
+
+	/*std::thread thr(&(Player::test_ani), player);
+	thr.detach();*/
 
 	window.setView(view);
 	while (window.isOpen())
