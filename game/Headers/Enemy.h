@@ -13,7 +13,7 @@ struct EnemyType
 
 	void assign_texture(const char* t)
 	{
-		delete texture;
+		//delete texture;
 		texture->loadFromFile(t);
 	}
 };

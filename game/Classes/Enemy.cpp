@@ -71,7 +71,7 @@ void Enemy::focus_change(List<Ally>& allies)
     for (ListItem<Ally>* i = allies.head; i; i = i->next)
     {
 		float _x = i->value->x, _y = i->value->y;
-        if (r > sqrt((_x - x) * (_x - x) + (_y - y) * (_y - y)))
+        if (r * r > (_x - x) * (_x - x) + (_y - y) * (_y - y))
         {
             focus = i->value;
         }
@@ -81,5 +81,4 @@ void Enemy::focus_change(List<Ally>& allies)
 void Enemy::death()
 {
     
-
 }

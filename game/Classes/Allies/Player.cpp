@@ -1,4 +1,5 @@
 ﻿#include "../../Headers/Allies/Player.h"
+#include <iostream>
 
 Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0)
 {
@@ -25,7 +26,7 @@ void Player::shoot(List<Enemy>& enemies) {
         switch (pov)
         {
         case 0:
-            if ((_x - SPRITE_SIZE / 2 < x) && (_x + SPRITE_SIZE / 2 > x) && (_y > y))
+            if ((_x - SPRITE_SIZE / 2.0f < x) && (_x + SPRITE_SIZE / 2.0f > x) && (_y > y))
             {
                 if (i->value->r < range)
                 {
@@ -35,7 +36,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 180:
-            if ((_x - SPRITE_SIZE / 2 < x) && (_x + SPRITE_SIZE / 2 > x) && (_y < y))
+            if ((_x - SPRITE_SIZE / 2.0f < x) && (_x + SPRITE_SIZE / 2.0f > x) && (_y < y))
             {
                 if (i->value->r < range)
                 {
@@ -45,7 +46,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 90:
-            if ((_y - SPRITE_SIZE / 2 < y) && (_y + SPRITE_SIZE / 2 > y) && (_x < x))
+            if ((_y - SPRITE_SIZE / 2.0f < y) && (_y + SPRITE_SIZE / 2.0f > y) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -55,7 +56,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case -90:
-            if ((_y - SPRITE_SIZE / 2 < y) && (_y + SPRITE_SIZE / 2 > y) && (_x < x))
+            if ((_y - SPRITE_SIZE / 2.0f < y) && (_y + SPRITE_SIZE / 2.0f > y) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -65,7 +66,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case -45:
-            if ((_y - SPRITE_SIZE / 2 < (y - _x + x)) && (_y + SPRITE_SIZE / 2 > (y - _x + x)) && (_x > x))
+            if ((_y - SPRITE_SIZE / 2.0f < (y - _x + x)) && (_y + SPRITE_SIZE / 2.0f > (y - _x + x)) && (_x > x))
             {
                 if (i->value->r < range)
                 {
@@ -75,7 +76,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 45:
-            if ((_y - SPRITE_SIZE / 2 < (y + _x - x)) && (_y + SPRITE_SIZE / 2 > (y + _x - x)) && (_x < x))
+            if ((_y - SPRITE_SIZE / 2.0f < (y + _x - x)) && (_y + SPRITE_SIZE / 2.0f > (y + _x - x)) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -85,7 +86,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 135:
-            if ((_y - SPRITE_SIZE / 2 < (y - _x + x)) && (_y + SPRITE_SIZE / 2 > (y - _x + x)) && (_x < x))
+            if ((_y - SPRITE_SIZE / 2.0f < (y - _x + x)) && (_y + SPRITE_SIZE / 2.0f > (y - _x + x)) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -94,7 +95,7 @@ void Player::shoot(List<Enemy>& enemies) {
                 }
             }
         case -135:
-            if ((_y - SPRITE_SIZE / 2 < (y + _x - x)) && (_y + SPRITE_SIZE / 2 > (y + _x - x)) && (_x > x))
+            if ((_y - SPRITE_SIZE / 2.0f < (y + _x - x)) && (_y + SPRITE_SIZE / 2.0f > (y + _x - x)) && (_x > x))
             {
                 if (i->value->r < range)
                 {
@@ -105,9 +106,15 @@ void Player::shoot(List<Enemy>& enemies) {
             break;
         }
     }
-    if (range != INT_MAX)
+    if (target != nullptr)
     {
+		//std::cout << " target found";
         target->health -= 5; //ALARM ПОМЕНЯТЬ НА ЗНАЧЕНИЕ УРОНА!!!!!!!!!!!!!!!!!
+		if (target->health <= 0)
+		{
+			target->death();
+			enemies.drop(target);
+		}
     }
 }
 

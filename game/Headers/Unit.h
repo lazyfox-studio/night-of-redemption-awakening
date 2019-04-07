@@ -27,7 +27,7 @@ public:
 
 	float getX();
 	float getY();
-    int getHealth();
+    int get_health();
 
 	void setX(float);
 	void setY(float);

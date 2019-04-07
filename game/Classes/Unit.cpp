@@ -34,7 +34,7 @@ float Unit::getY()
 	return y;
 }
 
-int Unit::getHealth()
+int Unit::get_health()
 {
     return health;
 }

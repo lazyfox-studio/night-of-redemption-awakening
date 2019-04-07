@@ -96,17 +96,20 @@ int main()
 					Mouse.Middle = flag;
 					break;
 				}
+				if (flag)
+					Mouse.flood_control++;
 			}
 		}
 
 		Mouse.x = (float)(sf::Mouse::getPosition(window).x);
 		Mouse.y = (float)(sf::Mouse::getPosition(window).y);
 
-        range_check_enemies(enemies);
+		check_range_enemies(enemies);
         check_focus_enemies(enemies, allies);
+
         move_enemies(enemies);
 		control_player(player, enemies);
-        kill_enemies(enemies);
+		kill_dead(units); // после control_player, это важно!
 
 		window.clear();
         window.setView(view);

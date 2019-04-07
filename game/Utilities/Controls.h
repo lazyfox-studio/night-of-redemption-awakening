@@ -23,6 +23,8 @@ struct MouseControl
 
 	float x;
 	float y;
+
+	unsigned long long flood_control = 0;
 };
 MouseControl Mouse;
 
@@ -120,29 +122,28 @@ inline void draw_all(List<Unit>& units)
 	units.foreach(&(Unit::draw));
 }
 
-void check_focus_enemies(List<Enemy>& enemies, List<Ally>& allies)
+inline void check_focus_enemies(List<Enemy>& enemies, List<Ally>& allies)
 {
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
         i->value->focus_change(allies);
 }
 
-void range_check_enemies(List<Enemy>& enemies)
+inline void check_range_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::range));
 }
 
-void move_enemies(List<Enemy>& enemies)
+inline void move_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::move));
 }
 
-void kill_enemies(List<Enemy>& enemies)
+bool unit_died(Unit* unit)
 {
-    for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
-    {
-        if (i->value->getHealth() < 0)
-        {
-            enemies.remove(i);
-        }
-    }
+	return unit->get_health() <= 0;
+}
+
+inline void kill_dead(List<Unit>& units)
+{
+	units.remove_if(unit_died);
 }
