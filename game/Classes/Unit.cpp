@@ -71,13 +71,15 @@ void Unit::rotate_to(int deg)
 	pov = deg;
 }
 
+// здесь хрень, надо будет потом переписать
 bool Unit::is_out_of_terrain(float dx, float dy)
 {
-	return (x + dx < screen.w / 2) || (x + dx > screen.w * 1.5) || (y + dy < screen.h / 2) || (y + dy > screen.h * 1.5);
+	return (x + dx < 0) || (x + dx > map.w) || (y + dy < 0) || (y + dy > map.h);
 }
 
 bool Unit::is_edge_of_terrain(float dx, float dy)
 {
-	const float edge = 50.f;
-	return (x + dx < edge) || (x + dx > 2 * screen.w - edge) || (y + dy < edge) || (y + dy > 2 * screen.h - edge);
+	const float edge = 360.f;
+	const float delta = 280.f; // Сбоку отступы шире
+	return (x + dx < edge + delta) || (x + dx > map.w - edge - delta) || (y + dy < edge) || (y + dy > map.h - edge);
 }

@@ -52,9 +52,8 @@ int main()
 	/*std::thread thr(&(Player::test_ani), player);
 	thr.detach();*/
 
-	std::thread thr(enemies_generator, player, &screen, enemy1, &units, &units_num, &enemies, &enemies_num);
+	std::thread thr(enemies_generator, player, enemy1, &units, &units_num, &enemies, &enemies_num);
 	thr.detach();
-	//enemies_generator(player, &screen, enemy1, &units, &units_num, &enemies, &enemies_num);
 
 	window.setView(view);
 	while (window.isOpen())
