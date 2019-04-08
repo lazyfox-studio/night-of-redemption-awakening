@@ -19,16 +19,16 @@ void Player::shoot(List<Enemy>& enemies) {
     Enemy* target = nullptr;
     float range = float(INT_MAX);
     float _x, _y;
+    float angle = 3.14 * pov / 180;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
         _x = i->value->x;
         _y = i->value->y;
-        
-        float angle = 3.14 * pov / 180;
-        if (i->value->r < range)
-        {
-            
-        }
+     if ((  ((_x - x) * sin(angle) - ((_y + (SPRITE_SIZE / 2)) - y) * cos (angle))  > 0) && (((_x - x) * sin(angle) - ((_y - (SPRITE_SIZE / 2)) - y) * cos(angle)) < 0))
+     {
+         target = i->value;
+         range = target->r;
+     }
     }
     if (target != nullptr)
     {
