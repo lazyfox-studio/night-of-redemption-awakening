@@ -23,87 +23,26 @@ void Player::shoot(List<Enemy>& enemies) {
     {
         _x = i->value->x;
         _y = i->value->y;
-        switch (pov)
+        
+        float angle = 3.14 * pov / 180;
+        if (i->value->r < range)
         {
-        case 0:
-            if ((_x - UNIT_SIZE / 2.0f < x) && (_x + UNIT_SIZE / 2.0f > x) && (_y < y))
+            if ((pov != 0) && (pov != 180))
             {
-                if (i->value->r < range)
+                if (((((_y + (UNIT_SIZE / 2)) - y - (_x - x) * tan(angle + 1.57)) > 0) && ((_y - (UNIT_SIZE / 2) - y - (_x - x) * tan(angle + 1.57)) < 0)) && (((_x < x) && (pov < 0)) || ((_x > x) && (pov > 0))))
                 {
                     target = i->value;
                     range = target->r;
                 }
             }
-            break;
-        case 180:
-            if ((_x - UNIT_SIZE / 2.0f < x) && (_x + UNIT_SIZE / 2.0f > x) && (_y > y))
+            else
             {
-                if (i->value->r < range)
+                if (((_x - UNIT_SIZE / 2.0f < x) && (_x + UNIT_SIZE / 2.0f > x)) && (((_y < y) && (pov == 0)) || ((_y > y) && (pov == 180))))
                 {
-                    target = i->value;
-                    range = target->r;
+                        target = i->value;
+                        range = target->r;
                 }
             }
-            break;
-        case 90:
-            if ((_y - UNIT_SIZE / 2.0f < y) && (_y + UNIT_SIZE / 2.0f > y) && (_x > x))
-            {
-                if (i->value->r < range)
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-            break;
-        case -90:
-            if ((_y - UNIT_SIZE / 2.0f < y) && (_y + UNIT_SIZE / 2.0f > y) && (_x < x))
-            {
-                if (i->value->r < range)
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-            break;
-        case 45:
-            if ((_y - UNIT_SIZE / 2.0f < (y - _x + x)) && (_y + UNIT_SIZE / 2.0f > (y - _x + x)) && (_x > x))
-            {
-                if (i->value->r < range)
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-            break;
-        case -45:
-            if ((_y - UNIT_SIZE / 2.0f < (y + _x - x)) && (_y + UNIT_SIZE / 2.0f > (y + _x - x)) && (_x < x))
-            {
-                if (i->value->r < range)
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-            break;
-        case -135:
-            if ((_y - UNIT_SIZE / 2.0f < (y - _x + x)) && (_y + UNIT_SIZE / 2.0f > (y - _x + x)) && (_x < x))
-            {
-                if (i->value->r < range)
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-        case 135:
-            if ((_y - UNIT_SIZE / 2.0f < (y + _x - x)) && (_y + UNIT_SIZE / 2.0f > (y + _x - x)) && (_x > x))
-            {
-                if (i->value->r < range)
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-            break;
         }
     }
     if (target != nullptr)

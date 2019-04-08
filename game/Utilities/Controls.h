@@ -92,7 +92,7 @@ inline void control_player(Player* player, List<Enemy>& enemies)
     }
 
 	// Вращение
-    int deg = 0;
+    /*int deg = 0;
     if ((c_coefficients.c4 * Mouse.x + c_coefficients.c1 * Mouse.y - c_coefficients.c5) < 0)
         if ((-(c_coefficients.c2) * Mouse.x + c_coefficients.c3 * Mouse.y + c_coefficients.c6) < 0)
             if ((c_coefficients.c2 * Mouse.x + c_coefficients.c3 * Mouse.y - c_coefficients.c7) < 0)
@@ -114,8 +114,18 @@ inline void control_player(Player* player, List<Enemy>& enemies)
             if ((c_coefficients.c2 * Mouse.x + c_coefficients.c3 * Mouse.y - c_coefficients.c7) < 0)
                 deg = -135;
             else
-                deg = 180;
-	player->rotate_to(deg);
+                deg = 180;*/
+    int angle = (int)(180 * atan((Mouse.x - screen.w/2) / (Mouse.y - screen.h/2)) / 3.14);
+    if (Mouse.y > screen.h/2)
+    {
+        if (angle > 0)
+        {
+            angle = 180 - angle;
+        }
+        else angle = -180 - angle;
+        angle *= -1;
+    }
+	player->rotate_to(-angle);
 }
 
 // Отрисовка всех персонажей
