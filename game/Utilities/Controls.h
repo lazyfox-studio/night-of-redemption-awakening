@@ -70,9 +70,10 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 	c_coefficients.c8 = (float)screen.w * c_coefficients.c4; // 3840
 }
 
+// Управление игроком
 inline void control_player(Player* player, List<Enemy>& enemies)
 {
-	// Moving
+	// Перемещение
 	float dx = 0.0f, dy = 0.0f;
 	if (Kb.W)
 		dy -= 1.0f;
@@ -84,13 +85,13 @@ inline void control_player(Player* player, List<Enemy>& enemies)
 		dx += 1.0f;
 	player->move(dx, dy, Kb.LShift);
 
-	// Shooting
+	// Стрельба
     if (Mouse.Left)
     {
         player->shoot(enemies);
     }
 
-	// Rotating
+	// Вращение
     int deg = 0;
     if ((c_coefficients.c4 * Mouse.x + c_coefficients.c1 * Mouse.y - c_coefficients.c5) < 0)
         if ((-(c_coefficients.c2) * Mouse.x + c_coefficients.c3 * Mouse.y + c_coefficients.c6) < 0)
@@ -117,32 +118,38 @@ inline void control_player(Player* player, List<Enemy>& enemies)
 	player->rotate_to(deg);
 }
 
+// Отрисовка всех персонажей
 inline void draw_all(List<Unit>& units)
 {
 	units.foreach(&(Unit::draw));
 }
 
+// Вычисление целей для врагов
 inline void check_focus_enemies(List<Enemy>& enemies, List<Ally>& allies)
 {
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
         i->value->focus_change(allies);
 }
 
+// Вычисление расстояний до целей врагов
 inline void check_range_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::range));
 }
 
+// Перемещение врагов
 inline void move_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::move));
 }
 
+// Проверка смерти юнитов
 bool unit_died(Unit* unit)
 {
 	return unit->get_health() <= 0;
 }
 
+// Удаление мертвых юнитов
 inline void kill_dead(List<Unit>& units)
 {
 	units.remove_if(unit_died);

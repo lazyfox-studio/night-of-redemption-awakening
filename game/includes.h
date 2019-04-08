@@ -1,7 +1,14 @@
 ﻿#pragma once
 
-// 3rd Party Libs
+// Standard Libs
 #include <iostream>
+#include <thread>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <Windows.h>
+
+// 3rd Party Libs
 #include <SFML/Graphics.hpp>
 
 // Main Classes
@@ -21,4 +28,5 @@
 #include "Utilities/List.h"
 #include "Utilities/Controls.h"
 #include "Utilities/Screen.h"
-#include "Utilities/Stringify.h"
+#include "Utilities/Functions.h"
+#include "Utilities/Generator.h"

@@ -1,5 +1,8 @@
 #pragma once
+#include <cstdlib>
+#include <ctime>
 
+// Возвращает указатель на строку, полученную из заданного числа
 const char* stringify(int n)
 {
 	int n2, digits = 0, i, sign;
@@ -37,4 +40,16 @@ const char* stringify(int n)
 	if (sign)
 		s[0] = '-';
 	return s;
+}
+
+// Возвращает случайное число в заданном диапазоне
+int random(int min = 0, int max = INT_MAX)
+{
+	return rand() % (max - min + 1) + min;
+}
+
+float random(float min = 0.f, float max = float(INT_MAX))
+{
+	int _max = (int)max, _min = (int)min;
+	return (float)(rand() % (_max - _min + 1) + _min);
 }
