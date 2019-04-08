@@ -1,6 +1,5 @@
 ﻿#include "definitions.h"
 #include "includes.h"
-#include <thread>
 
 extern Monolith monolith;
 
@@ -33,6 +32,8 @@ int main()
     allies.add(player);
     allies.add(&monolith);
 
+	int units_num = 2, enemies_num = 0, allies_num = 2;
+
 	EnemyType* enemy1 = new EnemyType(100, 0.5f, 5);
 	enemy1->assign_texture("Textures/enemy1.png");
 
@@ -40,14 +41,21 @@ int main()
 	units.add(en);
 	enemies.add(en);
 	en->move_to(200, 200);
+	units_num++;
+	enemies_num++;
 
-	Enemy* en2 = new Enemy(enemy1);
+	/*Enemy* en2 = new Enemy(enemy1);
 	units.add(en2);
 	enemies.add(en2);
 	en2->move_to(200, 900);
+	enemies_num++;*/
 
 	/*std::thread thr(&(Player::test_ani), player);
 	thr.detach();*/
+
+	std::thread thr(enemies_generator, player, &screen, enemy1, &units, &units_num, &enemies, &enemies_num);
+	thr.detach();
+	//enemies_generator(player, &screen, enemy1, &units, &units_num, &enemies, &enemies_num);
 
 	window.setView(view);
 	while (window.isOpen())
