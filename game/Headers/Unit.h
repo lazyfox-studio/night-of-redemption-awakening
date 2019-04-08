@@ -33,6 +33,9 @@ public:
 	void setX(float);
 	void setY(float);
 
+	virtual bool is_ally();
+	virtual bool is_enemy();
+
 	virtual void draw();
 	void rotate(int);
 	void rotate_to(int);

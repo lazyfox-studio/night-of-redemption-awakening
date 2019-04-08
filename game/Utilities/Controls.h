@@ -144,13 +144,13 @@ inline void move_enemies(List<Enemy>& enemies)
 }
 
 // Проверка смерти юнитов
-bool unit_died(Unit* unit)
+bool enemy_died(Unit* unit)
 {
-	return unit->get_health() <= 0;
+	return (unit->get_health() <= 0) && (unit->is_enemy());
 }
 
 // Удаление мертвых юнитов
-inline void kill_dead(List<Unit>& units)
+inline int kill_dead_enemies(List<Unit>& units)
 {
-	units.remove_if(unit_died);
+	return units.remove_if(enemy_died);
 }

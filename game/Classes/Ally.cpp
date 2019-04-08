@@ -13,3 +13,8 @@ Ally::Ally(float _x, float _y, int _health, float _speed, int _pov) :
 Ally::~Ally()
 {
 }
+
+bool Ally::is_ally()
+{
+	return true;
+}

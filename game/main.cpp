@@ -119,7 +119,9 @@ int main()
 
         move_enemies(enemies);
 		control_player(player, enemies);
-		kill_dead(units); // после control_player, это важно!
+		int killed = kill_dead_enemies(units); // после control_player, это важно!
+		units_num -= killed;
+		enemies_num -= killed;
 
 		window.clear();
         window.setView(view);

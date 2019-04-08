@@ -54,6 +54,16 @@ void Unit::setY(float _y)
 	y = _y;
 }
 
+bool Unit::is_ally()
+{
+	return false;
+}
+
+bool Unit::is_enemy()
+{
+	return false;
+}
+
 void Unit::draw()
 {
     window.draw(sprite);

@@ -27,7 +27,7 @@ public:
 	void remove(T*);                 // find item by value-pointer and delete it
 	void drop(T*);                   // remove item without valuable object deletion
 	void remove(ListItem<T>*);       // find item by item-pointer and delete it
-	void remove_if(bool(*func)(T* elem));
+	int remove_if(bool(*func)(T* elem));
 	int len() const;
 	List<T>& operator=(List<T>&);
 
@@ -210,10 +210,10 @@ inline void List<T>::remove(ListItem<T>* item)
 }
 
 template<class T>
-inline void List<T>::remove_if(bool(*func)(T* elem))
+inline int List<T>::remove_if(bool(*func)(T* elem))
 {
 	if (!head)
-		return;
+		return 0;
 	int deleted = 0;
 	ListItem<T>* i = head;
 	ListItem<T>* tprev = head, *tnext;
@@ -233,7 +233,7 @@ inline void List<T>::remove_if(bool(*func)(T* elem))
 		else
 			tprev = i;
 	}
-	return;
+	return deleted;
 }
 
 template <class T>

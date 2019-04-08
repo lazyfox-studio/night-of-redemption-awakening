@@ -35,6 +35,8 @@ public:
 	Enemy(EnemyType*);
     ~Enemy() {}
 
+	bool is_enemy();
+
     void range();
     void move();
 	void move_to(float, float);

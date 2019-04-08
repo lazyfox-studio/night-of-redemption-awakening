@@ -10,5 +10,6 @@ public:
 	Ally(float, float, int, float, int);
 	~Ally();
 
+	bool is_ally();
 	virtual void move(float, float, bool = false) = 0;
 };

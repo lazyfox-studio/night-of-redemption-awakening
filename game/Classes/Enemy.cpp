@@ -32,6 +32,11 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
 	health_bar.setFillColor(sf::Color::Blue);
 }
 
+bool Enemy::is_enemy()
+{
+	return true;
+}
+
 void Enemy::range() {
     r = sqrt((focus->x - x) * (focus->x - x) + (focus->y - y) * (focus->y - y));
 }
