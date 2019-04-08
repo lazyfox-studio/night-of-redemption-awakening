@@ -127,8 +127,7 @@ inline void draw_all(List<Unit>& units)
 // Вычисление целей для врагов
 inline void check_focus_enemies(List<Enemy>& enemies, List<Ally>& allies)
 {
-    for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
-        i->value->focus_change(allies);
+	enemies.foreach(&(Enemy::focus_change), allies);
 }
 
 // Вычисление расстояний до целей врагов
