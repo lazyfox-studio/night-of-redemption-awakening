@@ -25,9 +25,10 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
 	texture = p->texture;
 	texture->setSmooth(true);
 	sprite.setTexture(*texture);
+    sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
     focus = &monolith;
 	
-	health_bar.setSize(sf::Vector2f(SPRITE_SIZE, 5.0f));
+	health_bar.setSize(sf::Vector2f(UNIT_SIZE, 5.0f));
 	health_bar.setFillColor(sf::Color::Blue);
 }
 

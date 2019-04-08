@@ -26,7 +26,7 @@ void Player::shoot(List<Enemy>& enemies) {
         switch (pov)
         {
         case 0:
-            if ((_x - SPRITE_SIZE / 2.0f < x) && (_x + SPRITE_SIZE / 2.0f > x) && (_y < y))
+            if ((_x - UNIT_SIZE / 2.0f < x) && (_x + UNIT_SIZE / 2.0f > x) && (_y < y))
             {
                 if (i->value->r < range)
                 {
@@ -36,7 +36,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 180:
-            if ((_x - SPRITE_SIZE / 2.0f < x) && (_x + SPRITE_SIZE / 2.0f > x) && (_y > y))
+            if ((_x - UNIT_SIZE / 2.0f < x) && (_x + UNIT_SIZE / 2.0f > x) && (_y > y))
             {
                 if (i->value->r < range)
                 {
@@ -46,7 +46,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 90:
-            if ((_y - SPRITE_SIZE / 2.0f < y) && (_y + SPRITE_SIZE / 2.0f > y) && (_x < x))
+            if ((_y - UNIT_SIZE / 2.0f < y) && (_y + UNIT_SIZE / 2.0f > y) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -56,7 +56,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case -90:
-            if ((_y - SPRITE_SIZE / 2.0f < y) && (_y + SPRITE_SIZE / 2.0f > y) && (_x < x))
+            if ((_y - UNIT_SIZE / 2.0f < y) && (_y + UNIT_SIZE / 2.0f > y) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -66,7 +66,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 45:
-            if ((_y - SPRITE_SIZE / 2.0f < (y - _x + x)) && (_y + SPRITE_SIZE / 2.0f > (y - _x + x)) && (_x > x))
+            if ((_y - UNIT_SIZE / 2.0f < (y - _x + x)) && (_y + UNIT_SIZE / 2.0f > (y - _x + x)) && (_x > x))
             {
                 if (i->value->r < range)
                 {
@@ -76,7 +76,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case -45:
-            if ((_y - SPRITE_SIZE / 2.0f < (y + _x - x)) && (_y + SPRITE_SIZE / 2.0f > (y + _x - x)) && (_x < x))
+            if ((_y - UNIT_SIZE / 2.0f < (y + _x - x)) && (_y + UNIT_SIZE / 2.0f > (y + _x - x)) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -86,7 +86,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case -135:
-            if ((_y - SPRITE_SIZE / 2.0f < (y - _x + x)) && (_y + SPRITE_SIZE / 2.0f > (y - _x + x)) && (_x < x))
+            if ((_y - UNIT_SIZE / 2.0f < (y - _x + x)) && (_y + UNIT_SIZE / 2.0f > (y - _x + x)) && (_x < x))
             {
                 if (i->value->r < range)
                 {
@@ -95,7 +95,7 @@ void Player::shoot(List<Enemy>& enemies) {
                 }
             }
         case 135:
-            if ((_y - SPRITE_SIZE / 2.0f < (y + _x - x)) && (_y + SPRITE_SIZE / 2.0f > (y + _x - x)) && (_x > x))
+            if ((_y - UNIT_SIZE / 2.0f < (y + _x - x)) && (_y + UNIT_SIZE / 2.0f > (y + _x - x)) && (_x > x))
             {
                 if (i->value->r < range)
                 {
