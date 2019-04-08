@@ -1,7 +1,7 @@
 ﻿#include "../../Headers/Allies/Player.h"
 #include <iostream>
 
-Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 3.0f, 0), damage(5)
+Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0f, 0), damage(5)
 {
 	texture->loadFromFile("Textures/player.png");
 	texture->setSmooth(true);
@@ -27,9 +27,9 @@ void Player::shoot(List<Enemy>& enemies) {
         _y = i->value->y;
 		float _sin = sin(angle), _cos = cos(angle);
 		if (
-			 (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos >= 0)
+			 (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos >= 0)
 			 && 
-			 (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos <= 0)
+			 (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos <= 0)
 		   )
 		{
 			target = i->value;

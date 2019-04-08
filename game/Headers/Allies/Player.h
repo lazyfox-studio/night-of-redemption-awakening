@@ -7,7 +7,6 @@
 class Player : public Ally
 {
 	int damage;
-
 public:
 	Player();
 	~Player();
