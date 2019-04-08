@@ -6,6 +6,7 @@
 #include "Screen.h"
 #include <Windows.h>
 #include <iostream>
+#include <thread>
 
 struct GeneratorConfig
 {
@@ -50,6 +51,8 @@ void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int*
 			units->add(en);
 			enemies->add(en);
 			en->move_to(x, y);
+			std::thread thr(&(Enemy::fade_in), en);
+			thr.detach();
 			(*enemies_num)++;
 			(*units_num)++;
 			Sleep(enemies_gconfig.frequency);

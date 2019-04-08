@@ -1,6 +1,4 @@
 ﻿#include "../Headers/Enemy.h"
-#include <math.h>
-#include "../Headers/Allies/Monolith.h"
 
 extern Monolith monolith;
 
@@ -26,6 +24,7 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
 	texture->setSmooth(true);
 	sprite.setTexture(*texture);
     sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
+	sprite.setColor(sf::Color(255, 255, 255, 0)); // for fading in
     focus = &monolith;
 	
 	health_bar.setSize(sf::Vector2f(UNIT_SIZE, 5.0f));
@@ -50,13 +49,12 @@ void Enemy::move()
         x += (focus->x - x) * c;
         y += (focus->y - y) * c;
         sprite.setPosition(x, y);
-        int angle = (int)(180*atan((focus->y - y) / (focus->x - x)) / 3.14);
+        int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
         if (focus->x < x)
         {
             angle += 180;
         }
-        sprite.setRotation(angle);
-		update_health_bar();
+        sprite.setRotation((float)angle);
     }
 
 }
@@ -69,12 +67,8 @@ void Enemy::move_to(float _x, float _y)
 }
 
 void Enemy::attack() {
-    if (damage_cooldown > 0)
-    {
-        damage_cooldown--;
+    if (damage_cooldown-- > 0)
         return;
-    }
-
     if (r <= 1)
     {
         //Стоило бы добавить проигрывание анимации
@@ -106,8 +100,24 @@ void Enemy::update_health_bar()
 	health_bar.setPosition(x - UNIT_SIZE / 2, y - UNIT_SIZE / 2 - 5.0f);
 }
 
+void Enemy::fade_in()
+{
+	int alpha = 0;
+	while (alpha++ < 255)
+	{
+		if (health < prototype->health)
+		{
+			sprite.setColor(sf::Color(255, 255, 255, 255));
+			break;
+		}
+		sprite.setColor(sf::Color(255, 255, 255, alpha));
+		Sleep(1);
+	}
+}
+
 void Enemy::draw()
 {
+	update_health_bar();
 	window.draw(sprite);
 	window.draw(health_bar);
 }

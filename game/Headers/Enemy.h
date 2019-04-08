@@ -1,5 +1,8 @@
 ﻿#pragma once
 #include "Ally.h"
+#include <math.h>
+#include "../Headers/Allies/Monolith.h"
+#include <Windows.h>
 
 struct EnemyType 
 {
@@ -45,5 +48,6 @@ public:
     void death();
 	void update_health_bar();
 
+	void fade_in();
 	void draw();
 };
