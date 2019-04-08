@@ -46,7 +46,7 @@ void Player::shoot(List<Enemy>& enemies) {
             }
             break;
         case 90:
-            if ((_y - UNIT_SIZE / 2.0f < y) && (_y + UNIT_SIZE / 2.0f > y) && (_x < x))
+            if ((_y - UNIT_SIZE / 2.0f < y) && (_y + UNIT_SIZE / 2.0f > y) && (_x > x))
             {
                 if (i->value->r < range)
                 {
