@@ -64,6 +64,11 @@ bool Unit::is_enemy()
 	return false;
 }
 
+void Unit::damage_cooldown_update()
+{
+    if (damage_cooldown > 0) damage_cooldown--;
+}
+
 void Unit::draw()
 {
     window.draw(sprite);

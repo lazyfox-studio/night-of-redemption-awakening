@@ -7,11 +7,13 @@
 class Player : public Ally
 {
 	int damage;
+    int ammo;
 public:
 	Player();
 	~Player();
 
     void shoot(List<Enemy>& enemies);
+    void reload();
 	void move(float, float, bool = false);
 
 	void test_ani();

@@ -11,6 +11,7 @@ struct KeyboardControl
 	bool D = false;
 	bool Q = false;
 	bool E = false;
+    bool R = false;
 	bool LShift = false;
 };
 KeyboardControl Kb;
@@ -90,6 +91,8 @@ inline void control_player(Player* player, List<Enemy>& enemies)
     {
         player->shoot(enemies);
     }
+    if (Kb.R)
+        player->reload();
 
 	// Вращение
 
@@ -135,4 +138,10 @@ bool enemy_died(Unit* unit)
 inline int kill_dead_enemies(List<Unit>& units)
 {
 	return units.remove_if(enemy_died);
+}
+
+//Обновление кулдауна атак
+inline void cooldown_update(List<Unit>& units)
+{
+    units.foreach(&(Unit::damage_cooldown_update));
 }

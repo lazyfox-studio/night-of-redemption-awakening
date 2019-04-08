@@ -25,7 +25,6 @@ class Enemy : public Unit
 {
     float r; //Расстояние до цели
     int damage;
-    int damage_cooldown; //Ограничение на скорость атак
     Ally* focus; //Указатель на объект за которым следует противник
 	EnemyType* prototype;
     friend class Player;

@@ -79,6 +79,9 @@ int main()
 				case sf::Keyboard::Key::E:
 					Kb.E = flag;
 					break;
+                case sf::Keyboard::Key::R:
+                    Kb.R = flag;
+                    break;
 				case sf::Keyboard::Key::LShift:
 					Kb.LShift = flag;
 					break;
@@ -111,6 +114,7 @@ int main()
         check_focus_enemies(enemies, allies);
 
         move_enemies(enemies);
+        cooldown_update(units);
 		control_player(player, enemies);
 		int killed = kill_dead_enemies(units); // после control_player, это важно!
 		units_num -= killed;

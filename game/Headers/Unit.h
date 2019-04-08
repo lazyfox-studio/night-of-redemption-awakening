@@ -4,6 +4,9 @@
 
 #define SPRITE_SIZE 160
 #define UNIT_SIZE 96
+#define AK74_ATTAK_SPEED 6
+#define AK74_RELOAD_TIME 90
+#define AK74_MAGASINE 30
 
 extern sf::RenderWindow window;
 extern sf::View view;
@@ -16,6 +19,7 @@ protected:
 	int health;
 	float speed;
 	int pov;
+    int damage_cooldown = 0; //Ограничение на скорость атак
 
 	sf::Texture *texture;
 	sf::Sprite sprite;
@@ -35,6 +39,8 @@ public:
 
 	virtual bool is_ally();
 	virtual bool is_enemy();
+
+    void damage_cooldown_update();
 
 	virtual void draw();
 	void rotate(int);

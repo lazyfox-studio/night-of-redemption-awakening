@@ -1,7 +1,7 @@
 ﻿#include "../../Headers/Allies/Player.h"
 #include <iostream>
 
-Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0f, 0), damage(5)
+Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0f, 0), damage(80)
 {
 	texture->loadFromFile("Textures/player.png");
 	texture->setSmooth(true);
@@ -9,6 +9,7 @@ Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0
 	sprite.setTextureRect(sf::IntRect(0, 0, SPRITE_SIZE, SPRITE_SIZE));
 	sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
 	sprite.setPosition(x, y);
+    ammo = 30;
 }
 
 Player::~Player()
@@ -17,6 +18,10 @@ Player::~Player()
 }
 
 void Player::shoot(List<Enemy>& enemies) {
+    if ((damage_cooldown > 0) || (ammo < 1))
+    {
+        return;
+    }
     Enemy* target = nullptr;
     float range = float(INT_MAX);
     float _x, _y;
@@ -45,6 +50,14 @@ void Player::shoot(List<Enemy>& enemies) {
 			enemies.drop(target);
 		}
     }
+    ammo--;
+    damage_cooldown = AK74_ATTAK_SPEED;
+}
+
+void Player::reload()
+{
+    ammo = AK74_MAGASINE;
+    damage_cooldown = AK74_RELOAD_TIME;
 }
 
 void Player::move(float dbx, float dby, bool is_shift)
