@@ -20,7 +20,7 @@ Enemy::Enemy(float _x, float _y, int _health, float _speed, int _pov) :
 
 }
 
-Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage)
+Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage), prototype(p)
 {
 	texture = p->texture;
 	texture->setSmooth(true);
@@ -29,7 +29,8 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
     focus = &monolith;
 	
 	health_bar.setSize(sf::Vector2f(UNIT_SIZE, 5.0f));
-	health_bar.setFillColor(sf::Color::Blue);
+	health_bar.setFillColor(sf::Color::Red);
+	health_bar.setOrigin(sf::Vector2f(0.0f, 5.0f));
 }
 
 bool Enemy::is_enemy()
@@ -49,9 +50,7 @@ void Enemy::move()
         x += (focus->x - x) * c;
         y += (focus->y - y) * c;
         sprite.setPosition(x, y);
-
-		health_bar.setScale(health / 100.f, 1);
-		health_bar.setPosition(x, y - 10);
+		update_health_bar();
     }
 
 }
@@ -93,6 +92,12 @@ void Enemy::focus_change(List<Ally>& allies)
 void Enemy::death()
 {
     
+}
+
+void Enemy::update_health_bar()
+{
+	health_bar.setScale((float)health / (float)(prototype->health), 1.0f);
+	health_bar.setPosition(x - UNIT_SIZE / 2, y - UNIT_SIZE / 2 - 5.0f);
 }
 
 void Enemy::draw()

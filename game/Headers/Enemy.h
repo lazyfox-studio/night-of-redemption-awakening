@@ -43,6 +43,7 @@ public:
     void attack();
     void focus_change(List<Ally>&);
     void death();
+	void update_health_bar();
 
 	void draw();
 };

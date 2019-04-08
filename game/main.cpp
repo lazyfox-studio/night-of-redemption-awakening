@@ -33,26 +33,19 @@ int main()
 
 	int units_num = 2, enemies_num = 0, allies_num = 2;
 
-	EnemyType* enemy1 = new EnemyType(100, 0.5f, 5);
-	enemy1->assign_texture("Textures/enemy1.png");
+	EnemyType* enemy_types[1];
+	enemy_types[0] = new EnemyType(500, 0.5f, 5);
+	enemy_types[0]->assign_texture("Textures/enemy1.png");
 
-	Enemy* en = new Enemy(enemy1);
-	units.add(en);
-	enemies.add(en);
-	en->move_to(200, 200);
-	units_num++;
-	enemies_num++;
-
-	/*Enemy* en2 = new Enemy(enemy1);
+	/*
+	Enemy* en2 = new Enemy(enemy1);
 	units.add(en2);
 	enemies.add(en2);
 	en2->move_to(200, 900);
-	enemies_num++;*/
+	enemies_num++;
+	*/
 
-	/*std::thread thr(&(Player::test_ani), player);
-	thr.detach();*/
-
-	std::thread thr(enemies_generator, player, enemy1, &units, &units_num, &enemies, &enemies_num);
+	std::thread thr(enemies_generator, player, enemy_types[0], &units, &units_num, &enemies, &enemies_num);
 	thr.detach();
 
 	window.setView(view);

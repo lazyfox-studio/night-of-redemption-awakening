@@ -17,7 +17,7 @@ struct GeneratorConfig
 	{};
 };
 
-GeneratorConfig enemies_gconfig(true, 1000, 3);
+GeneratorConfig enemies_gconfig(true, 1000, 10);
 void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int* units_num, List<Enemy>* enemies, int* enemies_num)
 {
 	srand((unsigned)time(0));
