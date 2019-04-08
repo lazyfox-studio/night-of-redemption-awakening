@@ -32,7 +32,7 @@ public:
 	List<T>& operator=(List<T>&);
 
 	void foreach(void(T::*func)());
-	//void foreach(void(T::*func)(List& list));
+	template <class T2>	void foreach(void(T::*func)(T2&), T2& list);
 };
 
 template <class T>
@@ -264,4 +264,14 @@ void List<T>::foreach(void (T::*func)())
 		return;
 	for (ListItem<T>* i = head; i; i = i->next)
 		(i->value->*func)();
+}
+
+template<class T>
+template<class T2>
+inline void List<T>::foreach(void(T::* func)(T2&), T2& list)
+{
+	if (!head)
+		return;
+	for (ListItem<T>* i = head; i; i = i->next)
+		(i->value->*func)(list);
 }
