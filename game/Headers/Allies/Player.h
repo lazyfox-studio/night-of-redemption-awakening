@@ -16,5 +16,6 @@ public:
     void reload();
 	void move(float, float, bool = false);
 
+	int get_ammo();
 	void test_ani();
 };

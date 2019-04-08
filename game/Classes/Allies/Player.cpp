@@ -82,6 +82,11 @@ void Player::move(float dbx, float dby, bool is_shift)
 	sprite.move(dx, dy);
 }
 
+int Player::get_ammo()
+{
+	return ammo;
+}
+
 void Player::test_ani()
 {
 	std::cout << " thr";

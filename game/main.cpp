@@ -48,6 +48,35 @@ int main()
 	std::thread thr(enemies_generator, player, enemy_types[0], &units, &units_num, &enemies, &enemies_num);
 	thr.detach();
 
+	sf::Font font;
+	font.loadFromFile("Fonts/arial.ttf");
+
+	sf::Text ammo_ind_pre;
+	ammo_ind_pre.setFont(font);
+	ammo_ind_pre.setString("Ammo: ");
+	ammo_ind_pre.setCharacterSize(24);
+	ammo_ind_pre.setFillColor(sf::Color::Blue);
+
+	sf::Text ammo_ind;
+	ammo_ind.setFont(font);
+	ammo_ind.setCharacterSize(24);
+	ammo_ind.setFillColor(sf::Color::Blue);
+	int ammo_ind_num = 30;
+	const char* ammo_ind_text = stringify(ammo_ind_num);
+
+	sf::Text enemies_ind_pre;
+	enemies_ind_pre.setFont(font);
+	enemies_ind_pre.setString("Enemies: ");
+	enemies_ind_pre.setCharacterSize(24);
+	enemies_ind_pre.setFillColor(sf::Color::Blue);
+
+	sf::Text enemies_ind;
+	enemies_ind.setFont(font);
+	enemies_ind.setCharacterSize(24);
+	enemies_ind.setFillColor(sf::Color::Blue);
+	int enemies_ind_num = enemies_num;
+	const char* enemies_ind_text = stringify(enemies_ind_num);
+
 	window.setView(view);
 	while (window.isOpen())
 	{
@@ -120,10 +149,37 @@ int main()
 		units_num -= killed;
 		enemies_num -= killed;
 
+		if (player->get_ammo() != ammo_ind_num)
+		{
+			delete[] ammo_ind_text;
+			ammo_ind_num = player->get_ammo();
+			ammo_ind_text = stringify(ammo_ind_num);
+			ammo_ind.setString(ammo_ind_text);
+		}
+		if (enemies_num != enemies_ind_num)
+		{
+			delete[] enemies_ind_text;
+			enemies_ind_num = enemies_num;
+			enemies_ind_text = stringify(enemies_ind_num);
+			enemies_ind.setString(enemies_ind_text);
+		}
+
+		float ammo_ind_pos_x = player->getX() - screen.w / 2 + 5.0f, ammo_ind_pos_y = player->getY() - screen.h / 2 + 5.0f;
+		ammo_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x, ammo_ind_pos_y));
+		ammo_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 80.f, ammo_ind_pos_y));
+		enemies_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 25.f));
+		enemies_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 25.f));
+
 		window.clear();
         window.setView(view);
 		window.draw(background);
 		draw_all(units);
+
+		window.draw(ammo_ind_pre);
+		window.draw(ammo_ind);
+		window.draw(enemies_ind_pre);
+		window.draw(enemies_ind);
+
 		window.display();
 	}
 
