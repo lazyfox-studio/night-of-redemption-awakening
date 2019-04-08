@@ -20,7 +20,6 @@ int main()
 	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
 
 	view.setCenter(vc_x, vc_y);
-	view.zoom(0.75f);
 
 	List<Unit> units;
 	List<Enemy> enemies;
