@@ -27,22 +27,7 @@ void Player::shoot(List<Enemy>& enemies) {
         float angle = 3.14 * pov / 180;
         if (i->value->r < range)
         {
-            if ((pov != 0) && (pov != 180))
-            {
-                if (((((_y + (UNIT_SIZE / 2)) - y - (_x - x) * tan(angle + 1.57)) > 0) && ((_y - (UNIT_SIZE / 2) - y - (_x - x) * tan(angle + 1.57)) < 0)) && (((_x < x) && (pov < 0)) || ((_x > x) && (pov > 0))))
-                {
-                    target = i->value;
-                    range = target->r;
-                }
-            }
-            else
-            {
-                if (((_x - UNIT_SIZE / 2.0f < x) && (_x + UNIT_SIZE / 2.0f > x)) && (((_y < y) && (pov == 0)) || ((_y > y) && (pov == 180))))
-                {
-                        target = i->value;
-                        range = target->r;
-                }
-            }
+            
         }
     }
     if (target != nullptr)

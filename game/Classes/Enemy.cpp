@@ -50,17 +50,12 @@ void Enemy::move()
         x += (focus->x - x) * c;
         y += (focus->y - y) * c;
         sprite.setPosition(x, y);
-        int angle = (int)(180*atan((focus->x - x) / (focus->y - y)) / 3.14);
-        if (focus->y > y)
+        int angle = (int)(180*atan((focus->y - y) / (focus->x - x)) / 3.14);
+        if (focus->x < x)
         {
-            if (angle > 0)
-            {
-                angle = 180 - angle;
-            }
-            else angle = -180 - angle;
-            angle *= -1;
+            angle += 180;
         }
-        sprite.setRotation(-angle);
+        sprite.setRotation(angle);
 		update_health_bar();
     }
 
