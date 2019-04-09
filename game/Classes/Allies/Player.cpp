@@ -3,21 +3,21 @@
 
 Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0f, 0), damage(80)
 {
-	texture->loadFromFile("Textures/player.png");
-	texture->setSmooth(true);
-	sprite.setTexture(*texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, SPRITE_SIZE, SPRITE_SIZE));
-	sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
-	sprite.setPosition(x, y);
-    ammo = 30;
+    texture->loadFromFile("Textures/player.png");
+    texture->setSmooth(true);
+    sprite.setTexture(*texture);
+    sprite.setTextureRect(sf::IntRect(0, 0, SPRITE_SIZE, SPRITE_SIZE));
+    sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
+    sprite.setPosition(x, y);
+    ammo = AK74_MAGASINE;
 }
 
 Player::~Player()
 {
-	delete texture;
+    delete texture;
 }
 
-void Player::shoot(List<Enemy>& enemies) {
+void Player::shoot(List<Enemy> & enemies) {
     if ((damage_cooldown > 0) || (ammo < 1))
     {
         return;
@@ -26,20 +26,64 @@ void Player::shoot(List<Enemy>& enemies) {
     float range = float(INT_MAX);
     float _x, _y;
     float angle = 3.14f * (360.f + pov) / 180.f;
+    std::cout << pov << std::endl;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
-        _x = i->value->x;
-        _y = i->value->y;
-		float _sin = sin(angle), _cos = cos(angle);
-		if (
-			 (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos >= 0)
-			 && 
-			 (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos <= 0)
-		   )
-		{
-			target = i->value;
-			range = target->r;
-		}
+        if (i->value->r < range) {
+            _x = i->value->x;
+            _y = i->value->y;
+            float _sin = sin(angle), _cos = cos(angle);
+            if ((pov < 90) && (pov > -90))
+            {
+                if (
+                    (-1 * (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos) >= 0)
+                    &&
+                    (-1 * (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos) <= 0)
+                    &&
+                    (_x > x)
+                    )
+                {
+                    target = i->value;
+                    range = target->r;
+                }
+            }
+            else if ((pov > 90) || (pov < -90))
+            {
+                if (
+                    (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos >= 0)
+                    &&
+                    (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos <= 0)
+                    &&
+                    (_x < x)
+                    )
+                {
+                    target = i->value;
+                    range = target->r;
+                }
+            }
+            else if (pov == 90)
+            {
+                if (_y > y)
+                {
+                    if (((_x - UNIT_SIZE / 2) < x) && ((_x + UNIT_SIZE / 2) > x))
+                    {
+                        target = i->value;
+                        range = target->r;
+                    }
+                }
+            }
+            else if ((pov == -90) || (pov == -270))
+            {
+                if (_y < y)
+                {
+                    if (((_x - UNIT_SIZE / 2) < x) && ((_x + UNIT_SIZE / 2) > x))
+                    {
+                        target = i->value;
+                        range = target->r;
+                    }
+                }
+            }
+        }
     }
     if (target != nullptr)
     {

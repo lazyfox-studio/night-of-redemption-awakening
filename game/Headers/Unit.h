@@ -6,7 +6,7 @@
 #define UNIT_SIZE 96
 #define AK74_ATTAK_SPEED 6
 #define AK74_RELOAD_TIME 90
-#define AK74_MAGASINE 30
+#define AK74_MAGASINE 99999
 
 extern sf::RenderWindow window;
 extern sf::View view;
