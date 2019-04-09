@@ -1,7 +1,7 @@
 ﻿#include "../../Headers/Allies/Player.h"
 #include <iostream>
 
-Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0f, 0), damage(80)
+Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 4.0f, 0), damage(80)
 {
     texture->loadFromFile("Textures/player.png");
     texture->setSmooth(true);
@@ -10,6 +10,7 @@ Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 2.0
     sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
     sprite.setPosition(x, y);
     ammo = AK74_MAGASINE;
+    stamina = MAX_STAMINA;
 }
 
 Player::~Player()
@@ -105,7 +106,17 @@ void Player::reload()
 
 void Player::move(float dbx, float dby, bool is_shift)
 {
-	float shift = is_shift ? 1.f : 0.f;
+    float shift = is_shift;
+    if ((stamina > 0) && (is_shift))
+    {
+        shift = 1.f;
+        stamina--;
+    }
+    else
+    {
+        shift = 0.f;
+        if (stamina < MAX_STAMINA) stamina++;
+    }
 	float dx = 0.0f, dy = 0.0f;
 	if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
 	{

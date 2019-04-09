@@ -4,10 +4,13 @@
 #include "../Enemy.h"
 #include <windows.h>
 
+#define MAX_STAMINA 120
+
 class Player : public Ally
 {
 	int damage;
     int ammo;
+    int stamina;
 public:
 	Player();
 	~Player();

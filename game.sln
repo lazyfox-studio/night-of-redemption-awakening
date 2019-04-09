@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.539
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\game.vcxproj", "{BF9D1AC5-585C-441D-94D0-E94AC426696F}"
 EndProject
@@ -17,8 +17,8 @@ Global
 		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Debug|x64.Build.0 = Debug|Win32
 		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Debug|x86.ActiveCfg = Debug|Win32
 		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Debug|x86.Build.0 = Debug|Win32
-		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Release|x64.ActiveCfg = Release|x64
-		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Release|x64.Build.0 = Release|x64
+		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Release|x64.ActiveCfg = Debug|Win32
+		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Release|x64.Build.0 = Debug|Win32
 		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Release|x86.ActiveCfg = Release|Win32
 		{BF9D1AC5-585C-441D-94D0-E94AC426696F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
