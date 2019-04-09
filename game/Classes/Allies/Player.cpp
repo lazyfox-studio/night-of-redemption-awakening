@@ -26,7 +26,6 @@ void Player::shoot(List<Enemy> & enemies) {
     float range = float(INT_MAX);
     float _x, _y;
     float angle = 3.14f * (360.f + pov) / 180.f;
-    std::cout << pov << std::endl;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
         if (i->value->r < range) {
@@ -36,9 +35,9 @@ void Player::shoot(List<Enemy> & enemies) {
             if ((pov < 90) && (pov > -90))
             {
                 if (
-                    (-1 * (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos) >= 0)
+                    ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
                     &&
-                    (-1 * (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos) <= 0)
+                    ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
                     &&
                     (_x > x)
                     )
@@ -50,9 +49,9 @@ void Player::shoot(List<Enemy> & enemies) {
             else if ((pov > 90) || (pov < -90))
             {
                 if (
-                    (((_x - UNIT_SIZE / 2) - x) * _sin - ((_y + UNIT_SIZE / 2) - y) * _cos >= 0)
+                    ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
                     &&
-                    (((_x + UNIT_SIZE / 2) - x) * _sin - ((_y - UNIT_SIZE / 2) - y) * _cos <= 0)
+                    ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
                     &&
                     (_x < x)
                     )
