@@ -179,9 +179,9 @@ int main()
 		enemies_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 25.f));
 		enemies_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 25.f));
 
-		float border_pos_x = player->getX() - screen.w / 2, border_pos_y = player->getY() - screen.h / 2 - 32.f;
+		float border_pos_x = player->getX() - screen.w / 2, border_pos_y = player->getY() - screen.h / 2 - 48.f;
 		border1.setPosition(border_pos_x, border_pos_y);
-		border2.setPosition(border_pos_x, border_pos_y + screen.h + 64.f);
+		border2.setPosition(border_pos_x, border_pos_y + screen.h + 48.f);
 
 		window.clear();
         window.setView(view);
