@@ -42,7 +42,7 @@ void Enemy::range() {
 
 void Enemy::move()
 {
-    if (r > 1)
+    if (r > UNIT_SIZE)
     {
         float c = speed / r; //Коэфицент подобия
         x += (focus->x - x) * c;
@@ -55,7 +55,12 @@ void Enemy::move()
         }
         sprite.setRotation((float)angle);
     }
-
+    int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
+    if (focus->x < x)
+    {
+        angle += 180;
+    }
+    sprite.setRotation((float)angle);
 }
 
 void Enemy::move_to(float _x, float _y)
