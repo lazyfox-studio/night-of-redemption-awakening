@@ -65,7 +65,8 @@ void OverBar::bar::set_position(float x, float y)
 void OverBar::bar::set_width(float w)
 {
 	float factor = w / (float)width;
-	background.setScale(factor, (float)height * factor);
+	background.setScale(factor, factor);
+	itself.setScale(factor, factor);
 }
 
 void OverBar::bar::draw()
