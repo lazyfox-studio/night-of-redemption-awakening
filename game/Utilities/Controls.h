@@ -1,6 +1,6 @@
 #pragma once
 #include "../Headers/Unit.h"
-#include "Screen.h"
+#include "../Structures/Screen.h"
 #include "List.h"
 
 struct KeyboardControl

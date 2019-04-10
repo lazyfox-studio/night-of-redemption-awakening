@@ -27,9 +27,11 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
 	sprite.setColor(sf::Color(255, 255, 255, 0)); // for fading in
     focus = &monolith;
 	
-	health_bar.setSize(sf::Vector2f(UNIT_SIZE, 5.0f));
+	health_bar.set_color(OverBar::color::red);
+	health_bar.set_width(UNIT_SIZE);
+	/*health_bar.setSize(sf::Vector2f(UNIT_SIZE, 5.0f));
 	health_bar.setFillColor(sf::Color::Red);
-	health_bar.setOrigin(sf::Vector2f(0.0f, 5.0f));
+	health_bar.setOrigin(sf::Vector2f(0.0f, 5.0f));*/
 }
 
 bool Enemy::is_enemy()
@@ -96,8 +98,8 @@ void Enemy::death()
 
 void Enemy::update_health_bar()
 {
-	health_bar.setScale((float)health / (float)(prototype->health), 1.0f);
-	health_bar.setPosition(x - UNIT_SIZE / 2, y - UNIT_SIZE / 2 - 5.0f);
+	health_bar.set_percentage((float)health / (float)(prototype->health));
+	health_bar.set_position(x - UNIT_SIZE / 2, y - UNIT_SIZE / 2 - 5.0f);
 }
 
 void Enemy::fade_in()
@@ -119,5 +121,5 @@ void Enemy::draw()
 {
 	update_health_bar();
 	window.draw(sprite);
-	window.draw(health_bar);
+	health_bar.draw();
 }

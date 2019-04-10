@@ -9,4 +9,5 @@
 !*.filters
 !*.png
 !*.gif
+!*.ttf
 /Debug/Textures/map.png

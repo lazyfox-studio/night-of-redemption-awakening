@@ -1,5 +1,5 @@
 #pragma once
-#include "../Utilities/Screen.h"
+#include "../Structures/Screen.h"
 #include <SFML/Graphics.hpp>
 
 #define SPRITE_SIZE 160

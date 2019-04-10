@@ -26,6 +26,9 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{6dce3c1a-7ce7-4eca-b701-4cea9dc4ace1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Structures">
+      <UniqueIdentifier>{fe0fe056-46b2-4860-916d-75d28ab9efdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,9 +84,6 @@
     <ClInclude Include="Utilities\Controls.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\Screen.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Unit.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -98,6 +98,15 @@
     </ClInclude>
     <ClInclude Include="Utilities\Generator.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\OverBar.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\EnemyType.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Screen.h">
+      <Filter>Structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

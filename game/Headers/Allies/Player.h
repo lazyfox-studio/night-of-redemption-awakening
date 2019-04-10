@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "../../Utilities/Screen.h"
+#include "../../Structures/Screen.h"
 #include "../Ally.h"
 #include "../Enemy.h"
 #include <windows.h>
