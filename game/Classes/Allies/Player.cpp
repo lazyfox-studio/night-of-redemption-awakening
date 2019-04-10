@@ -11,6 +11,8 @@ Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 4.0
     sprite.setPosition(x, y);
     ammo = AK74_MAGASINE;
     stamina = MAX_STAMINA;
+    player_sound.shoot.loadFromFile("Sounds/Player/shoot.wav");
+    player_sound.reload.loadFromFile("Sounds/Player/reload.wav");
 }
 
 Player::~Player()
@@ -23,6 +25,9 @@ void Player::shoot(List<Enemy> & enemies) {
     {
         return;
     }
+    sound.setBuffer(player_sound.shoot);
+    sound.play();
+
     Enemy* target = nullptr;
     float range = float(INT_MAX);
     float _x, _y;
@@ -100,6 +105,8 @@ void Player::shoot(List<Enemy> & enemies) {
 
 void Player::reload()
 {
+    sound.setBuffer(player_sound.reload);
+    sound.play();
     ammo = AK74_MAGASINE;
     damage_cooldown = AK74_RELOAD_TIME;
 }

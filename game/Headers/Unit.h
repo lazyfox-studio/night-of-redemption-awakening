@@ -1,15 +1,17 @@
 #pragma once
 #include "../Structures/Screen.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #define SPRITE_SIZE 160
 #define UNIT_SIZE 96
 #define AK74_ATTAK_SPEED 6
-#define AK74_RELOAD_TIME 90
+#define AK74_RELOAD_TIME 180
 #define AK74_MAGASINE 99999
 
 extern sf::RenderWindow window;
 extern sf::View view;
+extern sf::Sound sound;
 
 class Unit
 {
