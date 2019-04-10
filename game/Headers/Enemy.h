@@ -1,34 +1,20 @@
 ﻿#pragma once
-#include "Ally.h"
 #include <math.h>
+#include <Windows.h>
+#include "Ally.h"
 #include "../Headers/Allies/Monolith.h"
-
-struct EnemyType 
-{
-	int health = 0;
-	float speed = 0;
-	int damage = 0;
-	sf::Texture* texture = new sf::Texture;
-
-	EnemyType(int _health, float _speed, int _damage) :
-		health(_health), speed(_speed), damage(_damage) {}
-
-	void assign_texture(const char* t)
-	{
-		//delete texture;
-		texture->loadFromFile(t);
-	}
-};
+#include "../Structures/EnemyType.h"
+#include "../Structures/OverBar.h"
 
 class Enemy : public Unit
 {
-    float r; //Расстояние до цели
-    int damage;
-    Ally* focus; //Указатель на объект за которым следует противник
-	EnemyType* prototype;
+    float r;                // Расстояние до цели
+    int damage;             // Наносимый урон
+    Ally* focus;            // Указатель на объект за которым следует противник
+	EnemyType* prototype;   // Указатель на шаблон-прототип врага
+	OverBar::bar health_bar;
     friend class Player;
 
-	sf::RectangleShape health_bar;
 public:
 	Enemy();
 	Enemy(float, float);

@@ -154,9 +154,11 @@
     <ClInclude Include="Headers\Enemy.h" />
     <ClInclude Include="Headers\Item.h" />
     <ClInclude Include="Headers\Items\Item1.h" />
+    <ClInclude Include="Structures\EnemyType.h" />
+    <ClInclude Include="Structures\OverBar.h" />
+    <ClInclude Include="Structures\Screen.h" />
     <ClInclude Include="Utilities\Controls.h" />
     <ClInclude Include="Utilities\List.h" />
-    <ClInclude Include="Utilities\Screen.h" />
     <ClInclude Include="Utilities\Functions.h" />
     <ClInclude Include="Utilities\Generator.h" />
     <ClInclude Include="Utilities\UnitList.h" />
