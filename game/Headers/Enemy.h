@@ -1,10 +1,9 @@
 ﻿#pragma once
 #include <math.h>
-#include <Windows.h>
 #include "Ally.h"
 #include "../Headers/Allies/Monolith.h"
 #include "../Structures/EnemyType.h"
-#include "../Structures/OverBar.h"
+#include "../Headers/OverBar.h"
 
 class Enemy : public Unit
 {

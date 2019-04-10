@@ -3,7 +3,7 @@
 #include "../Headers/Enemy.h"
 #include "../Headers/Allies/Player.h"
 #include "List.h"
-#include "Screen.h"
+#include "../Structures/Screen.h"
 #include <iostream>
 #include <thread>
 
@@ -12,17 +12,18 @@ struct GeneratorConfig
 	bool enabled;   // Статус генератора (вкл/выкл)
 	int frequency;  // Частота запуска (в мс)
 	int max_num;    // Максимальное количество объектов
-	GeneratorConfig(bool _enabled, int _freq, int _max) : 
-		enabled(_enabled), frequency(_freq), max_num(_max) 
+	bool ongoing;
+	GeneratorConfig(bool _enabled, int _freq, int _max, bool _ongoing) : 
+		enabled(_enabled), frequency(_freq), max_num(_max), ongoing(_ongoing)
 	{};
 };
 
-GeneratorConfig enemies_gconfig(true, 1000, 10);
+GeneratorConfig enemies_gconfig(true, 1000, 10, true);
 void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int* units_num, List<Enemy>* enemies, int* enemies_num)
 {
 	srand((unsigned)time(0));
 	sf::Clock clock;
-	while (enemies_gconfig.enabled)
+	while (enemies_gconfig.enabled && enemies_gconfig.ongoing)
 	{
 		while (*enemies_num < enemies_gconfig.max_num)
 		{

@@ -141,6 +141,7 @@
     <ClCompile Include="Classes\Enemy.cpp" />
     <ClCompile Include="Classes\Item.cpp" />
     <ClCompile Include="Classes\Items\Item1.cpp" />
+    <ClCompile Include="Classes\OverBar.cpp" />
     <ClCompile Include="Classes\Unit.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -149,13 +150,13 @@
     <ClInclude Include="Headers\Ally.h" />
     <ClInclude Include="Headers\Allies\Monolith.h" />
     <ClInclude Include="Headers\Allies\Player.h" />
+    <ClInclude Include="Headers\OverBar.h" />
     <ClInclude Include="Headers\Unit.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="Headers\Enemy.h" />
     <ClInclude Include="Headers\Item.h" />
     <ClInclude Include="Headers\Items\Item1.h" />
     <ClInclude Include="Structures\EnemyType.h" />
-    <ClInclude Include="Structures\OverBar.h" />
     <ClInclude Include="Structures\Screen.h" />
     <ClInclude Include="Utilities\Controls.h" />
     <ClInclude Include="Utilities\List.h" />

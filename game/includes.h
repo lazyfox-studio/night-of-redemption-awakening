@@ -10,6 +10,11 @@
 // 3rd Party Libs
 #include <SFML/Graphics.hpp>
 
+// Auxiliary Structures
+#include "Structures/EnemyType.h"
+//#include "Structures/OverBar.h"
+#include "Structures/Screen.h"
+
 // Main Classes
 #include "Headers/Enemy.h"
 #include "Headers/Ally.h"
@@ -22,11 +27,6 @@
 
 // Items
 #include "Headers/Items/Item1.h"
-
-// Auxiliary Structures
-#include "Structures/EnemyType.h"
-#include "Structures/OverBar.h"
-#include "Structures/Screen.h"
 
 // Utilities
 #include "Utilities/List.h"
