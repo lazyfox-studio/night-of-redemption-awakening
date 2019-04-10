@@ -147,13 +147,3 @@ int Player::get_ammo()
 {
 	return ammo;
 }
-
-void Player::test_ani()
-{
-	std::cout << " thr";
-	for (;;)
-	{
-		sprite.rotate(15.f);
-		Sleep(400);
-	}
-}

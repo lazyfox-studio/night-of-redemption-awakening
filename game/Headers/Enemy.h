@@ -2,7 +2,6 @@
 #include "Ally.h"
 #include <math.h>
 #include "../Headers/Allies/Monolith.h"
-#include <Windows.h>
 
 struct EnemyType 
 {

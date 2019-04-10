@@ -4,7 +4,6 @@
 #include "../Headers/Allies/Player.h"
 #include "List.h"
 #include "Screen.h"
-#include <Windows.h>
 #include <iostream>
 #include <thread>
 
@@ -22,6 +21,7 @@ GeneratorConfig enemies_gconfig(true, 1000, 10);
 void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int* units_num, List<Enemy>* enemies, int* enemies_num)
 {
 	srand((unsigned)time(0));
+	sf::Clock clock;
 	while (enemies_gconfig.enabled)
 	{
 		while (*enemies_num < enemies_gconfig.max_num)
@@ -55,8 +55,18 @@ void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int*
 			thr.detach();
 			(*enemies_num)++;
 			(*units_num)++;
-			Sleep(enemies_gconfig.frequency);
+			clock.restart();
+			do
+			{
+				if (clock.getElapsedTime().asMilliseconds() >= enemies_gconfig.frequency)
+					break;
+			} while (1);
 		}
-		Sleep(500);
+		clock.restart();
+		do
+		{
+			if (clock.getElapsedTime().asMilliseconds() >= 500)
+				break;
+		} while (1);
 	}
 }

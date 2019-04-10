@@ -6,7 +6,6 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-#include <Windows.h>
 
 // 3rd Party Libs
 #include <SFML/Graphics.hpp>

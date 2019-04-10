@@ -2,7 +2,6 @@
 #include "../../Utilities/Screen.h"
 #include "../Ally.h"
 #include "../Enemy.h"
-#include <windows.h>
 
 #define MAX_STAMINA 120
 
@@ -27,5 +26,4 @@ public:
 	void move(float, float, bool = false);
 
 	int get_ammo();
-	void test_ani();
 };

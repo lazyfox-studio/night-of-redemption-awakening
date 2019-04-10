@@ -50,7 +50,7 @@ int main()
 	thr.detach();
 
 	sf::Font font;
-	font.loadFromFile("Fonts/arial.ttf");
+	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
 
 	sf::Text ammo_ind_pre;
 	ammo_ind_pre.setFont(font);

@@ -103,6 +103,7 @@ void Enemy::update_health_bar()
 void Enemy::fade_in()
 {
 	int alpha = 0;
+	sf::Clock clock;
 	while (alpha++ < 255)
 	{
 		if (health < prototype->health)
@@ -111,7 +112,12 @@ void Enemy::fade_in()
 			break;
 		}
 		sprite.setColor(sf::Color(255, 255, 255, alpha));
-		Sleep(1);
+		clock.restart();
+		do
+		{
+			if (clock.getElapsedTime().asMilliseconds() >= 1)
+				break;
+		} while (1);
 	}
 }
 
