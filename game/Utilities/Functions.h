@@ -53,3 +53,21 @@ float random(float min = 0.f, float max = float(INT_MAX))
 	int _max = (int)max, _min = (int)min;
 	return (float)(rand() % (_max - _min + 1) + _min);
 }
+
+// мнд
+int GCD(int n1, int n2)
+{
+	int rem;
+	if (n1 < n2)
+	{
+		int tmp = n1;
+		n1 = n2;
+		n2 = tmp;
+	}
+	while (rem = n1 % n2)
+	{
+		n1 = n2;
+		n2 = rem;
+	}
+	return n2;
+}

@@ -1,33 +1,9 @@
 #pragma once
+#include "List.h"
 #include "../Headers/Unit.h"
 #include "../Structures/Screen.h"
-#include "List.h"
-
-struct KeyboardControl
-{
-	bool W = false;
-	bool A = false;
-	bool S = false;
-	bool D = false;
-	bool Q = false;
-	bool E = false;
-    bool R = false;
-	bool LShift = false;
-};
-KeyboardControl Kb;
-
-struct MouseControl
-{
-	bool Left   = false;
-	bool Right  = false;
-	bool Middle = false;
-
-	float x;
-	float y;
-
-	unsigned long long flood_control = 0;
-};
-MouseControl Mouse;
+#include "../Structures/Controls.h"
+#include "Functions.h"
 
 struct CameraOffset
 {
@@ -40,23 +16,6 @@ struct Precalculated
 	float c1, c2, c3, c4, c5, c6, c7, c8;
 };
 Precalculated c_coefficients;
-
-int GCD(int n1, int n2)
-{
-	int rem;
-	if (n1 < n2)
-	{
-		int tmp = n1;
-		n1 = n2;
-		n2 = tmp;
-	}
-	while (rem = n1 % n2)
-	{
-		n1 = n2;
-		n2 = rem;
-	}
-	return n2;
-}
 
 void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 {
@@ -95,7 +54,6 @@ inline void control_player(Player* player, List<Enemy>& enemies)
         player->reload();
 
 	// Вращение
-
     int angle = (int)(180 * atan((Mouse.y - (screen.h / 2)) / (Mouse.x - (screen.w / 2))) / 3.14);
     if (Mouse.x < (screen.w / 2))
     {

@@ -29,9 +29,6 @@ Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damag
 	
 	health_bar.set_color(OverBar::color::red);
 	health_bar.set_width(UNIT_SIZE);
-	/*health_bar.setSize(sf::Vector2f(UNIT_SIZE, 5.0f));
-	health_bar.setFillColor(sf::Color::Red);
-	health_bar.setOrigin(sf::Vector2f(0.0f, 5.0f));*/
 }
 
 bool Enemy::is_enemy()

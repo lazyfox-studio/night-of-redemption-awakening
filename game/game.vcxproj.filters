@@ -84,9 +84,6 @@
     <ClInclude Include="definitions.h">
       <Filter>Main Source</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\Controls.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Unit.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -110,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="Headers\OverBar.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Controls.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Services.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
