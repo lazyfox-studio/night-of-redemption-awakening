@@ -14,6 +14,7 @@ Monolith::~Monolith()
 {
 }
 
-void Monolith::move(float, float, bool)
+void Monolith::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 {
+
 }

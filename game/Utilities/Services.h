@@ -31,7 +31,7 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 }
 
 // Управление игроком
-inline void control_player(Player* player, List<Enemy>& enemies)
+inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& units)
 {
 	// Перемещение
 	float dx = 0.0f, dy = 0.0f;
@@ -43,7 +43,7 @@ inline void control_player(Player* player, List<Enemy>& enemies)
 		dy += 1.0f;
 	if (Kb.D)
 		dx += 1.0f;
-	player->move(dx, dy, Kb.LShift);
+	player->move(dx, dy, units,Kb.LShift);
 
 	// Стрельба
     if (Mouse.Left)

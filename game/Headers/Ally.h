@@ -11,5 +11,5 @@ public:
 	~Ally();
 
 	bool is_ally();
-	virtual void move(float, float, bool = false) = 0;
+	virtual void move(float, float, List<Unit>&, bool) = 0;
 };

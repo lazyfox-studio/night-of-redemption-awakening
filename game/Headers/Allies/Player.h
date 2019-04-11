@@ -23,7 +23,7 @@ public:
 
     void shoot(List<Enemy>& enemies);
     void reload();
-	void move(float, float, bool = false);
+    void move(float, float, List<Unit>&, bool);
 
 	int get_ammo();
 };

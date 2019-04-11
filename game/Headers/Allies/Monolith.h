@@ -8,5 +8,5 @@ public:
 	Monolith();
 	~Monolith();
 
-	void move(float, float, bool = false);
+	void move(float dbx, float dby, List<Unit>& units, bool is_shift);
 };

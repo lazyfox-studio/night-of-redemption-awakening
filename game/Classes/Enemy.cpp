@@ -45,12 +45,13 @@ void Enemy::move(List<Unit>& units)
     if (r > UNIT_SIZE)
     {
         bool x_unlock = true, y_unlock = true;
-        bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
+        
         float c = speed / r; //Коэфицент подобия
         float dx = (focus->x - x) * c;
         float dy = (focus->y - y) * c;
         for (ListItem<Unit>* i = units.head; i; i = i->next)
         {
+            bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
             //Всевозможные варианты пересечения
             if ((x + dx + UNIT_SIZE > i->value->getX()) && (x + UNIT_SIZE < i->value->getX())) x_left = true;
             if ((x + dx - UNIT_SIZE < i->value->getX()) && (x - UNIT_SIZE > i->value->getX())) x_right = true;
@@ -64,7 +65,7 @@ void Enemy::move(List<Unit>& units)
             if ((x_left || x_right) && (y_right || y_left))
             {
                 x_unlock = false;
-                y_unlock = true;
+                y_unlock = false;
             }
         }
         if (x_unlock == true) x += dx;
