@@ -211,12 +211,12 @@ int main()
 		{
 			stamina_bar.set_percentage((float)player->get_stamina() / float(MAX_STAMINA));
 			stamina_bar.set_position(corners.bottom_left.x + 40.f, corners.bottom_left.y - 15.f);
-			stamina_bar.draw();
+			stamina_bar.draw_in(window);
 		}
 
 		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
 		health_bar.set_position(corners.bottom_left.x + 20.f, corners.bottom_left.y - 30.f);
-		health_bar.draw();
+		health_bar.draw_in(window);
 
 		window.display();
 	}

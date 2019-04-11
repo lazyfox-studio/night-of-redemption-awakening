@@ -37,6 +37,6 @@ namespace OverBar
 		color get_color();
 		float get_percentage();
 
-		void draw();
+		void draw_in(sf::RenderWindow&);
 	};
 };

@@ -1,24 +1,24 @@
 #include "../Headers/Unit.h"
 #include <iostream>
 
-Unit::Unit() : x(0), y(0), health(0), speed(0), pov(0), texture(new sf::Texture) 
+Unit::Unit() : x(0), y(0), health(0), speed(0), pov(0)
 {
-	sprite.setOrigin(sf::Vector2f(0.5f, 0.5f));
+	sprite.set_origin(0.5f, 0.5f);
 	setX(x);
 	setY(y);
 }
 
-Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0), texture(new sf::Texture)
+Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0)
 {
-	sprite.setOrigin(sf::Vector2f(0.5f, 0.5f));
+	sprite.set_origin(0.5f, 0.5f);
 	setX(x);
 	setY(y);
 }
 
 Unit::Unit(float _x, float _y, int _health, float _speed, int _pov) :
-	x(_x), y(_y), health(_health), speed(_speed), pov(_pov), texture(new sf::Texture)
+	x(_x), y(_y), health(_health), speed(_speed), pov(_pov)
 {
-	sprite.setOrigin(sf::Vector2f(0.5f, 0.5f));
+	sprite.set_origin(0.5f, 0.5f);
 	setX(x);
 	setY(y);
 }
@@ -44,13 +44,13 @@ int Unit::get_health()
 
 void Unit::setX(float _x)
 {
-	sprite.setPosition(_x, y);
+	sprite.set_position(_x, y);
 	x = _x;
 }
 
 void Unit::setY(float _y)
 {
-	sprite.setPosition(x, _y);
+	sprite.set_position(x, _y);
 	y = _y;
 }
 
@@ -71,7 +71,7 @@ void Unit::damage_cooldown_update()
 
 void Unit::draw()
 {
-    window.draw(sprite);
+	sprite.draw_in(window);
 }
 
 void Unit::rotate(int deg)
@@ -82,7 +82,7 @@ void Unit::rotate(int deg)
 
 void Unit::rotate_to(int deg)
 {
-	sprite.setRotation(float(deg));
+	sprite.set_rotation(float(deg));
 	pov = deg;
 }
 

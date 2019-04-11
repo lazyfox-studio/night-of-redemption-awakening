@@ -83,7 +83,7 @@ float OverBar::bar::get_percentage()
 	return percentage;
 }
 
-void OverBar::bar::draw()
+void OverBar::bar::draw_in(sf::RenderWindow& window)
 {
 	window.draw(background);
 	window.draw(itself);

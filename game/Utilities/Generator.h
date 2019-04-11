@@ -12,7 +12,7 @@ struct GeneratorConfig
 	bool enabled;   // Статус генератора (вкл/выкл)
 	int frequency;  // Частота запуска (в мс)
 	int max_num;    // Максимальное количество объектов
-	bool ongoing;
+	bool ongoing;   // Непрерывная генерация (поддержание постоянного количества юнитов) (доделать)
 	GeneratorConfig(bool _enabled, int _freq, int _max, bool _ongoing) : 
 		enabled(_enabled), frequency(_freq), max_num(_max), ongoing(_ongoing)
 	{};
@@ -23,7 +23,7 @@ void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int*
 {
 	srand((unsigned)time(0));
 	sf::Clock clock;
-	while (enemies_gconfig.enabled && enemies_gconfig.ongoing)
+	while (enemies_gconfig.enabled)
 	{
 		while (*enemies_num < enemies_gconfig.max_num)
 		{

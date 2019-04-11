@@ -1,23 +1,22 @@
 ﻿#include "../../Headers/Allies/Player.h"
 #include <iostream>
 
-Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, max_health, 4.0f, 0), damage(80)
+Player::Player() : 
+	Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, max_health, 4.0f, 0), damage(80)
 {
-    texture->loadFromFile("Textures/player.png");
-    texture->setSmooth(true);
-    sprite.setTexture(*texture);
-    sprite.setTextureRect(sf::IntRect(0, 0, SPRITE_SIZE, SPRITE_SIZE));
-    sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
-    sprite.setPosition(x, y);
+	sprite.assign_texture("Textures/player.png", 5, SPRITE_SIZE, SPRITE_SIZE);
+	sprite.set_origin(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f);
+	sprite.set_position(x, y);
     ammo = AK74_MAGASINE;
     stamina = MAX_STAMINA;
     player_sound.shoot.loadFromFile("Sounds/Player/shoot.wav");
     player_sound.reload.loadFromFile("Sounds/Player/reload.wav");
+	move_flood_control[0] = move_flood_control[1] = 0;
 }
 
 Player::~Player()
 {
-    delete texture;
+    
 }
 
 void Player::shoot(List<Enemy> & enemies) {
@@ -122,7 +121,8 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
     else
     {
         shift = 0.f;
-        if (stamina < MAX_STAMINA) stamina++;
+        if (stamina < MAX_STAMINA) 
+			stamina++;
     }
 	float dx = 0.0f, dy = 0.0f;
 	if ((dbx != 0) && (dby != 0)) //Чтобы бег по диагонали не был быстрее чем по прямой
@@ -138,29 +138,21 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 
     for (ListItem<Unit>* i = units.head; i; i = i->next)
     {
-        bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
+        bool x_left, x_right, y_left, y_right, x_space, y_space;
         if (i->value != this) {
             // Всевозможные варианты пересечения
 			float _x = i->value->getX(), _y = i->value->getY();
-            if ((x + dx + UNIT_SIZE > _x) && (x + UNIT_SIZE < _x))
-				x_left = true;
-            if ((x + dx - UNIT_SIZE < _x) && (x - UNIT_SIZE > _x))
-				x_right = true;
-            if ((y + dy + UNIT_SIZE > _y) && (y + UNIT_SIZE < _y))
-				y_left = true;
-            if ((y + dy - UNIT_SIZE < _y) && (y - UNIT_SIZE > _y))
-				y_right = true;
-            if ((x < _x + UNIT_SIZE / 2) && (x > _x - UNIT_SIZE / 2))
-				x_space = true;
-            if ((y < _y + UNIT_SIZE / 2) && (y > _y - UNIT_SIZE / 2))
-				y_space = true;
-            //Проверка на входы
-            if ((x_left || x_right) && y_space)
-                x_unlock = false;
-            if ((y_left || y_right) && x_space)
-                y_unlock = false;
-            if ((x_left || x_right) && (y_right || y_left))
-                x_unlock = y_unlock = false;
+			x_left  = ((x + dx + UNIT_SIZE > _x) && (x + UNIT_SIZE < _x));
+			x_right = ((x + dx - UNIT_SIZE < _x) && (x - UNIT_SIZE > _x));
+			y_left  = ((y + dy + UNIT_SIZE > _y) && (y + UNIT_SIZE < _y));
+			y_right = ((y + dy - UNIT_SIZE < _y) && (y - UNIT_SIZE > _y));
+			x_space = ((x < _x + UNIT_SIZE / 2)  && (x > _x - UNIT_SIZE / 2));
+			y_space = ((y < _y + UNIT_SIZE / 2)  && (y > _y - UNIT_SIZE / 2));
+            // Проверка на входы
+			x_unlock &= !((x_left || x_right) && y_space);
+			y_unlock &= !((y_left || y_right) && x_space);
+			//x_unlock &= !((x_left || x_right) && (y_right || y_left));
+			//y_unlock &= !((x_left || x_right) && (y_right || y_left));
         }
     }
 
@@ -168,8 +160,17 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 		return;
 	dx = x_unlock ? (x += dx, dx) : 0.f;
 	dy = y_unlock ? (y += dy, dy) : 0.f;
-	view.move(dx, dy);
-	sprite.move(dx, dy);
+	if (dx || dy)
+	{
+		view.move(dx, dy);
+		sprite.move(dx, dy);
+		move_flood_control[0]++;
+		if (move_flood_control[0] - move_flood_control[1] > 5)
+		{
+			move_flood_control[1] = move_flood_control[0];
+			sprite.next_frame();
+		}
+	}
 }
 
 int Player::get_ammo()

@@ -1,5 +1,6 @@
 #pragma once
 #include "../Structures/Screen.h"
+#include "MSprite.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
@@ -23,8 +24,7 @@ protected:
 	int pov;
     int damage_cooldown = 0; //Ограничение на скорость атак
 
-	sf::Texture *texture;
-	sf::Sprite sprite;
+	MSprite sprite;
 
 public:
 	Unit();

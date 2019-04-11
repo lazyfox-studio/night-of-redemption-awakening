@@ -20,11 +20,9 @@ Enemy::Enemy(float _x, float _y, int _health, float _speed, int _pov) :
 
 Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage), prototype(p)
 {
-	texture = p->texture;
-	texture->setSmooth(true);
-	sprite.setTexture(*texture);
-    sprite.setOrigin(sf::Vector2f(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f));
-	sprite.setColor(sf::Color(255, 255, 255, 0)); // for fading in
+	sprite.assign_texture(p->texture);
+	sprite.set_origin(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f);
+	sprite.set_color(sf::Color(255, 255, 255, 0));
     focus = &monolith;
 	
 	health_bar.set_color(OverBar::color::red);
@@ -77,24 +75,24 @@ void Enemy::move(List<Unit>& units)
 			x += dx;
         if (y_unlock == true) 
 			y += dy;
-        sprite.setPosition(x, y);
+        sprite.set_position(x, y);
 
         int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
         if (focus->x < x)
             angle += 180;
-        sprite.setRotation((float)angle);
+        sprite.set_rotation((float)angle);
     }
     int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
     if (focus->x < x)
         angle += 180;
-    sprite.setRotation((float)angle);
+    sprite.set_rotation((float)angle);
 }
 
 void Enemy::move_to(float _x, float _y)
 {
 	setX(_x);
 	setY(_y);
-    sprite.setPosition(_x, _y);
+    sprite.set_position(_x, _y);
 }
 
 void Enemy::attack() {
@@ -139,10 +137,10 @@ void Enemy::fade_in()
 	{
 		if (health < prototype->health)
 		{
-			sprite.setColor(sf::Color(255, 255, 255, 255));
+			sprite.set_color(sf::Color(255, 255, 255, 255));
 			break;
 		}
-		sprite.setColor(sf::Color(255, 255, 255, alpha));
+		sprite.set_color(sf::Color(255, 255, 255, alpha));
 		clock.restart();
 		do
 		{
@@ -155,6 +153,6 @@ void Enemy::fade_in()
 void Enemy::draw()
 {
 	update_health_bar();
-	window.draw(sprite);
-	health_bar.draw();
+	sprite.draw_in(window);
+	health_bar.draw_in(window);
 }

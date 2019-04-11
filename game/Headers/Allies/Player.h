@@ -17,6 +17,8 @@ class Player : public Ally
     int ammo;
     int stamina;
     PlayerSound player_sound;
+
+	unsigned move_flood_control[2];
 public:
 	const static int max_health = 200;
 
