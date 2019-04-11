@@ -8,18 +8,16 @@ int main()
 	// служебные
 	calculate_coefficients(c_coefficients, screen);
     window.setFramerateLimit(60);
-
 	view.reset(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
+
+	// Main map
 	sf::Sprite background;
 	sf::Texture bgtexture;
-	if (!bgtexture.loadFromFile("Textures/map.png"))
-	{
-		std::cout << "Cant open";
-	};
+	bgtexture.loadFromFile("Textures/map.png");
 	background.setTexture(bgtexture);
 	background.setPosition(sf::Vector2f(0, 0));
-	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
 
+	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
 	view.setCenter(vc_x, vc_y);
 
 	List<Unit> units;
@@ -52,12 +50,14 @@ int main()
 	sf::Font font;
 	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
 
+	// Ammo pre-text
 	sf::Text ammo_ind_pre;
 	ammo_ind_pre.setFont(font);
 	ammo_ind_pre.setString("Ammo: ");
 	ammo_ind_pre.setCharacterSize(24);
 	ammo_ind_pre.setFillColor(sf::Color::Blue);
 
+	// Ammo indicator
 	sf::Text ammo_ind;
 	ammo_ind.setFont(font);
 	ammo_ind.setCharacterSize(24);
@@ -65,12 +65,14 @@ int main()
 	int ammo_ind_num = 30;
 	const char* ammo_ind_text = stringify(ammo_ind_num);
 
+	// Enemies pre-text
 	sf::Text enemies_ind_pre;
 	enemies_ind_pre.setFont(font);
 	enemies_ind_pre.setString("Enemies: ");
 	enemies_ind_pre.setCharacterSize(24);
 	enemies_ind_pre.setFillColor(sf::Color::Blue);
 
+	// Enemies counter
 	sf::Text enemies_ind;
 	enemies_ind.setFont(font);
 	enemies_ind.setCharacterSize(24);
@@ -78,6 +80,7 @@ int main()
 	int enemies_ind_num = enemies_num;
 	const char* enemies_ind_text = stringify(enemies_ind_num);
 
+	// Borders
 	sf::Texture border;
 	border.loadFromFile("Textures/interface/border_top.png");
 	sf::Sprite border1, border2;
@@ -85,6 +88,11 @@ int main()
 	border2.setOrigin(0.f, 64.f);
 	border1.setTexture(border);
 	border2.setTexture(border);
+
+	// Player health and stamina bars
+	OverBar::bar health_bar(OverBar::color::green), stamina_bar(OverBar::color::blue);
+	health_bar.set_width(200.f);
+	stamina_bar.set_width(150.f);
 
 	window.setView(view);
 	while (window.isOpen())
@@ -158,6 +166,8 @@ int main()
 		units_num -= killed;
 		enemies_num -= killed;
 
+		corners.calculate(&screen, player);
+
 		if (player->get_ammo() != ammo_ind_num)
 		{
 			delete[] ammo_ind_text;
@@ -173,15 +183,16 @@ int main()
 			enemies_ind.setString(enemies_ind_text);
 		}
 
-		float ammo_ind_pos_x = player->getX() - screen.w / 2 + 5.0f, ammo_ind_pos_y = player->getY() - screen.h / 2 + 35.0f;
+
+		float ammo_ind_pos_x = corners.top_left.x + 5.0f, ammo_ind_pos_y = corners.top_left.y + 35.0f;
 		ammo_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x, ammo_ind_pos_y));
 		ammo_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 80.f, ammo_ind_pos_y));
 		enemies_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 25.f));
 		enemies_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 25.f));
 
-		float border_pos_x = player->getX() - screen.w / 2, border_pos_y = player->getY() - screen.h / 2 - 48.f;
+		float border_pos_x = corners.top_left.x, border_pos_y = corners.top_left.y - 48.f;
 		border1.setPosition(border_pos_x, border_pos_y);
-		border2.setPosition(border_pos_x, border_pos_y + screen.h + 48.f);
+		border2.setPosition(border_pos_x, corners.bottom_left.y);
 
 		window.clear();
         window.setView(view);
@@ -195,6 +206,17 @@ int main()
 
 		window.draw(border1);
 		window.draw(border2);
+
+		if (player->get_stamina() < MAX_STAMINA)
+		{
+			stamina_bar.set_percentage((float)player->get_stamina() / float(MAX_STAMINA));
+			stamina_bar.set_position(corners.bottom_left.x + 40.f, corners.bottom_left.y - 15.f);
+			stamina_bar.draw();
+		}
+
+		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
+		health_bar.set_position(corners.bottom_left.x + 20.f, corners.bottom_left.y - 30.f);
+		health_bar.draw();
 
 		window.display();
 	}

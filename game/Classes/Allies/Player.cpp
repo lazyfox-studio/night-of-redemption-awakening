@@ -1,7 +1,7 @@
 ﻿#include "../../Headers/Allies/Player.h"
 #include <iostream>
 
-Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, 200, 4.0f, 0), damage(80)
+Player::Player() : Ally((float)screen.w / 2.0f, (float)screen.h / 2.0f, max_health, 4.0f, 0), damage(80)
 {
     texture->loadFromFile("Textures/player.png");
     texture->setSmooth(true);
@@ -182,4 +182,9 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 int Player::get_ammo()
 {
 	return ammo;
+}
+
+int Player::get_stamina()
+{
+	return stamina;
 }

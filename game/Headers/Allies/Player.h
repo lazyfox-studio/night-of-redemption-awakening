@@ -18,6 +18,8 @@ class Player : public Ally
     int stamina;
     PlayerSound player_sound;
 public:
+	const static int max_health = 200;
+
 	Player();
 	~Player();
 
@@ -26,4 +28,5 @@ public:
     void move(float, float, List<Unit>&, bool);
 
 	int get_ammo();
+	int get_stamina();
 };

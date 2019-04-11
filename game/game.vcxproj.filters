@@ -114,5 +114,8 @@
     <ClInclude Include="Utilities\Services.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Structures\Corners.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

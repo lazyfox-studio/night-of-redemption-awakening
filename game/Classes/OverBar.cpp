@@ -8,6 +8,7 @@ namespace OverBar
 OverBar::bar::bar()
 {
 	percentage = 1.f;
+	col = color::empty;
 }
 
 OverBar::bar::bar(color c)
@@ -43,11 +44,14 @@ void OverBar::bar::set_color(color c)
 			textures[color::red] = new sf::Texture;
 			textures[color::red]->loadFromFile("Textures/bars/red.png");
 			break;
+		default:
+			return;
 		}
 	background.setTexture(*(textures[color::empty]));
 	itself.setTexture(*(textures[c]));
 	background.setOrigin(0.f, 28.f);
 	itself.setOrigin(0.f, 28.f);
+	col = c;
 }
 
 void OverBar::bar::set_percentage(float percentage)
@@ -67,6 +71,16 @@ void OverBar::bar::set_width(float w)
 	float factor = w / (float)width;
 	background.setScale(factor, factor);
 	itself.setScale(factor, factor);
+}
+
+OverBar::color OverBar::bar::get_color()
+{
+	return col;
+}
+
+float OverBar::bar::get_percentage()
+{
+	return percentage;
 }
 
 void OverBar::bar::draw()

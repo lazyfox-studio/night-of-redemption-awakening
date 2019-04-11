@@ -12,14 +12,16 @@
 
 // Auxiliary Structures
 #include "Structures/EnemyType.h"
-//#include "Structures/OverBar.h"
+#include "Structures/Controls.h"
 #include "Structures/Screen.h"
+#include "Structures/Corners.h"
 
 // Main Classes
 #include "Headers/Enemy.h"
 #include "Headers/Ally.h"
 #include "Headers/Item.h"
 #include "Headers/Unit.h"
+#include "Headers/OverBar.h"
 
 // Allies
 #include "Headers/Allies/Player.h"

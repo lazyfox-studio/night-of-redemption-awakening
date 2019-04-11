@@ -20,14 +20,14 @@ Precalculated c_coefficients;
 void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 {
 	int gcd = GCD(screen.w, screen.h);
-	c_coefficients.c1 = (float)screen.w / (float)gcd; // 16
-	c_coefficients.c2 = (float)screen.h / (float)gcd; // 9
-	c_coefficients.c3 = c_coefficients.c1 / 2.0f; // 8
-	c_coefficients.c4 = c_coefficients.c2 / 3.0f; // 3
-	c_coefficients.c5 = (float)screen.w * 6.0f; // 7680
-	c_coefficients.c6 = c_coefficients.c1 * 178.75f; // 2860
-	c_coefficients.c7 = (float)screen.h * 12.0f; // 8640
-	c_coefficients.c8 = (float)screen.w * c_coefficients.c4; // 3840
+	coef.c1 = (float)screen.w / (float)gcd; // 16
+	coef.c2 = (float)screen.h / (float)gcd; // 9
+	coef.c3 = coef.c1 / 2.0f; // 8
+	coef.c4 = coef.c2 / 3.0f; // 3
+	coef.c5 = (float)screen.w * 6.0f; // 7680
+	coef.c6 = coef.c1 * 178.75f; // 2860
+	coef.c7 = (float)screen.h * 12.0f; // 8640
+	coef.c8 = (float)screen.w * coef.c4; // 3840
 }
 
 // ”правление игроком
