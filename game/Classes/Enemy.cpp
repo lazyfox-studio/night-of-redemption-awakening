@@ -46,43 +46,47 @@ void Enemy::move(List<Unit>& units)
     {
         bool x_unlock = true, y_unlock = true;
         
-        float c = speed / r; //Коэфицент подобия
+        float c = speed / r;              // Коэффицент подобия
         float dx = (focus->x - x) * c;
         float dy = (focus->y - y) * c;
         for (ListItem<Unit>* i = units.head; i; i = i->next)
         {
             bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
-            //Всевозможные варианты пересечения
-            if ((x + dx + UNIT_SIZE > i->value->getX()) && (x + UNIT_SIZE < i->value->getX())) x_left = true;
-            if ((x + dx - UNIT_SIZE < i->value->getX()) && (x - UNIT_SIZE > i->value->getX())) x_right = true;
-            if ((y + dy + UNIT_SIZE > i->value->getY()) && (y + UNIT_SIZE < i->value->getY())) y_left = true;
-            if ((y + dy - UNIT_SIZE < i->value->getY()) && (y - UNIT_SIZE > i->value->getY())) y_right = true;
-            if ((x < i->value->getX() + UNIT_SIZE / 2) && (x > i->value->getX() - UNIT_SIZE / 2)) x_space = true;
-            if ((y < i->value->getY() + UNIT_SIZE / 2) && (y > i->value->getY() - UNIT_SIZE / 2)) y_space = true;
-            //Проверка на входы
-            if ((x_left || x_right) && y_space) x_unlock = false;
-            if ((y_left || y_right) && x_space) y_unlock = false;
+            // Всевозможные варианты пересечения
+            if ((x + dx + UNIT_SIZE > i->value->getX()) && (x + UNIT_SIZE < i->value->getX())) 
+				x_left = true;
+            if ((x + dx - UNIT_SIZE < i->value->getX()) && (x - UNIT_SIZE > i->value->getX())) 
+				x_right = true;
+            if ((y + dy + UNIT_SIZE > i->value->getY()) && (y + UNIT_SIZE < i->value->getY())) 
+				y_left = true;
+            if ((y + dy - UNIT_SIZE < i->value->getY()) && (y - UNIT_SIZE > i->value->getY())) 
+				y_right = true;
+            if ((x < i->value->getX() + UNIT_SIZE / 2) && (x > i->value->getX() - UNIT_SIZE / 2)) 
+				x_space = true;
+            if ((y < i->value->getY() + UNIT_SIZE / 2) && (y > i->value->getY() - UNIT_SIZE / 2)) 
+				y_space = true;
+            // Проверка на входы
+            if ((x_left || x_right) && y_space) 
+				x_unlock = false;
+            if ((y_left || y_right) && x_space) 
+				y_unlock = false;
             if ((x_left || x_right) && (y_right || y_left))
-            {
-                x_unlock = false;
-                y_unlock = false;
-            }
+                x_unlock = y_unlock = false;
         }
-        if (x_unlock == true) x += dx;
-        if (y_unlock == true) y += dy;
+        if (x_unlock == true) 
+			x += dx;
+        if (y_unlock == true) 
+			y += dy;
         sprite.setPosition(x, y);
+
         int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
         if (focus->x < x)
-        {
             angle += 180;
-        }
         sprite.setRotation((float)angle);
     }
     int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
     if (focus->x < x)
-    {
         angle += 180;
-    }
     sprite.setRotation((float)angle);
 }
 

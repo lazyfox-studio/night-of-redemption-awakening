@@ -1,15 +1,9 @@
-#pragma once
+п»ї#pragma once
 #include "List.h"
 #include "../Headers/Unit.h"
 #include "../Structures/Screen.h"
 #include "../Structures/Controls.h"
 #include "Functions.h"
-
-struct CameraOffset
-{
-	float x;
-	float y;
-};
 
 struct Precalculated
 {
@@ -30,10 +24,10 @@ void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
 	coef.c8 = (float)screen.w * coef.c4; // 3840
 }
 
-// Управление игроком
+// РЈРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРєРѕРј
 inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& units)
 {
-	// Перемещение
+	// РџРµСЂРµРјРµС‰РµРЅРёРµ
 	float dx = 0.0f, dy = 0.0f;
 	if (Kb.W)
 		dy -= 1.0f;
@@ -45,7 +39,7 @@ inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& uni
 		dx += 1.0f;
 	player->move(dx, dy, units,Kb.LShift);
 
-	// Стрельба
+	// РЎС‚СЂРµР»СЊР±Р°
     if (Mouse.Left)
     {
         player->shoot(enemies);
@@ -53,7 +47,7 @@ inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& uni
     if (Kb.R)
         player->reload();
 
-	// Вращение
+	// Р’СЂР°С‰РµРЅРёРµ
     int angle = (int)(180 * atan((Mouse.y - (screen.h / 2)) / (Mouse.x - (screen.w / 2))) / 3.14);
     if (Mouse.x < (screen.w / 2))
     {
@@ -62,43 +56,43 @@ inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& uni
 	player->rotate_to(angle);
 }
 
-// Отрисовка всех персонажей
+// РћС‚СЂРёСЃРѕРІРєР° РІСЃРµС… РїРµСЂСЃРѕРЅР°Р¶РµР№
 inline void draw_all(List<Unit>& units)
 {
 	units.foreach(&(Unit::draw));
 }
 
-// Вычисление целей для врагов
+// Р’С‹С‡РёСЃР»РµРЅРёРµ С†РµР»РµР№ РґР»СЏ РІСЂР°РіРѕРІ
 inline void check_focus_enemies(List<Enemy>& enemies, List<Ally>& allies)
 {
 	enemies.foreach(&(Enemy::focus_change), allies);
 }
 
-// Вычисление расстояний до целей врагов
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂР°СЃСЃС‚РѕСЏРЅРёР№ РґРѕ С†РµР»РµР№ РІСЂР°РіРѕРІ
 inline void check_range_enemies(List<Enemy>& enemies)
 {
     enemies.foreach(&(Enemy::range));
 }
 
-// Перемещение врагов
+// РџРµСЂРµРјРµС‰РµРЅРёРµ РІСЂР°РіРѕРІ
 inline void move_enemies(List<Enemy>& enemies, List <Unit>& units)
 {
     enemies.foreach(&(Enemy::move), units);
 }
 
-// Проверка смерти юнитов
+// РџСЂРѕРІРµСЂРєР° СЃРјРµСЂС‚Рё СЋРЅРёС‚РѕРІ
 bool enemy_died(Unit* unit)
 {
 	return (unit->get_health() <= 0) && (unit->is_enemy());
 }
 
-// Удаление мертвых юнитов
+// РЈРґР°Р»РµРЅРёРµ РјРµСЂС‚РІС‹С… СЋРЅРёС‚РѕРІ
 inline int kill_dead_enemies(List<Unit>& units)
 {
 	return units.remove_if(enemy_died);
 }
 
-//Обновление кулдауна атак
+//РћР±РЅРѕРІР»РµРЅРёРµ РєСѓР»РґР°СѓРЅР° Р°С‚Р°Рє
 inline void cooldown_update(List<Unit>& units)
 {
     units.foreach(&(Unit::damage_cooldown_update));
