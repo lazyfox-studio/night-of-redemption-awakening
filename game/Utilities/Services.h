@@ -81,9 +81,9 @@ inline void check_range_enemies(List<Enemy>& enemies)
 }
 
 // Перемещение врагов
-inline void move_enemies(List<Enemy>& enemies)
+inline void move_enemies(List<Enemy>& enemies, List <Unit>& units)
 {
-    enemies.foreach(&(Enemy::move));
+    enemies.foreach(&(Enemy::move), units);
 }
 
 // Проверка смерти юнитов

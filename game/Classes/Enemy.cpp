@@ -40,13 +40,35 @@ void Enemy::range() {
     r = sqrt((focus->x - x) * (focus->x - x) + (focus->y - y) * (focus->y - y));
 }
 
-void Enemy::move()
+void Enemy::move(List<Unit>& units)
 {
     if (r > UNIT_SIZE)
     {
+        bool x_unlock = true, y_unlock = true;
         float c = speed / r; //Коэфицент подобия
-        x += (focus->x - x) * c;
-        y += (focus->y - y) * c;
+        float dx = (focus->x - x) * c;
+        float dy = (focus->y - y) * c;
+        for (ListItem<Unit>* i = units.head; i; i = i->next)
+        {
+            if (
+                ((x + dx + UNIT_SIZE > i->value->getX()) && (x + UNIT_SIZE < i->value->getX()) && (y < i->value->getY() + UNIT_SIZE / 2) && (y > i->value->getY() - UNIT_SIZE / 2))
+                ||
+                ((x + dx - UNIT_SIZE < i->value->getX()) && (x - UNIT_SIZE > i->value->getX()) && (y < i->value->getY() + UNIT_SIZE / 2) && (y > i->value->getY() - UNIT_SIZE / 2))
+                )
+            {
+                x_unlock = false;
+            }
+            if (
+                ((y + dy + UNIT_SIZE > i->value->getY()) && (y + UNIT_SIZE < i->value->getY()) && (x < i->value->getX() + UNIT_SIZE / 2) && (x > i->value->getX() - UNIT_SIZE / 2))
+                ||
+                ((y + dy - UNIT_SIZE < i->value->getY()) && (y - UNIT_SIZE > i->value->getY()) && (x < i->value->getX() + UNIT_SIZE / 2) && (x > i->value->getX() - UNIT_SIZE / 2))
+                )
+            {
+                y_unlock = false;
+            }
+        }
+        if (x_unlock == true) x += dx;
+        if (y_unlock == true) y += dy;
         sprite.setPosition(x, y);
         int angle = (int)(180 * atan((focus->y - y) / (focus->x - x)) / 3.14);
         if (focus->x < x)

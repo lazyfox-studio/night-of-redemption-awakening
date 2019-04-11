@@ -24,7 +24,7 @@ public:
 	bool is_enemy();
 
     void range();
-    void move();
+    void move(List<Unit>& units);
 	void move_to(float, float);
     void attack();
     void focus_change(List<Ally>&);
