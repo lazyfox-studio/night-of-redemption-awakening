@@ -141,17 +141,18 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
         bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
         if (i->value != this) {
             // Всевозможные варианты пересечения
-            if ((x + dx + UNIT_SIZE > i->value->getX()) && (x + UNIT_SIZE < i->value->getX())) 
+			float _x = i->value->getX(), _y = i->value->getY();
+            if ((x + dx + UNIT_SIZE > _x) && (x + UNIT_SIZE < _x))
 				x_left = true;
-            if ((x + dx - UNIT_SIZE < i->value->getX()) && (x - UNIT_SIZE > i->value->getX())) 
+            if ((x + dx - UNIT_SIZE < _x) && (x - UNIT_SIZE > _x))
 				x_right = true;
-            if ((y + dy + UNIT_SIZE > i->value->getY()) && (y + UNIT_SIZE < i->value->getY())) 
+            if ((y + dy + UNIT_SIZE > _y) && (y + UNIT_SIZE < _y))
 				y_left = true;
-            if ((y + dy - UNIT_SIZE < i->value->getY()) && (y - UNIT_SIZE > i->value->getY())) 
+            if ((y + dy - UNIT_SIZE < _y) && (y - UNIT_SIZE > _y))
 				y_right = true;
-            if ((x < i->value->getX() + UNIT_SIZE / 2) && (x > i->value->getX() - UNIT_SIZE / 2)) 
+            if ((x < _x + UNIT_SIZE / 2) && (x > _x - UNIT_SIZE / 2))
 				x_space = true;
-            if ((y < i->value->getY() + UNIT_SIZE / 2) && (y > i->value->getY() - UNIT_SIZE / 2)) 
+            if ((y < _y + UNIT_SIZE / 2) && (y > _y - UNIT_SIZE / 2))
 				y_space = true;
             //Проверка на входы
             if ((x_left || x_right) && y_space)
