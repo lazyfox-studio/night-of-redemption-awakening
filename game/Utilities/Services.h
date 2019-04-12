@@ -79,6 +79,10 @@ inline void move_enemies(List<Enemy>& enemies, List <Unit>& units)
 {
     enemies.foreach(&(Enemy::move), units);
 }
+inline void attack_enemies(List<Enemy>& enemies)
+{
+    enemies.foreach(&(Enemy::attack));
+}
 
 // Проверка смерти юнитов
 bool enemy_died(Unit* unit)

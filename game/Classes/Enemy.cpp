@@ -98,11 +98,11 @@ void Enemy::move_to(float _x, float _y)
 void Enemy::attack() {
     if (damage_cooldown-- > 0)
         return;
-    if (r <= 1)
+    if (r <= UNIT_SIZE + 1.f) //Сдесь нужно подобрать значение ренжи атаки
     {
         //Стоило бы добавить проигрывание анимации
         focus->health -= damage;
-        damage_cooldown = 5; //Подобрать значение!!!
+        damage_cooldown = 60; //Подобрать значение!!!
     }
 }
 

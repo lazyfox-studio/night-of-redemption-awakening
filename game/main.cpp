@@ -160,6 +160,7 @@ int main()
         check_focus_enemies(enemies, allies);
 
         move_enemies(enemies, units);
+        attack_enemies(enemies);
         cooldown_update(units);
 		control_player(player, enemies, units);
 		int killed = kill_dead_enemies(units); // после control_player, это важно!
