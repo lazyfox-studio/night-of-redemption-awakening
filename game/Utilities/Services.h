@@ -5,25 +5,6 @@
 #include "../Structures/Controls.h"
 #include "Functions.h"
 
-struct Precalculated
-{
-	float c1, c2, c3, c4, c5, c6, c7, c8;
-};
-Precalculated c_coefficients;
-
-void calculate_coefficients(Precalculated& coef, const ScreenResolution& screen)
-{
-	int gcd = GCD(screen.w, screen.h);
-	coef.c1 = (float)screen.w / (float)gcd; // 16
-	coef.c2 = (float)screen.h / (float)gcd; // 9
-	coef.c3 = coef.c1 / 2.0f; // 8
-	coef.c4 = coef.c2 / 3.0f; // 3
-	coef.c5 = (float)screen.w * 6.0f; // 7680
-	coef.c6 = coef.c1 * 178.75f; // 2860
-	coef.c7 = (float)screen.h * 12.0f; // 8640
-	coef.c8 = (float)screen.w * coef.c4; // 3840
-}
-
 // Управление игроком
 inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& units)
 {

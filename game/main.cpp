@@ -5,8 +5,6 @@ extern Monolith monolith;
 
 int main()
 {
-	// служебные
-	calculate_coefficients(c_coefficients, screen);
     window.setFramerateLimit(60);
 	view.reset(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
 

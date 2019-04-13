@@ -61,6 +61,9 @@
     <ClCompile Include="Classes\MSprite.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Button.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Enemy.h">
@@ -121,6 +124,9 @@
       <Filter>Structures</Filter>
     </ClInclude>
     <ClInclude Include="Headers\MSprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Button.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

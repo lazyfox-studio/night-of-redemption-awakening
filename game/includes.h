@@ -22,6 +22,7 @@
 #include "Headers/Item.h"
 #include "Headers/Unit.h"
 #include "Headers/OverBar.h"
+#include "Headers/Button.h"
 
 // Allies
 #include "Headers/Allies/Player.h"
