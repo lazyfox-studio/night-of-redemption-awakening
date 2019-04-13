@@ -92,6 +92,17 @@ int main()
 	health_bar.set_width(200.f);
 	stamina_bar.set_width(150.f);
 
+	// Button Test
+	List<Button::btn> buttons;
+	Button::type *TestType = new Button::type(64);
+	TestType->assign_texture("Textures/buttons/def.png", "Textures/buttons/clicked.png", "Textures/buttons/hovered.png");
+	Button::text *test_btn = new Button::text(TestType);
+	test_btn->set_color(sf::Color::Black);
+	test_btn->set_size(23);
+	test_btn->assign_font(&font);
+	test_btn->set_text("Test Button!");
+	buttons.add(test_btn);
+
 	window.setView(view);
 	while (window.isOpen())
 	{
@@ -216,6 +227,10 @@ int main()
 		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
 		health_bar.set_position(corners.bottom_left.x + 20.f, corners.bottom_left.y - 30.f);
 		health_bar.draw_in(window);
+
+		test_btn->set_position(corners.bottom_right.x - 300.f, corners.bottom_right.y - 70.f);
+		check_buttons(buttons);
+		draw_buttons(buttons);
 
 		window.display();
 	}

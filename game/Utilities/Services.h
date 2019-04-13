@@ -1,9 +1,12 @@
 ﻿#pragma once
 #include "List.h"
 #include "../Headers/Unit.h"
+#include "../Headers/Button.h"
 #include "../Structures/Screen.h"
 #include "../Structures/Controls.h"
 #include "Functions.h"
+
+bool is_any_button_pressed = false;
 
 // Управление игроком
 inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& units)
@@ -21,7 +24,7 @@ inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& uni
 	player->move(dx, dy, units,Kb.LShift);
 
 	// Стрельба
-    if (Mouse.Left)
+    if (Mouse.Left && !is_any_button_pressed)
     {
         player->shoot(enemies);
     }
@@ -41,6 +44,21 @@ inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& uni
 inline void draw_all(List<Unit>& units)
 {
 	units.foreach(&(Unit::draw));
+}
+
+inline void check_buttons(List<Button::btn>& buttons)
+{
+	is_any_button_pressed = false;
+	for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
+		if (i->value->check_state(Mouse.x, Mouse.y, Mouse.Left, true) == Button::state::clicked)
+			is_any_button_pressed |= true; // тут баги какие-то, кнопка не всегда нажимается
+}
+
+inline void draw_buttons(List<Button::btn>& buttons)
+{
+	for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
+		if (i->value->visible)
+			i->value->draw_in(window);
 }
 
 // Вычисление целей для врагов
