@@ -23,8 +23,8 @@ namespace Button
 	class btn
 	{
 	protected:
-		int x;
-		int y;
+		float x;
+		float y;
 		int width;
 		int height;
 		state btn_state;

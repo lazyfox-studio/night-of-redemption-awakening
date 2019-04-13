@@ -20,16 +20,17 @@ Button::btn::btn()
 	sprite.setOrigin(0.f, 0.f);
 	x = y = 0.f;
 	width = height = 0;
+	btn_state = state::def;
 }
 
 Button::btn::btn(type* p)
 {
 	prototype = p;
 	sprite.setOrigin(0.f, 0.f);
-	set_state(state::def);
 	x = y = 0.f;
 	width = prototype->texture[state::def]->getSize().x;
 	height = prototype->texture[state::def]->getSize().y;
+	btn_state = state::def;
 }
 
 Button::btn::~btn()
@@ -75,6 +76,7 @@ Button::text::text() : btn()
 
 Button::text::text(type* p) : btn(p)
 {
+	set_state(state::def);
 	str = nullptr;
 	btn_text.setOrigin(0.f, 0.f);
 	bounds = btn_text.getGlobalBounds();
@@ -82,6 +84,7 @@ Button::text::text(type* p) : btn(p)
 
 Button::text::text(type* p, const char* _str) : btn(p)
 {
+	set_state(state::def);
 	str = nullptr;
 	set_text(_str);
 }
@@ -109,7 +112,7 @@ void Button::text::set_text(const char* _str)
 
 void Button::text::set_color(sf::Color color)
 {
-	btn_text.setColor(color);
+	btn_text.setFillColor(color);
 }
 
 void Button::text::assign_font(sf::Font* font)
@@ -152,6 +155,7 @@ Button::icon::icon() : btn()
 
 Button::icon::icon(type* p) : btn(p)
 {
+	set_state(state::def);
 	icon_texture = new sf::Texture;
 }
 
