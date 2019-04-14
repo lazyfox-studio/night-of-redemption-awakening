@@ -8,3 +8,4 @@ sf::RenderWindow window(sf::VideoMode(screen.w, screen.h), "Night of Redemption™
 sf::View view;
 Monolith monolith;
 sf::Sound sound;
+sf::Music music;
