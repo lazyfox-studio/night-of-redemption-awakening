@@ -15,3 +15,9 @@ struct MapSize
 	float padding_y = 360.f;
 };
 const MapSize map;
+
+struct CameraOffset
+{
+	float x = 0.f;
+	float y = 0.f;
+};

@@ -22,6 +22,6 @@ struct MouseControl
 	float x;
 	float y;
 
-	unsigned long long flood_control = 0;
+	unsigned long long flood_control[2] = { 0 };
 };
 MouseControl Mouse;

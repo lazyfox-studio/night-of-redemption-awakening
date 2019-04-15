@@ -11,12 +11,20 @@ namespace Button
 		disabled
 	};
 
+	enum action_type
+	{
+		void_void,
+		void_arg,
+		void_ref
+	};
+
 	struct type
 	{
 		sf::Texture* texture[4] = { 0 };
 		bool state_exists[4] = { 0 };
 		int width = 0;
 		type(int);
+		type(int, const char* def, const char* clicked = "", const char* hovered = "", const char* disabled = "");
 		void assign_texture(state, const char*);
 		void assign_texture(const char* def, const char* clicked = "", const char* hovered = "", const char* disabled = "");
 	};
@@ -67,6 +75,7 @@ namespace Button
 		void assign_font(sf::Font*);
 		void set_state(state);
 		void set_position(float, float);
+		void set_width(int);
 		void draw_in(sf::RenderWindow&);
 	};
 

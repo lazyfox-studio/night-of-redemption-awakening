@@ -49,6 +49,8 @@ int main()
 
 	std::thread thr(enemies_generator, player, enemy_types[0], &units, &units_num, &enemies, &enemies_num);
 	thr.detach();
+	/*std::thread regen(&(Player::health_regen), player);
+	regen.detach();*/
 
 	sf::Font font;
 	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
@@ -58,13 +60,13 @@ int main()
 	ammo_ind_pre.setFont(font);
 	ammo_ind_pre.setString("Ammo: ");
 	ammo_ind_pre.setCharacterSize(24);
-	ammo_ind_pre.setFillColor(sf::Color::Blue);
+	ammo_ind_pre.setFillColor(sf::Color::White);
 
 	// Ammo indicator
 	sf::Text ammo_ind;
 	ammo_ind.setFont(font);
 	ammo_ind.setCharacterSize(24);
-	ammo_ind.setFillColor(sf::Color::Blue);
+	ammo_ind.setFillColor(sf::Color::White);
 	int ammo_ind_num = 30;
 	const char* ammo_ind_text = stringify(ammo_ind_num);
 
@@ -73,13 +75,13 @@ int main()
 	enemies_ind_pre.setFont(font);
 	enemies_ind_pre.setString("Enemies: ");
 	enemies_ind_pre.setCharacterSize(24);
-	enemies_ind_pre.setFillColor(sf::Color::Blue);
+	enemies_ind_pre.setFillColor(sf::Color::White);
 
 	// Enemies counter
 	sf::Text enemies_ind;
 	enemies_ind.setFont(font);
 	enemies_ind.setCharacterSize(24);
-	enemies_ind.setFillColor(sf::Color::Blue);
+	enemies_ind.setFillColor(sf::Color::White);
 	int enemies_ind_num = enemies_num;
 	const char* enemies_ind_text = stringify(enemies_ind_num);
 
@@ -99,14 +101,24 @@ int main()
 
 	// Button Test
 	List<Button::btn> buttons;
-	Button::type *TestType = new Button::type(64);
-	TestType->assign_texture("Textures/buttons/def.png", "Textures/buttons/clicked.png", "Textures/buttons/hovered.png");
-	Button::text *test_btn = new Button::text(TestType);
-	test_btn->set_color(sf::Color::Black);
-	test_btn->set_size(23);
-	test_btn->assign_font(&font);
-	test_btn->set_text("Test Button!");
-	buttons.add(test_btn);
+	register Button::type* TestType = new Button::type(300, "Textures/buttons/def.png", "Textures/buttons/clicked.png", "Textures/buttons/hovered.png");
+	register Button::text* pause_btn = new Button::text(TestType);
+	pause_btn->set_color(sf::Color::White);
+	pause_btn->set_size(23);
+	pause_btn->assign_font(&font);
+	pause_btn->set_text("Pause");
+	pause_btn->set_width(200);
+	pause_btn->onclick(pause);
+	buttons.add(pause_btn);
+
+	register Button::text* resume_btn = new Button::text(TestType);
+	resume_btn->set_color(sf::Color::White);
+	resume_btn->set_size(23);
+	resume_btn->assign_font(&font);
+	resume_btn->set_text("Resume");
+	resume_btn->set_width(200);
+	resume_btn->onclick(resume);
+	buttons.add(resume_btn);
 
 	window.setView(view);
 	while (window.isOpen())
@@ -163,25 +175,36 @@ int main()
 					break;
 				}
 				if (flag)
-					Mouse.flood_control++;
+					Mouse.flood_control[0]++;
 			}
 		}
 
 		Mouse.x = (float)(sf::Mouse::getPosition(window).x);
 		Mouse.y = (float)(sf::Mouse::getPosition(window).y);
 
-		check_range_enemies(enemies);
-        check_focus_enemies(enemies, allies);
+		check_buttons(buttons);
 
-        move_enemies(enemies, units);
-        attack_enemies(enemies);
-        cooldown_update(units);
-		control_player(player, enemies, units);
-		int killed = kill_dead_enemies(units); // после control_player, это важно!
-		units_num -= killed;
-		enemies_num -= killed;
+		if (!is_paused)
+		{
+			check_range_enemies(enemies);
+			check_focus_enemies(enemies, allies);
+
+			move_enemies(enemies, units);
+			attack_enemies(enemies);
+			cooldown_update(units);
+			control_player(player, enemies, units);
+			int killed = kill_dead_enemies(units); // после control_player, это важно!
+			units_num -= killed;
+			enemies_num -= killed;
+		}
 
 		corners.calculate(&screen, player);
+
+		camoffset.x = player->getX() - vc_x;
+		camoffset.y = player->getY() - vc_y;
+
+		pause_btn->set_position(corners.bottom_right.x - 430.f, corners.bottom_right.y - 62.f);
+		resume_btn->set_position(corners.bottom_right.x - 220.f, corners.bottom_right.y - 62.f);
 
 		if (player->get_ammo() != ammo_ind_num)
 		{
@@ -232,9 +255,6 @@ int main()
 		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
 		health_bar.set_position(corners.bottom_left.x + 20.f, corners.bottom_left.y - 30.f);
 		health_bar.draw_in(window);
-
-		test_btn->set_position(corners.bottom_right.x - 300.f, corners.bottom_right.y - 70.f);
-		check_buttons(buttons);
 		draw_buttons(buttons);
 
 		window.display();

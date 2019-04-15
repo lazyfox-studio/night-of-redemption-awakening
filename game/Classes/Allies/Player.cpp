@@ -182,3 +182,17 @@ int Player::get_stamina()
 {
 	return stamina;
 }
+
+void Player::health_regen()
+{
+	sf::Clock clock;
+	do
+	{
+		if (clock.getElapsedTime().asMilliseconds() >= 2000)
+		{
+			clock.restart();
+			if ((health > 0) && (health < max_health))
+				health += 1;
+		}
+	} while (1);
+}

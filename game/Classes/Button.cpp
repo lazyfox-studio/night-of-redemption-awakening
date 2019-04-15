@@ -6,6 +6,12 @@ Button::type::type(int _width)
 	width = _width;
 }
 
+Button::type::type(int _width, const char* def, const char* clicked, const char* hovered, const char* disabled)
+{
+	width = _width;
+	assign_texture(def, clicked, hovered, disabled);
+}
+
 void Button::type::assign_texture(state _state, const char* file)
 {
 	if (state_exists[_state])
@@ -36,6 +42,7 @@ Button::btn::btn()
 	x = y = 0.f;
 	width = height = 0;
 	btn_state = state::def;
+	action = nullptr;
 }
 
 Button::btn::btn(type* p)
@@ -47,6 +54,7 @@ Button::btn::btn(type* p)
 	width = prototype->texture[state::def]->getSize().x;
 	height = prototype->texture[state::def]->getSize().y;
 	btn_state = state::def;
+	action = nullptr;
 }
 
 Button::btn::~btn()
@@ -69,7 +77,10 @@ Button::state Button::btn::check_state(float mouse_x, float mouse_y, bool mouse_
 	if ((mouse_x >= x) && (mouse_x <= x + width) && (mouse_y >= y) && (mouse_y <= y + height))
 	{
 		if (mouse_click)
+		{
 			_state = state::clicked;
+			click();
+		}
 		else
 			_state = state::hovered;
 	}
@@ -94,6 +105,8 @@ void Button::btn::onclick(void(*func)())
 
 void Button::btn::click()
 {
+	if (!action)
+		return;
 	(*action)();
 }
 
@@ -109,6 +122,7 @@ Button::text::text(type* p) : btn(p)
 	set_state(state::def);
 	str = nullptr;
 	btn_text.setOrigin(0.f, 0.f);
+	set_width(p->width);
 	bounds = btn_text.getGlobalBounds();
 }
 
@@ -117,6 +131,7 @@ Button::text::text(type* p, const char* _str) : btn(p)
 	set_state(state::def);
 	str = nullptr;
 	set_text(_str);
+	set_width(p->width);
 }
 
 Button::text::~text()
@@ -178,6 +193,17 @@ void Button::text::set_position(float _x, float _y)
 	y = _y;
 	sprite.setPosition(x, y);
 	btn_text.setPosition(x + shift_x, y + shift_y);
+}
+
+void Button::text::set_width(int _width)
+{
+	if (_width <= 0)
+		return;
+	float factor = float(_width) / float(width);
+	sprite.setScale(factor, factor);
+	btn_text.setScale(factor, factor);
+	width = _width;
+	height = (int)(height * factor);
 }
 
 void Button::text::draw_in(sf::RenderWindow& window)

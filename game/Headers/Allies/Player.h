@@ -31,4 +31,5 @@ public:
 
 	int get_ammo();
 	int get_stamina();
+	void health_regen();
 };
