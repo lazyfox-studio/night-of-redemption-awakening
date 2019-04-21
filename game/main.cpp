@@ -2,7 +2,7 @@
 #include "includes.h"
 
 extern Monolith monolith;
-extern sf::Music music;
+extern soundtrack music;
 
 int main()
 {
@@ -18,10 +18,6 @@ int main()
 
 	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
 	view.setCenter(vc_x, vc_y);
-
-    music.openFromFile("Music/Cephalopod.ogg");
-    music.setVolume(25);
-    music.play();
 
 	List<Unit> units;
 	List<Enemy> enemies;
@@ -231,6 +227,8 @@ int main()
 		float border_pos_x = corners.top_left.x, border_pos_y = corners.top_left.y - 48.f;
 		border1.setPosition(border_pos_x, border_pos_y);
 		border2.setPosition(border_pos_x, corners.bottom_left.y);
+
+		music.control();
 
 		window.clear();
         window.setView(view);

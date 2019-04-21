@@ -129,5 +129,8 @@
     <ClInclude Include="Headers\Button.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Structures\Soundtrack.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
