@@ -13,7 +13,7 @@ struct soundtrack
 
 	soundtrack()
 	{
-		current_track = 4;
+		current_track = 0;
 		cooldown = TRACK_END_CHECK_COOLDOWN;
 		track[0].openFromFile("Music/Cephalopod.ogg");
 		track[1].openFromFile("Music/Exit the Premises.ogg");
