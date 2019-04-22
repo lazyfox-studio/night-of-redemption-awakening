@@ -12,6 +12,7 @@ Player::Player() :
     player_sound.shoot.loadFromFile("Sounds/Player/shoot.wav");
     player_sound.reload.loadFromFile("Sounds/Player/reload.wav");
 	move_flood_control[0] = move_flood_control[1] = 0;
+	score = 0;
 }
 
 Player::~Player()
@@ -95,6 +96,7 @@ void Player::shoot(List<Enemy> & enemies) {
 		{
 			target->death();
 			enemies.drop(target);
+			increase_score(100);
 		}
     }
     ammo--;
@@ -173,6 +175,11 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 	}
 }
 
+void Player::increase_score(int delta)
+{
+	score += delta;
+}
+
 int Player::get_ammo()
 {
 	return ammo;
@@ -181,6 +188,11 @@ int Player::get_ammo()
 int Player::get_stamina()
 {
 	return stamina;
+}
+
+int Player::get_score()
+{
+	return score;
 }
 
 void Player::health_regen()

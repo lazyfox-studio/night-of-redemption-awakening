@@ -16,6 +16,7 @@ class Player : public Ally
 	int damage;
     int ammo;
     int stamina;
+	int score;
     PlayerSound player_sound;
 
 	unsigned move_flood_control[2];
@@ -28,8 +29,10 @@ public:
     void shoot(List<Enemy>& enemies);
     void reload();
     void move(float, float, List<Unit>&, bool);
+	void increase_score(int);
 
 	int get_ammo();
 	int get_stamina();
+	int get_score();
 	void health_regen();
 };

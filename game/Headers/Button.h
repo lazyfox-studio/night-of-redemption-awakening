@@ -13,9 +13,12 @@ namespace Button
 
 	enum action_type
 	{
+		no,
 		void_void,
 		void_arg,
-		void_ref
+		void_ref,
+		void_ptr,
+		void_this
 	};
 
 	struct type
@@ -39,7 +42,10 @@ namespace Button
 		state btn_state;
 		type* prototype;
 		sf::Sprite sprite;
-		void (*action)();
+		void (*a_void_void)();
+		void (*a_void_ptr)(void*);
+		action_type atype;
+		void* a_subject;
 
 	public:
 		bool visible;
@@ -54,6 +60,7 @@ namespace Button
 		virtual void draw_in(sf::RenderWindow&) = 0;
 
 		void onclick(void(*func)());
+		void onclick(void(*func)(void*), void*);
 		void click();
 	};
 

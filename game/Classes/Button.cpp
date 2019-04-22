@@ -42,7 +42,9 @@ Button::btn::btn()
 	x = y = 0.f;
 	width = height = 0;
 	btn_state = state::def;
-	action = nullptr;
+	a_void_void = nullptr;
+	a_void_ptr = nullptr;
+	atype = action_type::no;
 }
 
 Button::btn::btn(type* p)
@@ -54,7 +56,9 @@ Button::btn::btn(type* p)
 	width = prototype->texture[state::def]->getSize().x;
 	height = prototype->texture[state::def]->getSize().y;
 	btn_state = state::def;
-	action = nullptr;
+	a_void_void = nullptr;
+	a_void_ptr = nullptr;
+	atype = action_type::no;
 }
 
 Button::btn::~btn()
@@ -72,17 +76,20 @@ Button::state Button::btn::check_state(float mouse_x, float mouse_y, bool mouse_
 	state _state = state::def;
 	if (!visible)
 		_state = state::def;
-	if (btn_state == state::disabled)
-		_state = state::disabled;
-	if ((mouse_x >= x) && (mouse_x <= x + width) && (mouse_y >= y) && (mouse_y <= y + height))
+	else
 	{
-		if (mouse_click)
+		if (btn_state == state::disabled)
+			_state = state::disabled;
+		if ((mouse_x >= x) && (mouse_x <= x + width) && (mouse_y >= y) && (mouse_y <= y + height))
 		{
-			_state = state::clicked;
-			click();
+			if (mouse_click)
+			{
+				_state = state::clicked;
+				click();
+			}
+			else
+				_state = state::hovered;
 		}
-		else
-			_state = state::hovered;
 	}
 	if(_set_state)
 		set_state(_state);
@@ -100,14 +107,30 @@ void Button::btn::set_state(state _state)
 
 void Button::btn::onclick(void(*func)())
 {
-	action = func;
+	a_void_void = func;
+	atype = action_type::void_void;
+}
+
+void Button::btn::onclick(void(*func)(void*), void* ptr)
+{
+	a_void_ptr = func;
+	atype = action_type::void_ptr;
+	a_subject = ptr;
 }
 
 void Button::btn::click()
 {
-	if (!action)
-		return;
-	(*action)();
+	switch (atype)
+	{
+	case action_type::void_void:
+		if (a_void_void)
+			(*a_void_void)();
+		break;
+	case action_type::void_ptr:
+		if (a_void_ptr)
+			(*a_void_ptr)(a_subject);
+		break;
+	}
 }
 
 Button::text::text() : btn()

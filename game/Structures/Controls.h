@@ -10,6 +10,7 @@ struct KeyboardControl
 	bool E = false;
 	bool R = false;
 	bool LShift = false;
+	bool Escape = false;
 };
 KeyboardControl Kb;
 

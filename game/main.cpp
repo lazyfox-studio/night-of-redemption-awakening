@@ -47,8 +47,6 @@ int main()
 	thr.detach();
 	/*std::thread regen(&(Player::health_regen), player);
 	regen.detach();*/
-
-	sf::Font font;
 	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
 
 	// Ammo pre-text
@@ -81,6 +79,21 @@ int main()
 	int enemies_ind_num = enemies_num;
 	const char* enemies_ind_text = stringify(enemies_ind_num);
 
+	// Score pre-text
+	sf::Text score_ind_pre;
+	score_ind_pre.setFont(font);
+	score_ind_pre.setString("Score: ");
+	score_ind_pre.setCharacterSize(24);
+	score_ind_pre.setFillColor(sf::Color::White);
+
+	// Score counter
+	sf::Text score_ind;
+	score_ind.setFont(font);
+	score_ind.setCharacterSize(24);
+	score_ind.setFillColor(sf::Color::White);
+	int score_ind_num = 1;
+	const char* score_ind_text = stringify(score_ind_num);
+
 	// Borders
 	sf::Texture border;
 	border.loadFromFile("Textures/interface/border_top.png");
@@ -97,24 +110,17 @@ int main()
 
 	// Button Test
 	List<Button::btn> buttons;
-	register Button::type* TestType = new Button::type(300, "Textures/buttons/def.png", "Textures/buttons/clicked.png", "Textures/buttons/hovered.png");
-	register Button::text* pause_btn = new Button::text(TestType);
+	register Button::text* pause_btn = new Button::text(btn_text);
 	pause_btn->set_color(sf::Color::White);
-	pause_btn->set_size(23);
+	pause_btn->set_size(28);
 	pause_btn->assign_font(&font);
-	pause_btn->set_text("Pause");
-	pause_btn->set_width(200);
-	pause_btn->onclick(pause);
+	pause_btn->set_text("Menu");
+	pause_btn->set_width(170);
+	pause_btn->onclick(pause, (void*)pause_btn);
 	buttons.add(pause_btn);
 
-	register Button::text* resume_btn = new Button::text(TestType);
-	resume_btn->set_color(sf::Color::White);
-	resume_btn->set_size(23);
-	resume_btn->assign_font(&font);
-	resume_btn->set_text("Resume");
-	resume_btn->set_width(200);
-	resume_btn->onclick(resume);
-	buttons.add(resume_btn);
+	sf::RectangleShape dark_pause(sf::Vector2f(float(screen.w), float(screen.h)));
+	dark_pause.setFillColor(sf::Color(0, 0, 0, 200));
 
 	window.setView(view);
 	while (window.isOpen())
@@ -152,6 +158,9 @@ int main()
                     break;
 				case sf::Keyboard::Key::LShift:
 					Kb.LShift = flag;
+					break;
+				case sf::Keyboard::Key::Escape:
+					Kb.Escape = flag;
 					break;
 				}
 			}
@@ -199,8 +208,8 @@ int main()
 		camoffset.x = player->getX() - vc_x;
 		camoffset.y = player->getY() - vc_y;
 
-		pause_btn->set_position(corners.bottom_right.x - 430.f, corners.bottom_right.y - 62.f);
-		resume_btn->set_position(corners.bottom_right.x - 220.f, corners.bottom_right.y - 62.f);
+		pause_btn->set_position(corners.bottom_right.x - 175.f, corners.bottom_right.y - 58.f);
+		//resume_btn->set_position(corners.bottom_right.x - 220.f, corners.bottom_right.y - 62.f);
 
 		if (player->get_ammo() != ammo_ind_num)
 		{
@@ -216,13 +225,22 @@ int main()
 			enemies_ind_text = stringify(enemies_ind_num);
 			enemies_ind.setString(enemies_ind_text);
 		}
+		if (player->get_score() != score_ind_num)
+		{
+			delete[] score_ind_text;
+			score_ind_num = player->get_score();
+			score_ind_text = stringify(score_ind_num);
+			score_ind.setString(score_ind_text);
+		}
 
 
-		float ammo_ind_pos_x = corners.top_left.x + 5.0f, ammo_ind_pos_y = corners.top_left.y + 35.0f;
+		float ammo_ind_pos_x = corners.top_left.x + 10.0f, ammo_ind_pos_y = corners.top_left.y + 20.0f;
 		ammo_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x, ammo_ind_pos_y));
-		ammo_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 80.f, ammo_ind_pos_y));
+		ammo_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y));
 		enemies_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 25.f));
 		enemies_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 25.f));
+		score_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 50.f));
+		score_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 50.f));
 
 		float border_pos_x = corners.top_left.x, border_pos_y = corners.top_left.y - 48.f;
 		border1.setPosition(border_pos_x, border_pos_y);
@@ -239,6 +257,8 @@ int main()
 		window.draw(ammo_ind);
 		window.draw(enemies_ind_pre);
 		window.draw(enemies_ind);
+		window.draw(score_ind_pre);
+		window.draw(score_ind);
 
 		window.draw(border1);
 		window.draw(border2);
@@ -254,6 +274,12 @@ int main()
 		health_bar.set_position(corners.bottom_left.x + 20.f, corners.bottom_left.y - 30.f);
 		health_bar.draw_in(window);
 		draw_buttons(buttons);
+
+		if (is_paused)
+		{
+			dark_pause.setPosition(player->getX(), player->getY());
+			window.draw(dark_pause);
+		}
 
 		window.display();
 	}

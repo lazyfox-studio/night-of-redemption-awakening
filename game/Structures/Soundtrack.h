@@ -42,7 +42,18 @@ struct soundtrack
 			}
 			cooldown = TRACK_END_CHECK_COOLDOWN;
 			track[current_track].play();
-			std::cout << current_track;
+			//std::cout << current_track;
 		}
+	}
+
+	void pause()
+	{
+		track[current_track].pause();
+	}
+
+	void play()
+	{
+		if(track[current_track].getStatus() == sf::SoundSource::Paused)
+			track[current_track].play();
 	}
 };
