@@ -21,12 +21,14 @@ Player::~Player()
 }
 
 void Player::shoot(List<Enemy> & enemies) {
-    if ((damage_cooldown > 0) || (ammo < 1))
+    if ((damage_cooldown > 0) || (ammo == 0))
     {
         return;
     }
     sound.setBuffer(player_sound.shoot);
     sound.play();
+
+	std::cout << pov << std::endl;
 
     Enemy* target = nullptr;
     float range = float(INT_MAX);
@@ -37,34 +39,70 @@ void Player::shoot(List<Enemy> & enemies) {
         if (i->value->r < range) {
             _x = i->value->x;
             _y = i->value->y;
-            if ((pov < 90) && (pov > -90))
+            if ((pov < 90) && (pov >= 0))
             {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
                     &&
                     ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
                     &&
-                    (_x > x)
+                    (_x >= x)
+					&&
+					(_y >= y)
                     )
                 {
                     target = i->value;
                     range = target->r;
                 }
             }
-            else if ((pov > 90) || (pov < -90))
+            else if ((pov > 90) && (pov <= 180))
             {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
                     &&
                     ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
                     &&
-                    (_x < x)
+                    (_x <= x)
+					&&
+					(_y >= y)
                     )
                 {
                     target = i->value;
                     range = target->r;
                 }
             }
+			else if ((pov < 270) && (pov >= 180))
+			{
+				if (
+					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
+					&&
+					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
+					&&
+					(_x <= x)
+					&&
+					(_y <= y)
+					)
+				{
+					target = i->value;
+					range = target->r;
+				}
+			}
+			else if ((pov > -90) && (pov <= 0))
+			{
+				if (
+					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
+					&&
+					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
+					&&
+					(_x >= x)
+					&&
+					(_y <= y)
+					)
+				{
+					target = i->value;
+					range = target->r;
+				}
+			}
             else if (pov == 90)
             {
                 if (_y > y)
