@@ -41,16 +41,17 @@ void Enemy::range() {
 
 void Enemy::move(List<Unit>& units)
 {
-    if (r > UNIT_SIZE)
+    if (r > UNIT_SIZE * 1.4)
     {
         bool x_unlock = true, y_unlock = true;
         
         float c = speed / r;              // Коэффицент подобия
         float dx = (focus->x - x) * c;
         float dy = (focus->y - y) * c;
+
+		bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
         for (ListItem<Unit>* i = units.head; i; i = i->next)
         {
-            bool x_left = false, x_right = false, y_left = false, y_right = false, x_space = false, y_space = false;
 			if (i->value != this)
 			{
 				// Всевозможные варианты пересечения
@@ -64,8 +65,11 @@ void Enemy::move(List<Unit>& units)
 				// Проверка на входы
 				x_unlock &= !((x_left || x_right) && y_space);
 				y_unlock &= !((y_left || y_right) && x_space);
-				x_unlock &= !((x_left || x_right) && (y_right || y_left));
-				y_unlock &= !((x_left || x_right) && (y_right || y_left));
+				if ((x_left || x_right) && (y_right || y_left))
+				{
+					if (dx < dy) x_unlock = false;
+					else y_unlock = false;
+				}
 			}
         }
         if (x_unlock == true) 
