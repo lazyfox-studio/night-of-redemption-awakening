@@ -115,7 +115,7 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 {
     bool x_unlock = true, y_unlock = true;
     float shift = is_shift;
-    if ((stamina > 0) && (is_shift))
+    if ((stamina > 0) && (is_shift) && (dbx || dby))
     {
         shift = 1.f;
         stamina--;
@@ -158,12 +158,17 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
         }
     }
 
-	if (is_edge_of_terrain(dx, dy))
-		return;
-	dx = x_unlock ? (x += dx, dx) : 0.f;
-	dy = y_unlock ? (y += dy, dy) : 0.f;
-	if (dx || dy)
+	if ((x + dx < map.padding_x) || (x + dx > map.w - map.padding_x) || !x_unlock)
 	{
+		dx = 0;
+	}
+	if ((y + dy < map.padding_y) || (y + dy > map.h - map.padding_y) || !y_unlock)
+	{
+		dy = 0;
+	}
+	{
+		x += dx;
+		y += dy;
 		view.move(dx, dy);
 		sprite.move(dx, dy);
 		move_flood_control[0]++;
