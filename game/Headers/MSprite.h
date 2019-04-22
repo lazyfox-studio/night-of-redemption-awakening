@@ -30,4 +30,6 @@ public:
 	void assign_texture(const char* file);
 	void set_frame(int);
 	void next_frame();
+
+	int get_frame();
 };

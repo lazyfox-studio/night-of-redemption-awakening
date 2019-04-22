@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#define SPRITE_SIZE 160
+#define SPRITE_SIZE 200
 #define UNIT_SIZE 96
 #define AK74_ATTAK_SPEED 6
 #define AK74_RELOAD_TIME 180
@@ -23,6 +23,10 @@ protected:
 	float speed;
 	int pov;
     int damage_cooldown = 0; //Ограничение на скорость атак
+
+	unsigned move_flood_control[2];
+	unsigned attack_flood_control[2];
+	bool attacking;
 
 	MSprite sprite;
 

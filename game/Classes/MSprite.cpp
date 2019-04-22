@@ -104,3 +104,8 @@ void MSprite::next_frame()
 	current_frame = current_frame + 1 >= frames ? 0 : current_frame + 1;
 	set_frame(current_frame);
 }
+
+int MSprite::get_frame()
+{
+	return current_frame;
+}

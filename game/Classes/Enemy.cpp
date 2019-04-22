@@ -5,27 +5,26 @@ extern Monolith monolith;
 
 Enemy::Enemy() : Unit() 
 {
-	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
+	
 }
 
 Enemy::Enemy(float _x, float _y) : Unit(_x, _y) 
 {
-	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
+	
 }
 
 Enemy::Enemy(float _x, float _y, int _health, float _speed, int _pov) :
 	Unit(_x, _y, _health, _speed, _pov) 
 {
-	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
+	
 }
 
 Enemy::Enemy(EnemyType* p) : Unit(0, 0, p->health, p->speed, 0), damage(p->damage), prototype(p)
 {
-	sprite.assign_texture(p->texture);
+	sprite.assign_texture(p->texture, 16, 200, 200);
 	sprite.set_origin(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f);
 	sprite.set_color(sf::Color(255, 255, 255, 0));
     focus = &monolith;
-	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
 	
 	health_bar.set_color(OverBar::color::red);
 	health_bar.set_width(UNIT_SIZE);
@@ -97,7 +96,7 @@ void Enemy::attack() {
 	if (attacking)
 	{
 		attack_flood_control[0]++;
-		if (attack_flood_control[0] - attack_flood_control[1] > 3)
+		if (attack_flood_control[0] - attack_flood_control[1] > 2)
 		{
 			attack_flood_control[1] = attack_flood_control[0];
 			sprite.next_frame();
@@ -106,7 +105,7 @@ void Enemy::attack() {
     if (r <= UNIT_SIZE * 1.414) //Радиус
     {
 		if(!attacking)
-			sprite.assign_texture(prototype->texture_attack, 9, 200, 200);
+			sprite.assign_texture(prototype->texture_attack, 9, SPRITE_SIZE, SPRITE_SIZE);
 		attacking = true;
 		if (damage_cooldown <= 0)
 		{
@@ -116,8 +115,15 @@ void Enemy::attack() {
     }
 	else
 	{
-		sprite.assign_texture(prototype->texture, 1, 160, 160);
+		if(attacking)
+			sprite.assign_texture(prototype->texture, 16, SPRITE_SIZE, SPRITE_SIZE);
 		attacking = false;
+		move_flood_control[0]++;
+		if (move_flood_control[0] - move_flood_control[1] > 2)
+		{
+			move_flood_control[1] = move_flood_control[0];
+			sprite.next_frame();
+		}
 	}
 	damage_cooldown--;
 }
