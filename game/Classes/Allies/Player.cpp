@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player::Player() : 
-	Ally((float)map.w / 2.0f, (float)map.h / 2.0f, max_health, 4.0f, 0), damage(80)
+	Ally((float)map.w / 2.0f, (float)map.h / 2.0f + UNIT_SIZE, max_health, 4.0f, 0), damage(80)
 {
 	sprite.assign_texture("Textures/player.png", 5, SPRITE_SIZE, SPRITE_SIZE);
 	sprite.set_origin(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f);
