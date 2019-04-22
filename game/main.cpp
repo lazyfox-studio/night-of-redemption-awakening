@@ -17,7 +17,7 @@ int main()
 	background.setPosition(sf::Vector2f(0, 0));
 
 	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
-	view.setCenter(vc_x, vc_y);
+	
 
 	List<Unit> units;
 	List<Enemy> enemies;
@@ -28,6 +28,8 @@ int main()
     units.add(&monolith);
     allies.add(player);
     allies.add(&monolith);
+
+	view.setCenter(player->getX(), player->getY());
 
 	int units_num = 2, enemies_num = 0, allies_num = 2;
 

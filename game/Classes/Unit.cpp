@@ -94,7 +94,7 @@ bool Unit::is_out_of_terrain(float dx, float dy)
 
 bool Unit::is_edge_of_terrain(float dx, float dy)
 {
-	const float edge = 360.f;
-	const float delta = 280.f; // —боку отступы шире
-	return (x + dx < edge + delta) || (x + dx > map.w - edge - delta) || (y + dy < edge) || (y + dy > map.h - edge);
+	const float edge_y = map.padding_y;
+	const float edge_x = map.padding_x; // —боку отступы шире
+	return (x + dx < edge_x) || (x + dx > map.w - edge_x) || (y + dy < edge_y) || (y + dy > map.h - edge_y);
 }

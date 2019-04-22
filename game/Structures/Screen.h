@@ -9,10 +9,10 @@ const ScreenResolution screen;
 
 struct MapSize
 {
-	float w = 6400.f;
-	float h = 3600.f;
-	float padding_x = 640.f;
-	float padding_y = 360.f;
+	float w = 4800.f;
+	float h = 2700.f;
+	float padding_x = 960.f;
+	float padding_y = 540.f;
 };
 const MapSize map;
 
