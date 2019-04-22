@@ -36,6 +36,7 @@ int main()
 	EnemyType* enemy_types[1];
 	enemy_types[0] = new EnemyType(500, 0.5f, 5);
 	enemy_types[0]->assign_texture("Textures/enemy1.png");
+	enemy_types[0]->assign_texture_attack("Textures/enemy_attack.png");
 
 	/*
 	Enemy* en2 = new Enemy(enemy1);
