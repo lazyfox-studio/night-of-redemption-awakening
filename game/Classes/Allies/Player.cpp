@@ -138,9 +138,9 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 		dy = dby * (speed + (speed * shift));
 	}
 
+	bool x_left, x_right, y_left, y_right, x_space, y_space;
     for (ListItem<Unit>* i = units.head; i; i = i->next)
-    {
-        bool x_left, x_right, y_left, y_right, x_space, y_space;
+    { 
         if (i->value != this)
 		{
             // Всевозможные варианты пересечения
