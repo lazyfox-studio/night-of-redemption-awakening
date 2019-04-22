@@ -103,7 +103,7 @@ void Enemy::attack() {
 			sprite.next_frame();
 		}
 	}
-    if (r <= UNIT_SIZE + 1.f) //Сдесь нужно подобрать значение ренжи атаки
+    if (r <= UNIT_SIZE * 1.414) //Радиус
     {
 		if(!attacking)
 			sprite.assign_texture(prototype->texture_attack, 9, 200, 200);
