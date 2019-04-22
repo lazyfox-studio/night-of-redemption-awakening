@@ -54,13 +54,10 @@ inline void draw_all(List<Unit>& units)
 
 inline void check_buttons(List<Button::btn>& buttons)
 {
-	//if (Mouse.flood_control[0] - Mouse.flood_control[1] < 5)
-	//	return;
 	is_any_button_pressed = false;
 	for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
 		if (i->value->check_state(camoffset.x + Mouse.x, camoffset.y + Mouse.y, Mouse.Left, true) == Button::state::clicked)
 			is_any_button_pressed |= true;
-	//Mouse.flood_control[1] = Mouse.flood_control[0];
 }
 
 inline void draw_buttons(List<Button::btn>& buttons)
@@ -144,7 +141,7 @@ void pause(void* ptr)
 	if(is_music)
 		music.pause();
 
-	pause_window.create(sf::VideoMode(350U, 400U), "Paused", sf::Style::None);
+	pause_window.create(sf::VideoMode(350U, 400U), "Game paused", sf::Style::None);
 
 	sf::Text title, info1, info2;
 	title.setFont(font);
@@ -234,13 +231,4 @@ void pause(void* ptr)
 	btn->visible = true;
 	if(is_music)
 		music.play();
-}
-
-void resume(void* ptr)
-{
-	is_paused = false;
-	Button::text* btn = (Button::text*)ptr;
-	//btn->set_text("Pause");
-	//btn->onclick(pause, ptr);
-	enemies_gconfig.max_num = 10;
 }

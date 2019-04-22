@@ -38,14 +38,6 @@ int main()
 	enemy_types[0]->assign_texture("Textures/enemy_move.png");
 	enemy_types[0]->assign_texture_attack("Textures/enemy_attack.png");
 
-	/*
-	Enemy* en2 = new Enemy(enemy1);
-	units.add(en2);
-	enemies.add(en2);
-	en2->move_to(200, 900);
-	enemies_num++;
-	*/
-
 	std::thread thr(enemies_generator, player, enemy_types[0], &units, &units_num, &enemies, &enemies_num);
 	thr.detach();
 	/*std::thread regen(&(Player::health_regen), player);
@@ -212,13 +204,22 @@ int main()
 		camoffset.y = player->getY() - vc_y;
 
 		pause_btn->set_position(corners.bottom_right.x - 175.f, corners.bottom_right.y - 58.f);
-		//resume_btn->set_position(corners.bottom_right.x - 220.f, corners.bottom_right.y - 62.f);
 
 		if (player->get_ammo() != ammo_ind_num)
 		{
 			delete[] ammo_ind_text;
 			ammo_ind_num = player->get_ammo();
 			ammo_ind_text = stringify(ammo_ind_num);
+			if (ammo_ind_num <= 0)
+			{
+				ammo_ind.setFillColor(sf::Color::Red);
+				ammo_ind_pre.setFillColor(sf::Color::Red);
+			}
+			else
+			{
+				ammo_ind.setFillColor(sf::Color::White);
+				ammo_ind_pre.setFillColor(sf::Color::White);
+			}
 			ammo_ind.setString(ammo_ind_text);
 		}
 		if (enemies_num != enemies_ind_num)

@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include <thread>
 #include <math.h>
 #include "Ally.h"
 #include "../Headers/Allies/Monolith.h"

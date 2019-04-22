@@ -1,5 +1,4 @@
 ﻿#include "../Headers/Enemy.h"
-#include <iostream>
 
 extern Monolith monolith;
 

@@ -3,7 +3,6 @@
 #include "MSprite.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <iostream>
 
 #define SPRITE_SIZE 200
 #define UNIT_SIZE 96

@@ -1,5 +1,4 @@
 ﻿#include "../../Headers/Allies/Player.h"
-#include <iostream>
 
 Player::Player() : 
 	Ally((float)map.w / 2.0f, (float)map.h / 2.0f + UNIT_SIZE, max_health, 4.0f, 0), damage(80)
@@ -28,8 +27,6 @@ void Player::shoot(List<Enemy> & enemies) {
     }
     sound.setBuffer(player_sound.shoot);
     sound.play();
-
-	std::cout << pov << std::endl;
 
     Enemy* target = nullptr;
     float range = float(INT_MAX);

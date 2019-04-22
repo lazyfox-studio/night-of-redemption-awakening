@@ -1,5 +1,4 @@
 #include "../Headers/Unit.h"
-#include <iostream>
 
 Unit::Unit() : x(0), y(0), health(0), speed(0), pov(0)
 {
