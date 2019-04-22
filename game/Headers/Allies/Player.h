@@ -18,8 +18,8 @@ class Player : public Ally
     int stamina;
 	int score;
     PlayerSound player_sound;
-
-	unsigned move_flood_control[2];
+	sf::Texture texture_move;
+	sf::Texture texture_attack;
 public:
 	const static int max_health = 200;
 

@@ -6,6 +6,8 @@ Unit::Unit() : x(0), y(0), health(0), speed(0), pov(0)
 	sprite.set_origin(0.5f, 0.5f);
 	setX(x);
 	setY(y);
+	move_flood_control[0] = move_flood_control[1] = 0;
+	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
 }
 
 Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0)
@@ -13,6 +15,8 @@ Unit::Unit(float _x, float _y) : x(_x), y(_y), health(0), speed(0), pov(0)
 	sprite.set_origin(0.5f, 0.5f);
 	setX(x);
 	setY(y);
+	move_flood_control[0] = move_flood_control[1] = 0;
+	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
 }
 
 Unit::Unit(float _x, float _y, int _health, float _speed, int _pov) :
@@ -21,6 +25,8 @@ Unit::Unit(float _x, float _y, int _health, float _speed, int _pov) :
 	sprite.set_origin(0.5f, 0.5f);
 	setX(x);
 	setY(y);
+	move_flood_control[0] = move_flood_control[1] = 0;
+	attack_flood_control[0] = attack_flood_control[1] = attacking = 0;
 }
 
 Unit::~Unit()

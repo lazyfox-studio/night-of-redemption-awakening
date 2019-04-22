@@ -4,14 +4,15 @@
 Player::Player() : 
 	Ally((float)map.w / 2.0f, (float)map.h / 2.0f + UNIT_SIZE, max_health, 4.0f, 0), damage(80)
 {
-	sprite.assign_texture("Textures/player.png", 5, SPRITE_SIZE, SPRITE_SIZE);
+	texture_move.loadFromFile("Textures/player_move.png");
+	texture_attack.loadFromFile("Textures/player_attack.png");
+	sprite.assign_texture(&texture_move, 20, SPRITE_SIZE, SPRITE_SIZE);
 	sprite.set_origin(SPRITE_SIZE / 2.0f, SPRITE_SIZE / 2.0f);
 	sprite.set_position(x, y);
     ammo = AK74_MAGASINE;
     stamina = MAX_STAMINA;
     player_sound.shoot.loadFromFile("Sounds/Player/shoot.wav");
     player_sound.reload.loadFromFile("Sounds/Player/reload.wav");
-	move_flood_control[0] = move_flood_control[1] = 0;
 	score = 0;
 }
 
@@ -151,6 +152,13 @@ void Player::reload()
 
 void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 {
+	int frame = sprite.get_frame();
+	if(!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) || (ammo <= 0) || (damage_cooldown > 0))
+		sprite.assign_texture(&texture_move, 20, SPRITE_SIZE, SPRITE_SIZE);
+	else
+		sprite.assign_texture(&texture_attack, 20, SPRITE_SIZE, SPRITE_SIZE);
+	sprite.set_frame(frame);
+
     bool x_unlock = true, y_unlock = true;
     float shift = is_shift;
     if ((stamina > 0) && (is_shift) && (dbx || dby))
@@ -205,13 +213,14 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
 	{
 		dy = 0;
 	}
+	if (dx || dy)
 	{
 		x += dx;
 		y += dy;
 		view.move(dx, dy);
 		sprite.move(dx, dy);
 		move_flood_control[0]++;
-		if (move_flood_control[0] - move_flood_control[1] > 5)
+		if (move_flood_control[0] - move_flood_control[1] > 1)
 		{
 			move_flood_control[1] = move_flood_control[0];
 			sprite.next_frame();
