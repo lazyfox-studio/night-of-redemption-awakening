@@ -12,7 +12,7 @@ int main()
 	// Main map
 	sf::Sprite background;
 	sf::Texture bgtexture;
-	bgtexture.loadFromFile("Textures/map_3.png");
+	bgtexture.loadFromFile("Textures/map.png");
 	background.setTexture(bgtexture);
 	background.setPosition(sf::Vector2f(0, 0));
 

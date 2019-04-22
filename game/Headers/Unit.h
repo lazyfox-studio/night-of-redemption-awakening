@@ -48,5 +48,4 @@ public:
 	void rotate(int);
 	void rotate_to(int);
 	bool is_out_of_terrain(float, float);
-	bool is_edge_of_terrain(float, float);
 };
