@@ -141,20 +141,21 @@ void Player::move(float dbx, float dby, List<Unit>& units, bool is_shift)
     for (ListItem<Unit>* i = units.head; i; i = i->next)
     {
         bool x_left, x_right, y_left, y_right, x_space, y_space;
-        if (i->value != this) {
+        if (i->value != this)
+		{
             // Всевозможные варианты пересечения
 			float _x = i->value->getX(), _y = i->value->getY();
-			x_left  = ((x + dx + UNIT_SIZE > _x) && (x + UNIT_SIZE < _x));
-			x_right = ((x + dx - UNIT_SIZE < _x) && (x - UNIT_SIZE > _x));
-			y_left  = ((y + dy + UNIT_SIZE > _y) && (y + UNIT_SIZE < _y));
-			y_right = ((y + dy - UNIT_SIZE < _y) && (y - UNIT_SIZE > _y));
+			x_left  = ((x + dx + UNIT_SIZE > _x) && (x + dx < _x));
+			x_right = ((x + dx - UNIT_SIZE < _x) && (x + dx > _x));
+			y_left  = ((y + dy + UNIT_SIZE > _y) && (y + dy < _y));
+			y_right = ((y + dy - UNIT_SIZE < _y) && (y + dy > _y));
 			x_space = ((x < _x + UNIT_SIZE / 2)  && (x > _x - UNIT_SIZE / 2));
 			y_space = ((y < _y + UNIT_SIZE / 2)  && (y > _y - UNIT_SIZE / 2));
             // Проверка на входы
 			x_unlock &= !((x_left || x_right) && y_space);
 			y_unlock &= !((y_left || y_right) && x_space);
-			//x_unlock &= !((x_left || x_right) && (y_right || y_left));
-			//y_unlock &= !((x_left || x_right) && (y_right || y_left));
+			x_unlock &= !((x_left || x_right) && (y_right || y_left));
+			y_unlock &= !((x_left || x_right) && (y_right || y_left));
         }
     }
 
