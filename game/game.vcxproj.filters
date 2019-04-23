@@ -1,22 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
+    <Filter Include="Main Source">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{a5186a3c-fecf-4bc6-9e38-9bd4afb8a754}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{a2cce214-cc9b-48aa-ab77-d9b9adaa00b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Items">
+      <UniqueIdentifier>{372f1005-a132-456a-913d-7fbb1869ff86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Items">
+      <UniqueIdentifier>{cd29e383-8c57-42fb-bf0e-1e303a808aa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Allies">
+      <UniqueIdentifier>{fb157b4d-d242-4f7f-ac31-e7b10a827830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Allies">
+      <UniqueIdentifier>{631a3ddb-a0f4-4236-99db-7cc53823941b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{6dce3c1a-7ce7-4eca-b701-4cea9dc4ace1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Structures">
+      <UniqueIdentifier>{fe0fe056-46b2-4860-916d-75d28ab9efdc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Main Source</Filter>
     </ClCompile>
+    <ClCompile Include="Classes\Enemy.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Item.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Items\Item1.cpp">
+      <Filter>Classes\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Allies\Monolith.cpp">
+      <Filter>Classes\Allies</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Ally.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Unit.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Allies\Player.cpp">
+      <Filter>Classes\Allies</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\OverBar.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\MSprite.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Button.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\Enemy.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Item.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Items\Item1.h">
+      <Filter>Headers\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Main Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Allies\Monolith.h">
+      <Filter>Headers\Allies</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Ally.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\List.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="definitions.h">
+      <Filter>Main Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Unit.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\UnitList.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Allies\Player.h">
+      <Filter>Headers\Allies</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Functions.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Generator.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\EnemyType.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Screen.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\OverBar.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Controls.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Services.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Corners.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\MSprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Button.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Soundtrack.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

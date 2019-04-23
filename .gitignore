@@ -1,0 +1,14 @@
+*.*
+*.suo
+!*.c
+!*.cpp
+!*.h
+!*.hpp
+!*.sln
+!*.vcxproj
+!*.filters
+!*.png
+!*.gif
+!*.ttf
+!*.wav
+/Debug/Textures/map.png
