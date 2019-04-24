@@ -7,7 +7,7 @@ extern soundtrack music;
 int main()
 {
     window.setFramerateLimit(60);
-	view.reset(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
+	view.reset(sf::FloatRect(0.f, 0.f, screen.w, screen.h));
 
 	// Main map
 	sf::Sprite background;
