@@ -1,4 +1,5 @@
 ﻿#include "../../Headers/Allies/Player.h"
+#include <iostream>
 
 Player::Player() : 
 	Ally((float)map.w / 2.0f, (float)map.h / 2.0f + UNIT_SIZE, max_health, 4.0f, 0), damage(80)
@@ -30,8 +31,9 @@ void Player::shoot(List<Enemy> & enemies) {
 
     Enemy* target = nullptr;
     float range = float(INT_MAX);
-    float _x, _y;
-    float angle = 3.1415f * (360.f + pov) / 180.f;
+	float _x, _y;
+    float angle = 3.141592f * pov / 180.f;
+	std::cout << pov << "	" << angle << std::endl;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
         if (i->value->r < range) {
@@ -42,13 +44,14 @@ void Player::shoot(List<Enemy> & enemies) {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
                     &&
-                    ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
+                    ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
                     &&
                     (_x >= x)
 					&&
 					(_y >= y)
                     )
                 {
+					std::cout << "1" << std::endl;
                     target = i->value;
                     range = target->r;
                 }
@@ -58,45 +61,48 @@ void Player::shoot(List<Enemy> & enemies) {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
                     &&
-                    ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
+                    ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
                     &&
                     (_x <= x)
 					&&
 					(_y >= y)
                     )
                 {
+					std::cout << "2" << std::endl;
                     target = i->value;
                     range = target->r;
                 }
             }
-			else if ((pov < 270) && (pov >= 180))
+			else if ((pov < 270) && (pov > 180))
 			{
 				if (
 					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
 					&&
-					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
+					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
 					&&
 					(_x <= x)
 					&&
 					(_y <= y)
 					)
 				{
+					std::cout << "3" << std::endl;
 					target = i->value;
 					range = target->r;
 				}
 			}
-			else if ((pov > -90) && (pov <= 0))
+			else if ((pov > -90) && (pov < 0))
 			{
 				if (
 					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
 					&&
-					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) - 0)
+					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
 					&&
 					(_x >= x)
 					&&
 					(_y <= y)
 					)
 				{
+					std::cout << "4" << std::endl;
 					target = i->value;
 					range = target->r;
 				}
@@ -107,6 +113,7 @@ void Player::shoot(List<Enemy> & enemies) {
                 {
                     if (((_x - UNIT_SIZE / 2) < x) && ((_x + UNIT_SIZE / 2) > x))
                     {
+						std::cout << "5" << std::endl;
                         target = i->value;
                         range = target->r;
                     }
@@ -118,6 +125,7 @@ void Player::shoot(List<Enemy> & enemies) {
                 {
                     if (((_x - UNIT_SIZE / 2) < x) && ((_x + UNIT_SIZE / 2) > x))
                     {
+						std::cout << "6" << std::endl;
                         target = i->value;
                         range = target->r;
                     }

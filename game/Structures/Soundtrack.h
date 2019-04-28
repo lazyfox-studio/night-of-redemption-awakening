@@ -13,14 +13,13 @@ struct soundtrack
 
 	soundtrack()
 	{
-		current_track = 0;
-		cooldown = TRACK_END_CHECK_COOLDOWN;
+		current_track = 4; //При первом запуске переключается на следующий
+		cooldown = 0;
 		track[0].openFromFile("Music/Cephalopod.ogg");
 		track[1].openFromFile("Music/Exit the Premises.ogg");
 		track[2].openFromFile("Music/In a Heartbeat.ogg");
 		track[3].openFromFile("Music/Rocket.ogg");
 		track[4].openFromFile("Music/Shiny Tech.ogg");
-		track[current_track].play();
 	}
 
 	void control()
@@ -42,7 +41,6 @@ struct soundtrack
 			}
 			cooldown = TRACK_END_CHECK_COOLDOWN;
 			track[current_track].play();
-			//std::cout << current_track;
 		}
 	}
 
