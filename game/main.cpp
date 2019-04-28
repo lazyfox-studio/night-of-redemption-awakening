@@ -54,6 +54,13 @@ int main()
 	ammo_ind_pre.setCharacterSize(24);
 	ammo_ind_pre.setFillColor(sf::Color::White);
 
+	//Game over text
+	sf::Text over_text;
+	over_text.setFont(font);
+	over_text.setString("GAME OVER!");
+	over_text.setCharacterSize(72);
+	over_text.setFillColor(sf::Color::White);
+
 	// Ammo indicator
 	sf::Text ammo_ind;
 	ammo_ind.setFont(font);
@@ -187,7 +194,7 @@ int main()
 
 		check_buttons(buttons);
 
-		if (!is_paused)
+		if (!is_paused && !is_game_over)
 		{
 			check_range_enemies(enemies);
 			check_focus_enemies(enemies, allies);
@@ -196,6 +203,7 @@ int main()
 			attack_enemies(enemies);
 			cooldown_update(units);
 			control_player(player, enemies, units);
+			game_over_check(allies);
 			int killed = kill_dead_enemies(units); // после control_player, это важно!
 			units_num -= killed;
 			enemies_num -= killed;
@@ -248,6 +256,8 @@ int main()
 		enemies_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 25.f));
 		score_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 50.f));
 		score_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 50.f));
+		over_text.setPosition(sf::Vector2f(player->getX() - 250.f, player->getY() - 38));
+
 
 		float border_pos_x = Corners::top_left.x, border_pos_y = Corners::top_left.y - 48.f;
 		border1.setPosition(border_pos_x, border_pos_y);
@@ -266,6 +276,7 @@ int main()
 		window.draw(enemies_ind);
 		window.draw(score_ind_pre);
 		window.draw(score_ind);
+		if (is_game_over) window.draw(over_text);
 
 		window.draw(border1);
 		window.draw(border2);
