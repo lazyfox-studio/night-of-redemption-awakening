@@ -149,6 +149,7 @@
     <ClCompile Include="Classes\OverBar.cpp" />
     <ClCompile Include="Classes\Unit.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Structures\static_init.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h" />

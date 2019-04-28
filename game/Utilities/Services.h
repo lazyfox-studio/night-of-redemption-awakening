@@ -19,27 +19,27 @@ inline void control_player(Player* player, List<Enemy>& enemies, List<Unit>& uni
 {
 	// Перемещение
 	float dx = 0.0f, dy = 0.0f;
-	if (Kb.W)
+	if (Keyboard::W)
 		dy -= 1.0f;
-	if (Kb.A)
+	if (Keyboard::A)
 		dx -= 1.0f;
-	if (Kb.S)
+	if (Keyboard::S)
 		dy += 1.0f;
-	if (Kb.D)
+	if (Keyboard::D)
 		dx += 1.0f;
-	player->move(dx, dy, units, Kb.LShift);
+	player->move(dx, dy, units, Keyboard::LShift);
 
 	// Стрельба
-    if (Mouse.Left && !is_any_button_pressed)
+    if (Mouse::Left && !is_any_button_pressed)
     {
         player->shoot(enemies);
     }
-    if (Kb.R)
+    if (Keyboard::R)
         player->reload();
 
 	// Вращение
-    int angle = (int)(180 * atan((Mouse.y - (screen.h / 2)) / (Mouse.x - (screen.w / 2))) / 3.14);
-    if (Mouse.x < (screen.w / 2))
+    int angle = (int)(180 * atan((Mouse::y - (Screen::h / 2)) / (Mouse::x - (Screen::w / 2))) / 3.14);
+    if (Mouse::x < (Screen::w / 2))
     {
         angle += 180;
     }
@@ -56,7 +56,7 @@ inline void check_buttons(List<Button::btn>& buttons)
 {
 	is_any_button_pressed = false;
 	for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
-		if (i->value->check_state(camoffset.x + Mouse.x, camoffset.y + Mouse.y, Mouse.Left, true) == Button::state::clicked)
+		if (i->value->check_state(camoffset.x + Mouse::x, camoffset.y + Mouse::y, Mouse::Left, true) == Button::state::clicked)
 			is_any_button_pressed |= true;
 }
 
@@ -181,7 +181,7 @@ void pause(void* ptr)
 	pause_buttons[2].set_text("Quit");
 	pause_buttons[2].onclick(stop_game);
 
-	Mouse.Left = false;
+	Mouse::Left = false;
 	while (pause_window.isOpen())
 	{
 		sf::Event event;
@@ -195,29 +195,29 @@ void pause(void* ptr)
 				switch (event.key.code)
 				{
 				case sf::Mouse::Button::Left:
-					Mouse.Left = flag;
+					Mouse::Left = flag;
 					break;
 				case sf::Mouse::Button::Right:
-					Mouse.Right = flag;
+					Mouse::Right = flag;
 					break;
 				case sf::Mouse::Button::Middle:
-					Mouse.Middle = flag;
+					Mouse::Middle = flag;
 					break;
 				}
 				if (flag)
-					Mouse.flood_control[0]++;
+					Mouse::flood_control[0]++;
 			}
 		}
-		if (Mouse.Left && (Mouse.flood_control[0] - Mouse.flood_control[1] >= 1))
-			Mouse.flood_control[1] = Mouse.flood_control[0];
+		if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
+			Mouse::flood_control[1] = Mouse::flood_control[0];
 		else
-			Mouse.Left = false;
+			Mouse::Left = false;
 
 		window.clear();
-		Mouse.x = (float)(sf::Mouse::getPosition(pause_window).x);
-		Mouse.y = (float)(sf::Mouse::getPosition(pause_window).y);
+		Mouse::x = (float)(sf::Mouse::getPosition(pause_window).x);
+		Mouse::y = (float)(sf::Mouse::getPosition(pause_window).y);
 		for (int i = 0; i < 3; i++)
-			if (pause_buttons[i].check_state(Mouse.x, Mouse.y, Mouse.Left, true) == Button::state::clicked)
+			if (pause_buttons[i].check_state(Mouse::x, Mouse::y, Mouse::Left, true) == Button::state::clicked)
 				is_any_button_pressed |= true;
 		pause_window.draw(title);
 		for(int i = 0; i < 3; i++)
@@ -231,4 +231,95 @@ void pause(void* ptr)
 	btn->visible = true;
 	if(is_music)
 		music.play();
+}
+
+namespace Init
+{
+	sf::RenderWindow start_window;
+
+	void set_hd()
+	{
+		Screen::w = 1280;
+		Screen::h = 720;
+		start_window.close();
+	}
+	
+	void set_fullhd()
+	{
+		Screen::w = 1980;
+		Screen::h = 1080;
+		start_window.close();
+	}
+
+	void choose_resolution()
+	{
+		start_window.create(sf::VideoMode(350U, 250U), "Start", sf::Style::None);
+
+		sf::Text title;
+		title.setFont(font);
+		title.setString("Choose screen mode");
+		title.setCharacterSize(27);
+		title.setPosition(5.f, 3.f);
+		title.setFillColor(sf::Color::Yellow);
+
+		register Button::text start_buttons[2];
+		for (int i = 0; i < 2; i++)
+		{
+			start_buttons[i] = Button::text(btn_text);
+			start_buttons[i].set_color(sf::Color::White);
+			start_buttons[i].set_size(27);
+			start_buttons[i].assign_font(&font);
+			start_buttons[i].set_text("HD");
+			start_buttons[i].set_width(340);
+			start_buttons[i].set_position(5., 40.f + i * 100.f);
+		}
+		start_buttons[0].set_text("HD");
+		start_buttons[0].onclick(Init::set_hd);
+		start_buttons[1].set_text("Full HD");
+		start_buttons[1].onclick(Init::set_fullhd);
+
+		Mouse::Left = false;
+		while (start_window.isOpen())
+		{
+			sf::Event event;
+			while (start_window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					start_window.close();
+				if ((event.type == sf::Event::MouseButtonPressed) || (event.type == sf::Event::MouseButtonReleased))
+				{
+					bool flag = (event.type == sf::Event::MouseButtonPressed);
+					switch (event.key.code)
+					{
+					case sf::Mouse::Button::Left:
+						Mouse::Left = flag;
+						break;
+					case sf::Mouse::Button::Right:
+						Mouse::Right = flag;
+						break;
+					case sf::Mouse::Button::Middle:
+						Mouse::Middle = flag;
+						break;
+					}
+					if (flag)
+						Mouse::flood_control[0]++;
+				}
+			}
+			if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
+				Mouse::flood_control[1] = Mouse::flood_control[0];
+			else
+				Mouse::Left = false;
+
+			start_window.clear();
+			Mouse::x = (float)(sf::Mouse::getPosition(start_window).x);
+			Mouse::y = (float)(sf::Mouse::getPosition(start_window).y);
+			for (int i = 0; i < 2; i++)
+				if (start_buttons[i].check_state(Mouse::x, Mouse::y, Mouse::Left, true) == Button::state::clicked)
+					is_any_button_pressed |= true;
+			start_window.draw(title);
+			for (int i = 0; i < 2; i++)
+				start_buttons[i].draw_in(start_window);
+			start_window.display();
+		}
+	}
 }

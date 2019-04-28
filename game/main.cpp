@@ -6,8 +6,12 @@ extern soundtrack music;
 
 int main()
 {
+	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
+	Init::choose_resolution();
+
+	window.create(sf::VideoMode(Screen::w, Screen::h), "Night of Redemption: Awakening");
     window.setFramerateLimit(60);
-	view.reset(sf::FloatRect(0.f, 0.f, screen.w, screen.h));
+	view.reset(sf::FloatRect(0.f, 0.f, Screen::w, Screen::h));
 
 	// Main map
 	sf::Sprite background;
@@ -16,7 +20,7 @@ int main()
 	background.setTexture(bgtexture);
 	background.setPosition(sf::Vector2f(0, 0));
 
-	float vc_x = (float)screen.w / 2.f, vc_y = (float)screen.h / 2.f;
+	float vc_x = (float)Screen::w / 2.f, vc_y = (float)Screen::h / 2.f;
 	
 
 	List<Unit> units;
@@ -42,7 +46,6 @@ int main()
 	thr.detach();
 	/*std::thread regen(&(Player::health_regen), player);
 	regen.detach();*/
-	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
 
 	// Ammo pre-text
 	sf::Text ammo_ind_pre;
@@ -114,7 +117,7 @@ int main()
 	pause_btn->onclick(pause, (void*)pause_btn);
 	buttons.add(pause_btn);
 
-	sf::RectangleShape dark_pause(sf::Vector2f(float(screen.w), float(screen.h)));
+	sf::RectangleShape dark_pause(sf::Vector2f(Screen::w, Screen::h));
 	dark_pause.setFillColor(sf::Color(0, 0, 0, 200));
 
 	window.setView(view);
@@ -131,31 +134,31 @@ int main()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::Key::W:
-					Kb.W = flag;
+					Keyboard::W = flag;
 					break;
 				case sf::Keyboard::Key::A:
-					Kb.A = flag;
+					Keyboard::A = flag;
 					break;
 				case sf::Keyboard::Key::S:
-					Kb.S = flag;
+					Keyboard::S = flag;
 					break;
 				case sf::Keyboard::Key::D:
-					Kb.D = flag;
+					Keyboard::D = flag;
 					break;
 				case sf::Keyboard::Key::Q:
-					Kb.Q = flag;
+					Keyboard::Q = flag;
 					break;
 				case sf::Keyboard::Key::E:
-					Kb.E = flag;
+					Keyboard::E = flag;
 					break;
                 case sf::Keyboard::Key::R:
-                    Kb.R = flag;
+                    Keyboard::R = flag;
                     break;
 				case sf::Keyboard::Key::LShift:
-					Kb.LShift = flag;
+					Keyboard::LShift = flag;
 					break;
 				case sf::Keyboard::Key::Escape:
-					Kb.Escape = flag;
+					Keyboard::Escape = flag;
 					break;
 				}
 			}
@@ -165,22 +168,22 @@ int main()
 				switch (event.key.code)
 				{
 				case sf::Mouse::Button::Left:
-					Mouse.Left = flag;
+					Mouse::Left = flag;
 					break;
 				case sf::Mouse::Button::Right:
-					Mouse.Right = flag;
+					Mouse::Right = flag;
 					break;
 				case sf::Mouse::Button::Middle:
-					Mouse.Middle = flag;
+					Mouse::Middle = flag;
 					break;
 				}
 				if (flag)
-					Mouse.flood_control[0]++;
+					Mouse::flood_control[0]++;
 			}
 		}
 
-		Mouse.x = (float)(sf::Mouse::getPosition(window).x);
-		Mouse.y = (float)(sf::Mouse::getPosition(window).y);
+		Mouse::x = (float)(sf::Mouse::getPosition(window).x);
+		Mouse::y = (float)(sf::Mouse::getPosition(window).y);
 
 		check_buttons(buttons);
 
@@ -198,12 +201,12 @@ int main()
 			enemies_num -= killed;
 		}
 
-		corners.calculate(&screen, player);
+		Corners::calculate(player);
 
 		camoffset.x = player->getX() - vc_x;
 		camoffset.y = player->getY() - vc_y;
 
-		pause_btn->set_position(corners.bottom_right.x - 175.f, corners.bottom_right.y - 58.f);
+		pause_btn->set_position(Corners::bottom_right.x - 175.f, Corners::bottom_right.y - 58.f);
 
 		if (player->get_ammo() != ammo_ind_num)
 		{
@@ -238,7 +241,7 @@ int main()
 		}
 
 
-		float ammo_ind_pos_x = corners.top_left.x + 10.0f, ammo_ind_pos_y = corners.top_left.y + 20.0f;
+		float ammo_ind_pos_x = Corners::top_left.x + 10.0f, ammo_ind_pos_y = Corners::top_left.y + 20.0f;
 		ammo_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x, ammo_ind_pos_y));
 		ammo_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y));
 		enemies_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 25.f));
@@ -246,9 +249,9 @@ int main()
 		score_ind_pre.setPosition(sf::Vector2f(ammo_ind_pos_x - 1.5f, ammo_ind_pos_y + 50.f));
 		score_ind.setPosition(sf::Vector2f(ammo_ind_pos_x + 110.f, ammo_ind_pos_y + 50.f));
 
-		float border_pos_x = corners.top_left.x, border_pos_y = corners.top_left.y - 48.f;
+		float border_pos_x = Corners::top_left.x, border_pos_y = Corners::top_left.y - 48.f;
 		border1.setPosition(border_pos_x, border_pos_y);
-		border2.setPosition(border_pos_x, corners.bottom_left.y);
+		border2.setPosition(border_pos_x, Corners::bottom_left.y);
 
 		music.control();
 
@@ -270,12 +273,12 @@ int main()
 		if (player->get_stamina() < MAX_STAMINA)
 		{
 			stamina_bar.set_percentage((float)player->get_stamina() / float(MAX_STAMINA));
-			stamina_bar.set_position(corners.bottom_left.x + 40.f, corners.bottom_left.y - 15.f);
+			stamina_bar.set_position(Corners::bottom_left.x + 40.f, Corners::bottom_left.y - 15.f);
 			stamina_bar.draw_in(window);
 		}
 
 		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
-		health_bar.set_position(corners.bottom_left.x + 20.f, corners.bottom_left.y - 30.f);
+		health_bar.set_position(Corners::bottom_left.x + 20.f, Corners::bottom_left.y - 30.f);
 		health_bar.draw_in(window);
 		draw_buttons(buttons);
 

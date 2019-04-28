@@ -32,20 +32,20 @@ void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int*
 			switch (zone)
 			{
 			case 1: // правая
-				x = random(player->getX() + screen.w / 2.f, map.w - map.padding_x);
+				x = random(player->getX() + Screen::w / 2.f, map.w - map.padding_x);
 				y = random(map.padding_y, map.h - map.padding_y);
 				break;
 			case 2: // нижняя
-				x = random(player->getX() - screen.w / 2.f, player->getX() + screen.w / 2.f);
-				y = random(player->getY() + screen.h / 2.f, map.h - map.padding_y);
+				x = random(player->getX() - Screen::w / 2.f, player->getX() + Screen::w / 2.f);
+				y = random(player->getY() + Screen::h / 2.f, map.h - map.padding_y);
 				break;
 			case 3: // левая
-				x = random(map.padding_x, player->getX() - screen.w / 2.f);
+				x = random(map.padding_x, player->getX() - Screen::w / 2.f);
 				y = random(map.padding_y, map.h - map.padding_y);
 				break;
 			case 4: // верхняя
-				x = random(player->getX() - screen.w / 2.f, player->getX() + screen.w / 2.f);
-				y = random(map.padding_y, player->getY() - screen.h / 2.f);
+				x = random(player->getX() - Screen::w / 2.f, player->getX() + Screen::w / 2.f);
+				y = random(map.padding_y, player->getY() - Screen::h / 2.f);
 				break;
 			}
 			Enemy* en = new Enemy(etype);
