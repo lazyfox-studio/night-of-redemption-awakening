@@ -11,4 +11,5 @@
 !*.gif
 !*.ttf
 !*.wav
-/Debug/Textures/map.png
+/Debug/*
+/Release/*
