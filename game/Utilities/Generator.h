@@ -25,7 +25,7 @@ void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int*
 	sf::Clock clock;
 	while (enemies_gconfig.enabled)
 	{
-		while (*enemies_num < enemies_gconfig.max_num)
+		while ((*enemies_num < 100) && (*enemies_num < 10 + player->get_score() / 400))
 		{
 			int zone = random(1, 4);
 			float x = 0.f, y = 0.f;
