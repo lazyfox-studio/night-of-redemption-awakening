@@ -6,7 +6,7 @@
 #include "Structures/Soundtrack.h"
 #include "Headers/Button.h"
 
-sf::RenderWindow window(sf::VideoMode(screen.w, screen.h), "Night of Redemption™: Awakening");
+sf::RenderWindow window;
 sf::View view;
 Monolith monolith;
 sf::Sound sound;

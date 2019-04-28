@@ -10,15 +10,15 @@ struct CornerPoint
 
 struct Corners
 {
-	CornerPoint top_left;
-	CornerPoint top_right;
-	CornerPoint bottom_left;
-	CornerPoint bottom_right;
+	static CornerPoint top_left;
+	static CornerPoint top_right;
+	static CornerPoint bottom_left;
+	static CornerPoint bottom_right;
 
-	void calculate(const ScreenResolution* screen, Player* player)
+	static void calculate(Player* player)
 	{
 		float player_x = player->getX(), player_y = player->getY();
-		float half_screen_w = float(screen->w) / 2.f, half_screen_h = float(screen->h) / 2.f;
+		float half_screen_w = float(Screen::w) / 2.f, half_screen_h = float(Screen::h) / 2.f;
 		top_left.x     = player_x - half_screen_w;
 		top_left.y     = player_y - half_screen_h;
 		top_right.x    = player_x + half_screen_w;
@@ -29,4 +29,3 @@ struct Corners
 		bottom_right.y = player_y + half_screen_h;
 	};
 };
-Corners corners;

@@ -64,6 +64,9 @@
     <ClCompile Include="Classes\Button.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Structures\static_init.cpp">
+      <Filter>Structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Enemy.h">

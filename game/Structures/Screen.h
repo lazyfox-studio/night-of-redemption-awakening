@@ -1,11 +1,10 @@
 #pragma once
 
-struct ScreenResolution
+struct Screen
 {
-	int w = 1280;
-	int h = 720;
+	static int w;
+	static int h;
 };
-const ScreenResolution screen;
 
 struct MapSize
 {

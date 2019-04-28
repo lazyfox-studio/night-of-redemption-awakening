@@ -1,28 +1,26 @@
 #pragma once
 
-struct KeyboardControl
+struct Keyboard
 {
-	bool W = false;
-	bool A = false;
-	bool S = false;
-	bool D = false;
-	bool Q = false;
-	bool E = false;
-	bool R = false;
-	bool LShift = false;
-	bool Escape = false;
+	static bool W;
+	static bool A;
+	static bool S;
+	static bool D;
+	static bool Q;
+	static bool E;
+	static bool R;
+	static bool LShift;
+	static bool Escape;
 };
-KeyboardControl Kb;
 
-struct MouseControl
+struct Mouse
 {
-	bool Left = false;
-	bool Right = false;
-	bool Middle = false;
+	static bool Left;
+	static bool Right;
+	static bool Middle;
 
-	float x;
-	float y;
+	static float x;
+	static float y;
 
-	unsigned long long flood_control[2] = { 0 };
+	static unsigned long long flood_control[2];
 };
-MouseControl Mouse;
