@@ -9,6 +9,7 @@
 
 bool is_any_button_pressed = false;
 bool is_paused = false;
+bool is_game_over = false;
 bool is_music = true;
 CameraOffset camoffset;
 extern sf::Font font;
@@ -105,6 +106,18 @@ inline int kill_dead_enemies(List<Unit>& units)
 inline void cooldown_update(List<Unit>& units)
 {
     units.foreach(&(Unit::damage_cooldown_update));
+}
+
+//Проверка на game over
+void game_over_check(List<Ally>& allies)
+{
+	for (ListItem<Ally>* i = allies.head; i; i = i->next)
+	{
+		if (i->value->get_health() <= 0)
+		{
+			is_game_over = true;
+		}
+	}
 }
 
 sf::RenderWindow pause_window;
