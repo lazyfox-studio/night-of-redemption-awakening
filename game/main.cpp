@@ -124,6 +124,49 @@ int main()
 	pause_btn->onclick(pause, (void*)pause_btn);
 	buttons.add(pause_btn);
 
+	//Menu
+	sf::Text menu_title, menu_info1, menu_info2;
+	menu_title.setFont(font);
+	menu_title.setString("NIGHT OF REDEMPTION");
+	menu_title.setCharacterSize(27);
+	
+	menu_title.setFillColor(sf::Color::Yellow);
+
+	menu_info1.setOutlineThickness(0.f);
+	menu_info1.setFont(font);
+	menu_info1.setString("By Mikhail Zoreev & Maksim Vlasov");
+	menu_info1.setCharacterSize(16);
+	menu_info1.setFillColor(sf::Color::Red);
+
+	menu_info2.setFont(font);
+	menu_info2.setString("github.com/unn-ss/night-of-redemption-awakening");
+	menu_info2.setCharacterSize(11);
+	menu_info2.setFillColor(sf::Color::Red);
+
+	//Menu buttons
+	register Button::text pause_buttons[3];
+	for (int i = 0; i < 3; i++)
+	{
+		pause_buttons[i] = Button::text(btn_text);
+		pause_buttons[i].set_color(sf::Color::White);
+		pause_buttons[i].set_size(27);
+		pause_buttons[i].assign_font(&font);
+		pause_buttons[i].set_text("Play");
+		pause_buttons[i].set_width(340);
+	}
+	pause_buttons[0].set_text("Play");
+	pause_buttons[0].onclick(resume_game, pause_btn);
+	pause_buttons[1].set_text(is_music ? "Music: On" : "Music: Off");
+	pause_buttons[1].onclick(is_music ? pause_music : play_music, pause_buttons + 1);
+	pause_buttons[2].set_text("Quit");
+	pause_buttons[2].onclick(stop_game);
+
+	buttons.add(pause_buttons);
+	buttons.add(pause_buttons + 1);
+	buttons.add(pause_buttons + 2);
+
+	//
+
 	sf::RectangleShape dark_pause(sf::Vector2f(Screen::w, Screen::h));
 	dark_pause.setFillColor(sf::Color(0, 0, 0, 200));
 
@@ -189,6 +232,10 @@ int main()
 			}
 		}
 
+		if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
+			Mouse::flood_control[1] = Mouse::flood_control[0];
+		else
+			Mouse::Left = false;
 		Mouse::x = (float)(sf::Mouse::getPosition(window).x);
 		Mouse::y = (float)(sf::Mouse::getPosition(window).y);
 
@@ -198,6 +245,9 @@ int main()
 		{
 			check_range_enemies(enemies);
 			check_focus_enemies(enemies, allies);
+			pause_buttons[0].visible = false;
+			pause_buttons[1].visible = false;
+			pause_buttons[2].visible = false;
 
 			move_enemies(enemies, units);
 			attack_enemies(enemies);
@@ -269,18 +319,14 @@ int main()
         window.setView(view);
 		window.draw(background);
 		draw_all(units);
-
+		
 		window.draw(ammo_ind_pre);
 		window.draw(ammo_ind);
 		window.draw(enemies_ind_pre);
 		window.draw(enemies_ind);
 		window.draw(score_ind_pre);
 		window.draw(score_ind);
-		if (is_game_over) window.draw(over_text);
-
-		window.draw(border1);
-		window.draw(border2);
-
+		
 		if (player->get_stamina() < MAX_STAMINA)
 		{
 			stamina_bar.set_percentage((float)player->get_stamina() / float(MAX_STAMINA));
@@ -291,13 +337,33 @@ int main()
 		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
 		health_bar.set_position(Corners::bottom_left.x + 20.f, Corners::bottom_left.y - 30.f);
 		health_bar.draw_in(window);
-		draw_buttons(buttons);
+		
+		if (is_game_over)
+		{
+			window.draw(over_text);
+		}
 
 		if (is_paused)
 		{
-			dark_pause.setPosition(player->getX(), player->getY());
+			dark_pause.setPosition(Corners::top_left.x, Corners::top_left.y);
 			window.draw(dark_pause);
+			menu_title.setPosition(player->getX(), player->getY());
+			menu_info1.setPosition(player->getX(), player->getY() + 20);
+			menu_info2.setPosition(player->getX(), player->getY() + 40);
+			pause_buttons[0].set_position(player->getX(), player->getY() + 100);
+			pause_buttons[1].set_position(player->getX(), player->getY() + 200);
+			pause_buttons[2].set_position(player->getX(), player->getY() + 300);
+			pause_buttons[0].visible = true;
+			pause_buttons[1].visible = true;
+			pause_buttons[2].visible = true;
+			window.draw(menu_title);
+			window.draw(menu_info1);
+			window.draw(menu_info2);
 		}
+
+		window.draw(border1);
+		window.draw(border2);
+		draw_buttons(buttons);
 
 		window.display();
 	}

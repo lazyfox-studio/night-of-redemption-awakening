@@ -5,7 +5,9 @@
 #include "List.h"
 #include "../Structures/Screen.h"
 #include <iostream>
-#include <thread>
+#include <thread> 
+
+extern bool is_paused;
 
 struct GeneratorConfig
 {
@@ -25,7 +27,7 @@ void enemies_generator(Player* player, EnemyType* etype, List<Unit>* units, int*
 	sf::Clock clock;
 	while (enemies_gconfig.enabled)
 	{
-		while ((*enemies_num < 100) && (*enemies_num < 10 + player->get_score() / 400))
+		while ((*enemies_num < 100) && (*enemies_num < 10 + player->get_score() / 400) && !is_paused)
 		{
 			int zone = random(1, 4);
 			float x = 0.f, y = 0.f;
