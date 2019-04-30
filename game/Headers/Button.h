@@ -54,6 +54,14 @@ namespace Button
 		virtual ~btn();
 
 		state get_state();
+		int get_width()
+		{
+			return width;
+		}
+		int get_height()
+		{
+			return height;
+		}
 		state check_state(float mouse_x, float mouse_y, bool mouse_click, bool set_state = false);
 		virtual void set_state(state);
 		virtual void set_position(float, float) = 0;

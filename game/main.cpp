@@ -9,7 +9,7 @@ int main()
 	font.loadFromFile("Fonts/handelgothictl-regular.ttf");
 	Init::choose_resolution();
 
-	window.create(sf::VideoMode(Screen::w, Screen::h), "Night of Redemption: Awakening");
+	window.create(sf::VideoMode(Screen::w, Screen::h), "Night of Redemption: Awakening", sf::Style::Fullscreen);
     window.setFramerateLimit(60);
 	view.reset(sf::FloatRect(0.f, 0.f, Screen::w, Screen::h));
 
@@ -231,13 +231,13 @@ int main()
 					Mouse::flood_control[0]++;
 			}
 		}
-
-		if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
-			Mouse::flood_control[1] = Mouse::flood_control[0];
-		else
-			Mouse::Left = false;
-		Mouse::x = (float)(sf::Mouse::getPosition(window).x);
-		Mouse::y = (float)(sf::Mouse::getPosition(window).y);
+		
+			if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
+				Mouse::flood_control[1] = Mouse::flood_control[0];
+			else
+				Mouse::Left = false;
+			Mouse::x = (float)(sf::Mouse::getPosition(window).x);
+			Mouse::y = (float)(sf::Mouse::getPosition(window).y);
 
 		check_buttons(buttons);
 
@@ -347,12 +347,12 @@ int main()
 		{
 			dark_pause.setPosition(Corners::top_left.x, Corners::top_left.y);
 			window.draw(dark_pause);
-			menu_title.setPosition(player->getX(), player->getY());
-			menu_info1.setPosition(player->getX(), player->getY() + 20);
-			menu_info2.setPosition(player->getX(), player->getY() + 40);
-			pause_buttons[0].set_position(player->getX(), player->getY() + 100);
-			pause_buttons[1].set_position(player->getX(), player->getY() + 200);
-			pause_buttons[2].set_position(player->getX(), player->getY() + 300);
+			menu_title.setPosition(player->getX() - menu_title.getGlobalBounds().width / 2, player->getY() - 200);
+			menu_info1.setPosition(player->getX() - menu_title.getGlobalBounds().width / 2, player->getY() - 173);
+			menu_info2.setPosition(player->getX() - menu_title.getGlobalBounds().width / 2, player->getY() - 156);
+			pause_buttons[0].set_position(player->getX() - pause_buttons[0].get_width() / 2, player->getY() - 145);
+			pause_buttons[1].set_position(player->getX() - pause_buttons[0].get_width() / 2, player->getY() - 145 + pause_buttons[0].get_height());
+			pause_buttons[2].set_position(player->getX() - pause_buttons[0].get_width() / 2, player->getY() - 145 + 2 * pause_buttons[0].get_height());
 			pause_buttons[0].visible = true;
 			pause_buttons[1].visible = true;
 			pause_buttons[2].visible = true;
