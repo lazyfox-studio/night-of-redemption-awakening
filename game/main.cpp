@@ -231,11 +231,6 @@ int main()
 					Mouse::flood_control[0]++;
 			}
 		}
-		
-			if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
-				Mouse::flood_control[1] = Mouse::flood_control[0];
-			else
-				Mouse::Left = false;
 			Mouse::x = (float)(sf::Mouse::getPosition(window).x);
 			Mouse::y = (float)(sf::Mouse::getPosition(window).y);
 
@@ -327,17 +322,6 @@ int main()
 		window.draw(score_ind_pre);
 		window.draw(score_ind);
 		
-		if (player->get_stamina() < MAX_STAMINA)
-		{
-			stamina_bar.set_percentage((float)player->get_stamina() / float(MAX_STAMINA));
-			stamina_bar.set_position(Corners::bottom_left.x + 40.f, Corners::bottom_left.y - 15.f);
-			stamina_bar.draw_in(window);
-		}
-
-		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
-		health_bar.set_position(Corners::bottom_left.x + 20.f, Corners::bottom_left.y - 30.f);
-		health_bar.draw_in(window);
-		
 		if (is_game_over)
 		{
 			window.draw(over_text);
@@ -345,6 +329,10 @@ int main()
 
 		if (is_paused)
 		{
+			if (Mouse::Left && (Mouse::flood_control[0] - Mouse::flood_control[1] >= 1))
+				Mouse::flood_control[1] = Mouse::flood_control[0];
+			else
+				Mouse::Left = false;
 			dark_pause.setPosition(Corners::top_left.x, Corners::top_left.y);
 			window.draw(dark_pause);
 			menu_title.setPosition(player->getX() - menu_title.getGlobalBounds().width / 2, player->getY() - 200);
@@ -363,6 +351,15 @@ int main()
 
 		window.draw(border1);
 		window.draw(border2);
+		health_bar.set_percentage((float)player->get_health() / (float)player->max_health);
+		health_bar.set_position(Corners::bottom_left.x + 20.f, Corners::bottom_left.y - 30.f);
+		health_bar.draw_in(window);
+		if (player->get_stamina() < MAX_STAMINA)
+		{
+			stamina_bar.set_percentage((float)player->get_stamina() / float(MAX_STAMINA));
+			stamina_bar.set_position(Corners::bottom_left.x + 40.f, Corners::bottom_left.y - 15.f);
+			stamina_bar.draw_in(window);
+		}
 		draw_buttons(buttons);
 
 		window.display();

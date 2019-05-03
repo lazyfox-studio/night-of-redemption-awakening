@@ -162,14 +162,14 @@ namespace Init
 {
 	sf::RenderWindow start_window;
 
-	void set_hd()
+	void set_720p()
 	{
 		Screen::w = 1280;
 		Screen::h = 720;
 		start_window.close();
 	}
 	
-	void set_fullhd()
+	void set_1080p()
 	{
 		Screen::w = 1980;
 		Screen::h = 1080;
@@ -198,10 +198,10 @@ namespace Init
 			start_buttons[i].set_width(340);
 			start_buttons[i].set_position(5., 40.f + i * 100.f);
 		}
-		start_buttons[0].set_text("HD");
-		start_buttons[0].onclick(Init::set_hd);
-		start_buttons[1].set_text("Full HD");
-		start_buttons[1].onclick(Init::set_fullhd);
+		start_buttons[0].set_text("1280x720");
+		start_buttons[0].onclick(Init::set_720p);
+		start_buttons[1].set_text("1920x1080");
+		start_buttons[1].onclick(Init::set_1080p);
 
 		Mouse::Left = false;
 		while (start_window.isOpen())

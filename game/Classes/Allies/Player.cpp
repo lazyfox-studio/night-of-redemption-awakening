@@ -31,7 +31,7 @@ void Player::shoot(List<Enemy> & enemies) {
     Enemy* target = nullptr;
     float range = float(INT_MAX);
 	float _x, _y;
-    float angle = 3.141592f * pov / 180.f;
+    float angle = 3.14159265358979323f * pov / 180.f;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
         if (i->value->r < range) {
