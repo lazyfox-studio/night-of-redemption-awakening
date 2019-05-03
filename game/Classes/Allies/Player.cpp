@@ -31,13 +31,13 @@ void Player::shoot(List<Enemy> & enemies) {
     Enemy* target = nullptr;
     float range = float(INT_MAX);
 	float _x, _y;
-    float angle = 3.14159265358979323f * pov / 180.f;
+    float angle = 3.14159265f * pov / 180.f;
     for (ListItem<Enemy>* i = enemies.head; i; i = i->next)
     {
         if (i->value->r < range) {
             _x = i->value->x;
             _y = i->value->y;
-            if ((pov < 90) && (pov >= 0))
+            if ((pov <= 45) && (pov >= 0))
             {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
@@ -53,7 +53,39 @@ void Player::shoot(List<Enemy> & enemies) {
                     range = target->r;
                 }
             }
-            else if ((pov > 90) && (pov <= 180))
+			else if ((pov < 90) && (pov > 45))
+			{
+				if (
+					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
+					&&
+					((_x - UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) < 0)
+					&&
+					(_x >= x)
+					&&
+					(_y >= y)
+					)
+				{
+					target = i->value;
+					range = target->r;
+				}
+			}
+			else if ((pov > 90) && (pov < 135))
+			{
+				if (
+					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
+					&&
+					((_x - UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) < 0)
+					&&
+					(_x <= x)
+					&&
+					(_y >= y)
+					)
+				{
+					target = i->value;
+					range = target->r;
+				}
+			}
+            else if ((pov >= 135) && (pov <= 180))
             {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
@@ -69,7 +101,7 @@ void Player::shoot(List<Enemy> & enemies) {
                     range = target->r;
                 }
             }
-			else if ((pov < 270) && (pov > 180))
+			else if ((pov <= 225) && (pov > 180))
 			{
 				if (
 					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
@@ -85,7 +117,39 @@ void Player::shoot(List<Enemy> & enemies) {
 					range = target->r;
 				}
 			}
-			else if ((pov > -90) && (pov < 0))
+			else if ((pov < 270) && (pov > 225))
+			{
+				if (
+					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
+					&&
+					((_x - UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) < 0)
+					&&
+					(_x <= x)
+					&&
+					(_y <= y)
+					)
+				{
+					target = i->value;
+					range = target->r;
+				}
+			}
+			else if ((pov > -90) && (pov < -45))
+			{
+				if (
+					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
+					&&
+					((_x - UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) < 0)
+					&&
+					(_x >= x)
+					&&
+					(_y <= y)
+					)
+				{
+					target = i->value;
+					range = target->r;
+				}
+			}
+			else if ((pov >= -45) && (pov < 0))
 			{
 				if (
 					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
