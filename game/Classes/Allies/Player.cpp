@@ -37,7 +37,7 @@ void Player::shoot(List<Enemy> & enemies) {
         if (i->value->r < range) {
             _x = i->value->x;
             _y = i->value->y;
-            if ((pov <= 45) && (pov >= 0))
+            if ((pov <= 45) && (pov >= -45))
             {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
@@ -45,22 +45,18 @@ void Player::shoot(List<Enemy> & enemies) {
                     ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
                     &&
                     (_x >= x)
-					&&
-					(_y >= y)
                     )
                 {
                     target = i->value;
                     range = target->r;
                 }
             }
-			else if ((pov < 90) && (pov > 45))
+			else if ((pov < 135) && (pov > 45))
 			{
 				if (
 					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
 					&&
 					((_x - UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) < 0)
-					&&
-					(_x >= x)
 					&&
 					(_y >= y)
 					)
@@ -69,23 +65,7 @@ void Player::shoot(List<Enemy> & enemies) {
 					range = target->r;
 				}
 			}
-			else if ((pov > 90) && (pov < 135))
-			{
-				if (
-					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
-					&&
-					((_x - UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) < 0)
-					&&
-					(_x <= x)
-					&&
-					(_y >= y)
-					)
-				{
-					target = i->value;
-					range = target->r;
-				}
-			}
-            else if ((pov >= 135) && (pov <= 180))
+            else if ((pov >= 135) && (pov <= 225))
             {
                 if (
                     ((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
@@ -93,31 +73,13 @@ void Player::shoot(List<Enemy> & enemies) {
                     ((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
                     &&
                     (_x <= x)
-					&&
-					(_y >= y)
                     )
                 {
                     target = i->value;
                     range = target->r;
                 }
             }
-			else if ((pov <= 225) && (pov > 180))
-			{
-				if (
-					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
-					&&
-					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
-					&&
-					(_x <= x)
-					&&
-					(_y <= y)
-					)
-				{
-					target = i->value;
-					range = target->r;
-				}
-			}
-			else if ((pov < 270) && (pov > 225))
+			else if ((pov <= 270) && (pov > 225))
 			{
 				if (
 					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
@@ -133,7 +95,7 @@ void Player::shoot(List<Enemy> & enemies) {
 					range = target->r;
 				}
 			}
-			else if ((pov > -90) && (pov < -45))
+			else if ((pov >= -90) && (pov < -45))
 			{
 				if (
 					((_x + UNIT_SIZE) - x - 1 / tan(angle) * (_y - y) > 0)
@@ -149,44 +111,6 @@ void Player::shoot(List<Enemy> & enemies) {
 					range = target->r;
 				}
 			}
-			else if ((pov >= -45) && (pov < 0))
-			{
-				if (
-					((_y + UNIT_SIZE) - y - tan(angle) * (_x - x) > 0)
-					&&
-					((_y - UNIT_SIZE) - y - tan(angle) * (_x - x) < 0)
-					&&
-					(_x >= x)
-					&&
-					(_y <= y)
-					)
-				{
-					target = i->value;
-					range = target->r;
-				}
-			}
-            else if (pov == 90)
-            {
-                if (_y > y)
-                {
-                    if (((_x - UNIT_SIZE / 2) < x) && ((_x + UNIT_SIZE / 2) > x))
-                    {
-                        target = i->value;
-                        range = target->r;
-                    }
-                }
-            }
-            else if ((pov == -90) || (pov == -270))
-            {
-                if (_y < y)
-                {
-                    if (((_x - UNIT_SIZE / 2) < x) && ((_x + UNIT_SIZE / 2) > x))
-                    {
-                        target = i->value;
-                        range = target->r;
-                    }
-                }
-            }
         }
     }
     if (target != nullptr)
