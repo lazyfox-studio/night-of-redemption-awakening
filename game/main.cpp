@@ -219,6 +219,7 @@ int main()
 				{
 				case sf::Mouse::Button::Left:
 					Mouse::Left = flag;
+                    check_buttons(buttons);
 					break;
 				case sf::Mouse::Button::Right:
 					Mouse::Right = flag;
@@ -234,7 +235,7 @@ int main()
 			Mouse::x = (float)(sf::Mouse::getPosition(window).x);
 			Mouse::y = (float)(sf::Mouse::getPosition(window).y);
 
-		check_buttons(buttons);
+            check_buttons_2(buttons);
 
 		if (!is_paused && !is_game_over)
 		{

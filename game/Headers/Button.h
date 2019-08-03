@@ -63,6 +63,7 @@ namespace Button
 			return height;
 		}
 		state check_state(float mouse_x, float mouse_y, bool mouse_click, bool set_state = false);
+        state check_state_2(float mouse_x, float mouse_y, bool mouse_click, bool set_state = false);
 		virtual void set_state(state);
 		virtual void set_position(float, float) = 0;
 		virtual void draw_in(sf::RenderWindow&) = 0;

@@ -71,6 +71,25 @@ Button::state Button::btn::get_state()
 	return btn_state;
 }
 
+Button::state Button::btn::check_state_2(float mouse_x, float mouse_y, bool mouse_click, bool _set_state)
+{
+    state _state = state::def;
+    if (!visible)
+        _state = state::def;
+    else
+    {
+        if (btn_state == state::disabled)
+            _state = state::disabled;
+        if ((mouse_x >= x) && (mouse_x <= x + width) && (mouse_y >= y) && (mouse_y <= y + height))
+        {
+            _state = state::hovered;
+        }
+    }
+    if (_set_state)
+        set_state(_state);
+    return _state;
+}
+
 Button::state Button::btn::check_state(float mouse_x, float mouse_y, bool mouse_click, bool _set_state)
 {
 	state _state = state::def;

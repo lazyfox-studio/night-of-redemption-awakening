@@ -56,9 +56,21 @@ inline void draw_all(List<Unit>& units)
 inline void check_buttons(List<Button::btn>& buttons)
 {
 	is_any_button_pressed = false;
-	for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
+    sf::Mouse mice;
+ 
+    for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
 		if (i->value->check_state(camoffset.x + Mouse::x, camoffset.y + Mouse::y, Mouse::Left, true) == Button::state::clicked)
 			is_any_button_pressed |= true;
+}
+
+inline void check_buttons_2(List<Button::btn>& buttons)
+{
+    is_any_button_pressed = false;
+    sf::Mouse mice;
+
+    for (ListItem<Button::btn>* i = buttons.head; i; i = i->next)
+        if (i->value->check_state_2(camoffset.x + Mouse::x, camoffset.y + Mouse::y, Mouse::Left, true) == Button::state::clicked)
+            is_any_button_pressed |= true;
 }
 
 inline void draw_buttons(List<Button::btn>& buttons)
