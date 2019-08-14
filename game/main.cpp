@@ -134,12 +134,12 @@ int main()
 
 	menu_info1.setOutlineThickness(0.f);
 	menu_info1.setFont(font);
-	menu_info1.setString("By Mikhail Zoreev & Maksim Vlasov");
+	menu_info1.setString("Lazy Fox Studio");
 	menu_info1.setCharacterSize(16);
 	menu_info1.setFillColor(sf::Color::Red);
 
 	menu_info2.setFont(font);
-	menu_info2.setString("github.com/unn-ss/night-of-redemption-awakening");
+	menu_info2.setString("2019 All Rights Reserved");
 	menu_info2.setCharacterSize(11);
 	menu_info2.setFillColor(sf::Color::Red);
 
